@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&amp;display=swap');
+
+
+/*
+============================>   Global vars Configs   <============================
+*/
+:root {
+    --color-primary: #6380ec;
+    --color-background: #f6f6f9;
+
+    --card-border-radius: 2rem;
+    --box-shadow: 10px 5px 5px var(--color-primary);
+    --transition: all 300ms ease;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/*
+============================>   General Configs   <============================
+*/
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: var(--color-background);
+}
+
+/*
+============================>   General Container Configs   <============================
+*/
+.container{
+    width: 450px;
+    background: #fff;
+    padding: 30px;
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.container:hover{
+    box-shadow: none;
+}
+
+.container h1 {
+    margin-bottom: 25px;
+    color: var(--color-primary);
+}
+
+.container .form-group{
+    height: 40px;
+    width: 100%;
+    position: relative;
+    margin-bottom: 40px; /* Añade margen inferior para separar los elementos */
+}
+
+.container .form-group input,
+.container .form-group textarea {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 17px;
+    border-bottom: 2px solid silver;
+    resize: none; /* Evita que el textarea se pueda redimensionar */
+}
+
+/*
+============================>   Label Configs   <============================
+*/
+
+.container .form-group input:focus ~ label,
+.container .form-group input:hover ~ label,
+.container .form-group input:valid ~ label{
+    transform: translateY(-20px);
+    font-size: 15px;
+    color: var(--color-primary);
+}
+
+.container .form-group label{
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    color: grey;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+/*
+============================>   Textarea Configs   <============================
+*/
+.container .form-group textarea + .underline {
+    /* Ajusta el estilo de la línea inferior para el textarea */
+    height: 4px;
+}
+
+.container .form-group textarea + .underline:before {
+    /* Ajusta el estilo de la línea inferior antes del textarea */
+    bottom: -1px;
+}
+
+.container .form-group textarea:focus ~ label,
+.container .form-group textarea:hover ~ label,
+.container .form-group textarea:valid ~ label {
+    /* Ajusta el estilo del label cuando el textarea está enfocado o tiene contenido válido */
+    transform: translateY(-25px);
+    font-size: 15px;
+    color: var(--color-primary);
+}
+
+/*
+============================>   Date input Configs   <============================
+*/
+.container .form-group input[type="date"]:focus ~ label[for="dueDate"],
+.container .form-group input[type="date"]:valid ~ label[for="dueDate"],
+.container .form-group input[type="date"]:hover ~ label[for="dueDate"] {
+    transform: translateY(-10px); /* Ajusta la distancia hacia arriba */
+    font-size: 15px; /* Ajusta el tamaño de fuente */
+    color: var(--color-primary);
+}
+
+.container .form-group label[for="dueDate"] {
+    bottom: 25px; /* Ajusta el valor según tu preferencia */
+}
+
+.container .form-group input[type="date"] {
+    padding-top: 13px;
+}
+
+.container .form-group input[type="date"] + .underline {
+    height: 6px;
+}
+
+.container .form-group input[type="date"] + .underline:before {
+    bottom: -2px;
+}
+
+/*
+============================>   Underline Configs   <============================
+*/
+.container .form-group .underline{
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    bottom: 0;
+}
+
+.container .form-group .underline:before{
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    background: var(--color-primary);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+.container .form-group input:focus ~ .underline:before,
+.container .form-group input:valid ~ .underline:before{
+    transform: scaleX(1);
+}
+
+.container .form-group textarea:focus + .underline:before,
+.container .form-group textarea:valid + .underline:before {
+    height: 2px;
+    bottom: 0;
+    transform: scaleX(1);
+    background: var(--color-primary); /* Cambia el color al hacer clic o cuando tiene contenido válido */
+}
+
+.container .form-group input[type="date"] + .underline {
+    height: 2px; /* Ajusta el tamaño deseado */
+}
+
+.container .form-group input[type="date"] + .underline:before {
+    bottom: 0; /* Ajusta la posición de la línea inferior */
+}
+
+/*
+============================>  Btn Create Configs   <============================
+*/
+
+.container .buttons {
+    display: flex; /* Agrega un contenedor para los botones */
+    justify-content: space-between; /* Agrega esta línea */
+}
+
+.container .create-button,
+.container .return-button {
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background: transparent;
+    border: 2px dashed var(--color-primary);
+    color: var(--color-primary);
+    border-radius: 8px; /* Ajusta el valor según tu preferencia */
+    padding: 10px 20px; /* Ajusta el valor según tu preferencia */
+    margin-right: 10px; /* Espacio entre los botones */
+}
+
+.container .return-button {
+    display: inline-flex; /* Cambia a inline-flex */
+}
+
+.container .create-button:hover,
+.container .return-button:hover {
+    background: var(--color-primary);
+    color: white;
+}
+
+.container .create-button div,
+.container .return-button div {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    height: 100%;
+}
+
+.container .create-button div h3,
+.container .return-button div h3 {
+    font-weight: 600;
+    margin: 0; /* Agrega margen 0 para evitar afectar el tamaño del botón */
+    line-height: 1; /* Agrega esta propiedad para ajustar la altura del texto */
+    font-size: 14px; /* Ajusta el tamaño de fuente según tu preferencia */
+}
+
+.container .return-button {
+    display: inline-block;
+    margin-left: 10px; /* Añade margen izquierdo para separar los botones */
+}
