@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <!-- Material Icons-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////
+                            START SECTION 1 - Left Panel
+/////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <div class="container">
+        <!--================ Start Aside: Left Panel =================-->
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="./images/logo.png">
+                    <h2>Task<span class="success">Hub</span> </h2>
+                </div>
+
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">close</span>
+                </div>
+            </div>
+
+            <!--================ Start dashboard sidebar =================-->
+            <div class="sidebar">
+                <a href="#">
+                    <span class="material-icons-sharp">grid_view</span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="#" class="active">
+                    <span class="material-icons-sharp">work</span>
+                    <h3>Projects</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">receipt_long</span>
+                    <h3>To-do Tasks</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">insights</span>
+                    <h3>Analytics</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">mail_outline</span>
+                    <h3>Messages</h3>
+                    <span class="message-count">26</span>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">inventory</span>
+                    <h3>Products</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">report_gmailerrorred</span>
+                    <h3>Reports</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">settings</span>
+                    <h3>Settings</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">add</span>
+                    <h3>Add Project</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">logout</span>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </aside>
+        <!--================ End of Aside Area =================-->
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////
+                            START SECTION 2 - Central Panel
+/////////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <main>
+            <h1>Dashboard</h1>
+
+            <!--================ Start Insights =================-->
+            <div class="insights">
+                <div class="sales">
+                    <span class="material-icons-sharp">analytics</span>
+                    <div class="middle">
+
+                        <div class="left">
+                            <h3>Pending</h3>
+                            <h1>$19,100</h1>
+                        </div>
+
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>81%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">Last 24 Hours</small>
+                </div>
+                <!--================ End of Sales =================-->
+                <div class="expenses">
+                    <span class="material-icons-sharp">bar_chart</span>
+                    <div class="middle">
+
+                        <div class="left">
+                            <h3>In progress</h3>
+                            <h1>$14,160</h1>
+                        </div>
+
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>62%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">Last 24 Hours</small>
+                </div>
+                <!--================ End of Expenses =================-->
+                <div class="income">
+                    <span class="material-icons-sharp">stacked_line_chart</span>
+                    <div class="middle">
+
+                        <div class="left">
+                            <h3>Done</h3>
+                            <h1>$12,890</h1>
+                        </div>
+
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>41%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">Last 24 Hours</small>
+                </div>
+                <!--================ End of Income =================-->
+            </div>
+            <!--================ End of Insights =================-->
+
+            <!--================ Start Projects =================-->
+            <div class="projects">
+                <h2>Projects</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Proyecto</th>
+                            <th>Fecha vencimiento</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Orders
+                        <tr>
+                            <td>Foldable Mini Drone</td>
+                            <td>12312</td>
+                            <td>Due</td>
+                            <td class="warning">Pending</td>
+                            <td class="primary">Details</td>
+                        </tr>
+                        -->
+                    </tbody>
+                </table>
+                <a href="#" id="addBtn">Add Project</a>
+            </div>
+            <!--================ End of Projects =================-->
+        </main>
+        <!--================ End of Main: Central Panel=================-->
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////
+                            START SECTION 3 - Right Panel
+/////////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <div class="right">
+            <!--================ Start Top =================-->
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+
+                <div class="theme-toggler">
+                    <span class="material-icons-sharp active">light_mode</span>
+                    <span class="material-icons-sharp">dark_mode</span>
+                </div>
+
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>Jose</b></p>
+                        <small class="text-muted">Admin</small>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="./images/profile-1.jpg">
+                    </div>
+                </div>
+            </div>
+            <!--================ End of Top =================-->
+
+            <!--================ Start Recent Updates =================-->
+            <div class="recent-updates">
+                <h2>Recent Updates</h2>
+                <div class="updates">
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="./images/profile-2.jpg">
+                        </div>
+                        <div class="message">
+                            <p><b>Mike Tyson</b> received his order.</p>
+                            <small class="text-muted">2 minutes Ago</small>
+                        </div>
+                    </div>
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="./images/profile-3.jpg">
+                        </div>
+                        <div class="message">
+                            <p><b>Mike Tyson</b> received his order.</p>
+                            <small class="text-muted">15 minutes Ago</small>
+                        </div>
+                    </div>
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="./images/profile-4.jpg">
+                        </div>
+                        <div class="message">
+                            <p><b>Mike Tyson</b> received his order.</p>
+                            <small class="text-muted">22 minutes Ago</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--================ End of Recent Updates =================-->
+
+            <!--================ Start To Do =================-->
+            <div class="todo-tasks">
+                <h2>Daily Tasks</h2>
+
+                <table style="width: 100%;">
+                    <tbody>
+                        <tr class="item add-product">
+                            <td colspan="2">
+                                <div>
+                                    <span class="material-icons-sharp" id="addToDoBtn">add</span>
+                                    <h3>Add Task</h3>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--================ End of To-Do =================-->
+
+        </div>
+        <!--================ End of Right Panel =================-->
+
+    </div>
+    <!--================ End of container =================-->
+
+    <!-- JavaScript -->
+    <script src="./js/index.js"></script>
+    <script src="./js/toDo.js"></script>
+</body>
+</html>
