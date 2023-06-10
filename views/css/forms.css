@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&amp;display=swap');
 
-
 /*
 ============================>   Global vars Configs   <============================
 */
@@ -9,7 +8,7 @@
     --color-background: #f6f6f9;
 
     --card-border-radius: 2rem;
-    --box-shadow: 10px 5px 5px var(--color-primary);
+    --box-shadow-add: 10px 5px 5px var(--color-primary);
     --transition: all 300ms ease;
 }
 
@@ -40,7 +39,7 @@ body{
     background: #fff;
     padding: 30px;
     border-radius: var(--card-border-radius);
-    box-shadow: var(--box-shadow);
+    box-shadow: var(--box-shadow-add);
     transition: var(--transition);
 }
 
