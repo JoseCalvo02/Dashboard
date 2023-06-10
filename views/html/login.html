@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in & Sign up Form</title>
+
+    <!-- Font -->
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/login.css" />
+
+</head>
+<body>
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////
+                            START SECTION 1 - Sign in & Sign up Form
+/////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <div class="container">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <!--================ Start Form: Inico sesión =================-->
+                <form action="#" class="sign-in-form">
+                    <h2 class="title">Iniciar sesión</h2>
+
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Usuario" />
+                    </div>
+
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Contraseña" />
+                    </div>
+
+                    <input type="submit" value="Login" class="btn solid" />
+                </form>
+                <!--================ End of Inico sesión =================-->
+
+                <!--================ Start Form: Registrarse =================-->
+                <form action="#" class="sign-up-form">
+                    <h2 class="title">Registrarse</h2>
+
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Usuario" />
+                    </div>
+
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Correo" />
+                    </div>
+
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Contraseña" />
+                    </div>
+
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="De nuevo la contraseña" />
+                    </div>
+
+                    <input type="submit" class="btn" value="Sign up" />
+                </form>
+                <!--================ End of Registrarse =================-->
+            </div>
+        </div>
+        <!--================ End of forms-container =================-->
+
+        <!--================ Start Panels =================-->
+        <div class="panels-container">
+            <!--================ Start Panel Registrarse =================-->
+            <div class="panel left-panel">
+                <div class="content">
+                <h3>Eres nuevo?</h3>
+                <p>¡Únete a la comunidad y descubre un nuevo mundo de posibilidades!</p>
+                <button class="btn transparent" id="sign-up-btn">
+                    Registrarse
+                </button>
+                </div>
+                <img src="../../Assets/login/log.svg" class="image" alt="" />
+            </div>
+            <!--================ End of panel Registrarse =================-->
+
+            <!--================ Start Panel Iniciar sesión =================-->
+            <div class="panel right-panel">
+                <div class="content">
+                <h3>Ya eres uno de nosotros?</h3>
+                <p>Inicia sesión y disfruta de todos los beneficios que tenemos para ti.</p>
+                <button class="btn transparent" id="sign-in-btn">
+                    Iniciar sesión
+                </button>
+                </div>
+                <img src="../../Assets/login/register.svg" class="image" alt="" />
+            </div>
+            <!--================ End of panel Iniciar sesión =================-->
+        </div>
+        <!--================ End of Panels =================-->
+    </div>
+    <!--================ End of container =================-->
+
+  <script src="../../js/login/loginChanger.js"></script>
+</body>
+</html>
