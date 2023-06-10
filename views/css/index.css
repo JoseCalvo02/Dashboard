@@ -526,7 +526,7 @@ main .projects a {
     background: var(--color-success);
 }
 
-.right .todo-tasks .add-product {
+.right .todo-tasks .add-task {
     background: transparent;
     border: 2px dashed var(--color-primary);
     color: var(--color-primary);
@@ -535,18 +535,18 @@ main .projects a {
     justify-content: center;
 }
 
-.right .todo-tasks .add-product:hover {
+.right .todo-tasks .add-task:hover {
     background: var(--color-primary);
     color: white;
 }
 
-.right .todo-tasks .add-product div {
+.right .todo-tasks .add-task div {
     display: flex;
     align-items: center;
     gap: 0.6rem;
 }
 
-.right .todo-tasks .add-product div h3 {
+.right .todo-tasks .add-task div h3 {
     font-weight: 600;
 }
 
