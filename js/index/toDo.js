@@ -66,6 +66,8 @@ function convertToInput(element) {
     input.value = element.textContent.trim();
     input.id = 'taskInput';
     input.maxLength = 25; // Establecer el límite máximo de caracteres
+    input.style.color = '#6380ec'; // Establecer el color del texto
+    input.style.fontWeight = 'bold'; // Establecer el estilo del texto
     input.addEventListener('keydown', function (event) {
         if (event.key === 'Enter') {
             const taskText = input.value.trim();
@@ -81,6 +83,7 @@ function convertToInput(element) {
     });
     element.parentNode.replaceChild(input, element);
     input.focus();
+    input.select(); // Seleccionar el texto del input
 }
 
 // Función para crear un nuevo elemento de tarea
