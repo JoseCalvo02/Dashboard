@@ -24,6 +24,12 @@ addToDoBtn.addEventListener('click', function () {
     addTask();
 });
 
+// Agregar evento al h3 con el id "addTaskHeading"
+const addTaskHeading = document.querySelector('#addTaskHeading');
+addTaskHeading.addEventListener('click', function () {
+    addTask();
+});
+
 // Función para agregar una tarea a la lista
 function addTask() {
     // Solicitar el texto de la tarea mediante un prompt
@@ -43,12 +49,12 @@ function addTask() {
         </div>
         <div class="right">
             <div class="info">
-            <h3>${taskText}</h3>
-            <small class="text-muted">Last 24 Hours</small>
+                <h3>${taskText}</h3>
+                <small class="text-muted">Last 24 Hours</small>
             </div>
             <h5 class="success">+39%</h5>
             <div class="close" id="close-btn">
-            <span class="material-icons-sharp">close</span>
+                <span class="material-icons-sharp">close</span>
             </div>
         </div>
     `;
