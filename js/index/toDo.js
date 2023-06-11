@@ -7,8 +7,8 @@ function removeItem() {
     tableRow.remove();
 
     if (tableBody.childElementCount === 1) {
-        const addProductRow = tableBody.querySelector('.add-product');
-        addProductRow.style.transform = 'none';
+        const addTaskRow = tableBody.querySelector('.add-task');
+        addTaskRow.style.transform = 'none';
     }
 }
 
@@ -55,13 +55,13 @@ function addTask() {
 
     divItem.innerHTML = itemContent;
 
-    const addProductRow = document.querySelector('.add-product');
+    const addTaskRow = document.querySelector('.add-task');
     const tableRow = document.createElement('tr');
     const tableData = document.createElement('td');
     tableData.appendChild(divItem);
     tableRow.appendChild(tableData);
 
-    const nextTableRow = addProductRow.closest('tr');
+    const nextTableRow = addTaskRow.closest('tr');
     const tableBody = nextTableRow.parentNode;
     tableBody.insertBefore(tableRow, nextTableRow);
 
