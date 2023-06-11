@@ -548,6 +548,7 @@ main .projects a {
 
 .right .todo-tasks .add-task div h3 {
     font-weight: 600;
+    cursor: pointer; /* Convierte el icono en un objeto clickeable */
 }
 
 /*
