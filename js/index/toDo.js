@@ -21,25 +21,70 @@ function addCloseEvent(element) {
 // Agregar evento al span con el id "addToDoBtn"
 const addToDoBtn = document.querySelector('#addToDoBtn');
 addToDoBtn.addEventListener('click', function () {
-    addTask();
+    const input = document.querySelector('#taskInput');
+    if (input) {
+        const taskText = input.value.trim();
+        if (taskText.length > 0 && taskText.length <= 25) {
+            addTask(taskText);
+            input.value = '';
+            input.parentNode.replaceChild(addTaskHeading, input);
+        } else {
+            alert('El texto de la tarea debe tener entre 1 y 25 caracteres.');
+        }
+    } else {
+        convertToInput(addTaskHeading);
+    }
+    input.focus(); // Agregar el enfoque al input después de la operación
 });
 
 // Agregar evento al h3 con el id "addTaskHeading"
 const addTaskHeading = document.querySelector('#addTaskHeading');
 addTaskHeading.addEventListener('click', function () {
-    addTask();
+    convertToInput(addTaskHeading);
+    const input = document.querySelector('#taskInput');
+    input.focus(); // Agregar el enfoque al input después de convertirlo en editable
+    input.select(); // Seleccionar el texto del input
 });
 
 // Función para agregar una tarea a la lista
-function addTask() {
-    // Solicitar el texto de la tarea mediante un prompt
-    const taskText = prompt('Enter task text:');
-
+function addTask(taskText) {
     if (!taskText) {
-        return; // Si no se ingresa ningún texto, se cancela la operación
+        taskText = prompt('Enter task text:');
     }
 
-    // Crear el elemento con la estructura deseada
+    if (!taskText) {
+        return;
+    }
+
+    createTaskElement(taskText);
+}
+
+// Función para convertir un elemento en un campo de entrada
+function convertToInput(element) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = element.textContent.trim();
+    input.id = 'taskInput';
+    input.maxLength = 25; // Establecer el límite máximo de caracteres
+    input.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            const taskText = input.value.trim();
+            if (taskText.length > 0 && taskText.length <= 25) {
+                addTask(taskText);
+                input.parentNode.replaceChild(addTaskHeading, input);
+            } else {
+                alert('El texto de la tarea debe tener entre 1 y 25 caracteres.');
+            }
+        } else if (event.key === 'Escape') {
+            input.parentNode.replaceChild(addTaskHeading, input);
+        }
+    });
+    element.parentNode.replaceChild(input, element);
+    input.focus();
+}
+
+// Función para crear un nuevo elemento de tarea
+function createTaskElement(taskText) {
     const divItem = document.createElement('div');
     divItem.className = 'item online';
 
@@ -72,6 +117,8 @@ function addTask() {
     tableBody.insertBefore(tableRow, nextTableRow);
 
     addCloseEvent(divItem); // Agregar evento de eliminación al nuevo elemento
+
+    addTaskHeading.textContent = 'Add Task';
 }
 
 // Agregar evento de eliminación a los elementos existentes

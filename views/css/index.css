@@ -725,3 +725,10 @@ main .projects a {
         display: block;
     }
 }
+
+.task-input {
+    border: none;
+    background: none;
+    font-size: inherit;
+    outline: none;
+}
