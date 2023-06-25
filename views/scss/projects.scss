@@ -1,6 +1,9 @@
 /* ==========>  Root vars  <========== */
 :root {
-    --bg: #ebf0f7;
+    --color-primary: #6380ec;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --bg: #f6f6f9;
     --header: #fbf4f6;
     --text: #2e2e2f;
     --white: #ffffff;
@@ -13,7 +16,6 @@
     --tag-3-text: #2d86ba;
     --tag-4: #f2dcf5;
     --tag-4-text: #a734ba;
-    --purple: #7784ee;
 }
 
 /*
@@ -68,7 +70,7 @@ h1 {
             width: 30px;
             height: 30px;
             display: inline-block;
-            background: var(--purple);
+            background: var(--color-primary);
             border-radius: 100rem;
             margin: 0 0.2rem;
         }
@@ -188,7 +190,7 @@ h1 {
         width: 25px;
         height: 25px;
         border-radius: 100rem;
-        background: var(--purple); /* Establece el color de fondo utilizando una variable CSS personalizada */
+        background: var(--color-primary); /* Establece el color de fondo utilizando una variable CSS personalizada */
         position: absolute;
         display: inline-block;
         right: 0;

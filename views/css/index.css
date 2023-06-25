@@ -107,7 +107,7 @@ h2 {
 }
 
 h3 {
-    font-size: 0.87rem;
+    font-size: 1rem;
 }
 
 h4 {
@@ -451,34 +451,6 @@ main .projects a {
     display: flex;
     gap: 2rem;
     text-align: right;
-}
-
-/* ==========>   Recent Updates  <========== */
-.right .recent-updates {
-    margin-top: 1rem;
-}
-
-.right .recent-updates h2{
-    margin-bottom: 0.8rem;
-}
-
-.right .recent-updates .updates {
-    background: var(--color-white);
-    padding: var(--card-padding);
-    border-radius: var(--card-border-radius);
-    box-shadow: var(--box-shadow);
-    transition: var(--transition);
-}
-
-.right .recent-updates .updates:hover {
-    box-shadow: none;
-}
-
-.right .recent-updates .updates .update {
-    display: grid;
-    grid-template-columns: 2.6rem auto;
-    gap: 1rem;
-    margin-bottom: 1rem;
 }
 
 /* ==========>   Daily Tasks  <========== */

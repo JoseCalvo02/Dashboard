@@ -1,6 +1,10 @@
+@charset "UTF-8";
 /* ==========>  Root vars  <========== */
 :root {
-  --bg: #ebf0f7;
+  --color-primary: #6380ec;
+  --color-danger: #ff7782;
+  --color-success: #41f1b6;
+  --bg: #f6f6f9;
   --header: #fbf4f6;
   --text: #2e2e2f;
   --white: #ffffff;
@@ -13,7 +17,6 @@
   --tag-3-text: #2d86ba;
   --tag-4: #f2dcf5;
   --tag-4-text: #a734ba;
-  --purple: #7784ee;
 }
 
 /*
@@ -40,6 +43,9 @@ h1 {
   font-size: 30px;
 }
 
+/*
+============================>   Project Configs   <============================
+*/
 .project {
   padding: 2rem;
   max-width: 75%;
@@ -61,7 +67,7 @@ h1 {
   width: 30px;
   height: 30px;
   display: inline-block;
-  background: var(--purple);
+  background: var(--color-primary);
   border-radius: 100rem;
   margin: 0 0.2rem;
 }
@@ -100,9 +106,12 @@ h1 {
   cursor: pointer;
 }
 
+/*
+============================>   Tasks Configs   <============================
+*/
 .task {
-  cursor: move;
-  background-color: var(--white);
+  cursor: move; /* Cambia el cursor a "move" al pasar el ratón sobre el elemento */
+  background-color: var(--white); /* Establece el color de fondo utilizando una variable CSS personalizada */
   padding: 1rem;
   border-radius: 8px;
   width: 100%;
@@ -111,8 +120,8 @@ h1 {
   border: 3px dashed transparent;
 }
 .task:hover {
-  box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
-  border-color: rgba(162, 179, 207, 0.2) !important;
+  box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px; /* Cambia la sombra al pasar el ratón sobre el elemento */
+  border-color: rgba(162, 179, 207, 0.2) !important; /* Cambia el color del borde al pasar el ratón sobre el elemento, utilizando la propiedad "!important" para anular cualquier otro estilo de borde */
 }
 .task p {
   font-size: 15px;
@@ -124,33 +133,34 @@ h1 {
   font-size: 12px;
 }
 .task__tag--copyright {
-  color: var(--tag-4-text);
-  background-color: var(--tag-4);
+  color: var(--tag-4-text); /* Establece el color del texto utilizando una variable CSS personalizada */
+  background-color: var(--tag-4); /* Establece el color de fondo utilizando una variable CSS personalizada */
 }
 .task__tag--design {
-  color: var(--tag-3-text);
-  background-color: var(--tag-3);
+  color: var(--tag-3-text); /* Establece el color del texto utilizando una variable CSS personalizada */
+  background-color: var(--tag-3); /* Establece el color de fondo utilizando una variable CSS personalizada */
 }
 .task__tag--illustration {
-  color: var(--tag-2-text);
-  background-color: var(--tag-2);
+  color: var(--tag-2-text); /* Establece el color del texto utilizando una variable CSS personalizada */
+  background-color: var(--tag-2); /* Establece el color de fondo utilizando una variable CSS personalizada */
 }
 .task__tags {
   width: 100%;
   display: flex;
   align-items: center;
+  /* Incluye un mixin llamado "display" para aplicar propiedades de visualización */
   justify-content: space-between;
 }
 .task__options {
   background: transparent;
   border: 0;
-  color: var(--light-grey);
+  color: var(--light-grey); /* Establece el color del texto utilizando una variable CSS personalizada */
   font-size: 17px;
 }
 .task__stats {
   position: relative;
   width: 100%;
-  color: var(--light-grey);
+  color: var(--light-grey); /* Establece el color del texto utilizando una variable CSS personalizada */
   font-size: 12px;
 }
 .task__stats span:not(:last-of-type) {
@@ -163,7 +173,7 @@ h1 {
   width: 25px;
   height: 25px;
   border-radius: 100rem;
-  background: var(--purple);
+  background: var(--color-primary); /* Establece el color de fondo utilizando una variable CSS personalizada */
   position: absolute;
   display: inline-block;
   right: 0;
@@ -183,6 +193,9 @@ h1 {
   padding: 3rem 2rem;
 }
 
+/*
+============================>   Tags Configs   <============================
+*/
 .tag-progress {
   margin: 1.5rem 0;
 }
@@ -205,6 +218,8 @@ h1 {
   border: none;
   border-radius: 10px;
   height: 10px;
+  /* Estilos para la barra de progreso y su valor */
+  /* Estilos para la barra de progreso según la clase */
 }
 .tag-progress .progress::-webkit-progress-bar, .tag-progress .progress::-webkit-progress-value {
   border-radius: 10px;
@@ -252,7 +267,9 @@ h1 {
   left: 0;
   display: flex;
   align-items: center;
+  /* Aquí debería ir la directiva SCSS correspondiente */
   justify-content: center;
+  /* Estilos para los iconos de tarea según la clase */
 }
 .task-icon svg {
   font-size: 12px;
