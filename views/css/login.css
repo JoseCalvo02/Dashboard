@@ -46,6 +46,9 @@ input {
     z-index: 5;
 }
 
+/*
+============================>   Forms: Login & Logout   <============================
+*/
 form {
     display: flex;
     align-items: center;
@@ -73,6 +76,7 @@ form.sign-in-form {
     margin-bottom: 10px;
 }
 
+/*================ Inputs Styles =================*/
 .input-field {
     max-width: 380px;
     width: 100%;
@@ -109,36 +113,7 @@ form.sign-in-form {
     font-weight: 500;
 }
 
-.social-text {
-    padding: 0.7rem 0;
-    font-size: 1rem;
-}
-
-.social-media {
-    display: flex;
-    justify-content: center;
-}
-
-.social-icon {
-    height: 46px;
-    width: 46px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 0.45rem;
-    color: #333;
-    border-radius: 50%;
-    border: 1px solid #333;
-    text-decoration: none;
-    font-size: 1.1rem;
-    transition: 0.3s;
-}
-
-.social-icon:hover {
-    color: #1b2d4b;
-    border-color: #4481eb;
-}
-
+/*================ Btns Styles =================*/
 .btn {
     width: 150px;
     background-color: var(--color-primary);
@@ -158,6 +133,10 @@ form.sign-in-form {
     background-color: var(--color-primary-hover);
 }
 
+
+/*
+============================>   Panels: Left & Right   <============================
+*/
 .panels-container {
     position: absolute;
     height: 100%;
@@ -224,6 +203,7 @@ form.sign-in-form {
     padding: 0.7rem 0;
 }
 
+/*================ Panels Btns =================*/
 .btn.transparent {
     margin: 0;
     background: none;
@@ -278,6 +258,9 @@ form.sign-in-form {
     pointer-events: all;
 }
 
+/*
+============================>   Media Queries  <============================
+*/
 @media (max-width: 870px) {
     .container {
         min-height: 800px;

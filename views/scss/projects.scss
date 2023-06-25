@@ -1,0 +1,379 @@
+/* ==========>  Root vars  <========== */
+:root {
+    --bg: #ebf0f7;
+    --header: #fbf4f6;
+    --text: #2e2e2f;
+    --white: #ffffff;
+    --light-grey: #c4cad3;
+    --tag-1: #ceecfd;
+    --tag-1-text: #2e87ba;
+    --tag-2: #d6ede2;
+    --tag-2-text: #13854e;
+    --tag-3: #ceecfd;
+    --tag-3-text: #2d86ba;
+    --tag-4: #f2dcf5;
+    --tag-4-text: #a734ba;
+    --purple: #7784ee;
+}
+
+/*
+============================>   General Configs   <============================
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    color: var(--text);
+}
+
+@mixin display {
+    display: flex;
+    align-items: center;
+}
+
+.app {
+    background-color: var(--bg);
+    width: 100%;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+/*
+============================>   Project Configs   <============================
+*/
+.project {
+    padding: 2rem;
+    max-width: 75%;
+    width: 100%;
+    display: inline-block;
+
+    &-info {
+        padding: 2rem 0;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &-participants {
+        @include display;
+        span,
+        &__add {
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            background: var(--purple);
+            border-radius: 100rem;
+            margin: 0 0.2rem;
+        }
+        &__add {
+            background: transparent;
+            border: 1px dashed rgb(150, 150, 150);
+            font-size: 0;
+            cursor: pointer;
+            position: relative;
+
+            &:after {
+                content: "+";
+                font-size: 15px;
+                color: rgb(150, 150, 150);
+            }
+        }
+    }
+
+    &-tasks {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        width: 100%;
+        grid-column-gap: 1.5rem;
+    }
+    &-column {
+        &-heading {
+        margin-bottom: 1rem;
+        @include display;
+        justify-content: space-between;
+        &__title {
+            font-size: 20px;
+        }
+        &__options {
+            background: transparent;
+            color: var(--light-grey);
+            font-size: 18px;
+            border: 0;
+            cursor: pointer;
+        }
+        }
+    }
+}
+
+/*
+============================>   Tasks Configs   <============================
+*/
+.task {
+    cursor: move; /* Cambia el cursor a "move" al pasar el ratón sobre el elemento */
+    background-color: var(--white); /* Establece el color de fondo utilizando una variable CSS personalizada */
+    padding: 1rem;
+    border-radius: 8px;
+    width: 100%;
+    box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
+    margin-bottom: 1rem;
+    border: 3px dashed transparent;
+
+    &:hover {
+        box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px; /* Cambia la sombra al pasar el ratón sobre el elemento */
+        border-color: rgba(162, 179, 207, 0.2) !important; /* Cambia el color del borde al pasar el ratón sobre el elemento, utilizando la propiedad "!important" para anular cualquier otro estilo de borde */
+    }
+
+    p {
+        font-size: 15px;
+        margin: 1.2rem 0;
+    }
+
+    &__tag {
+        border-radius: 100px;
+        padding: 2px 13px;
+        font-size: 12px;
+
+        &--copyright {
+            color: var(--tag-4-text); /* Establece el color del texto utilizando una variable CSS personalizada */
+            background-color: var(--tag-4); /* Establece el color de fondo utilizando una variable CSS personalizada */
+        }
+
+        &--design {
+            color: var(--tag-3-text); /* Establece el color del texto utilizando una variable CSS personalizada */
+            background-color: var(--tag-3); /* Establece el color de fondo utilizando una variable CSS personalizada */
+        }
+
+        &--illustration {
+            color: var(--tag-2-text); /* Establece el color del texto utilizando una variable CSS personalizada */
+            background-color: var(--tag-2); /* Establece el color de fondo utilizando una variable CSS personalizada */
+        }
+    }
+
+    &__tags {
+        width: 100%;
+        @include display; /* Incluye un mixin llamado "display" para aplicar propiedades de visualización */
+        justify-content: space-between;
+    }
+
+    &__options {
+        background: transparent;
+        border: 0;
+        color: var(--light-grey); /* Establece el color del texto utilizando una variable CSS personalizada */
+        font-size: 17px;
+    }
+
+    &__stats {
+        position: relative;
+        width: 100%;
+        color: var(--light-grey); /* Establece el color del texto utilizando una variable CSS personalizada */
+        font-size: 12px;
+
+        span:not(:last-of-type) {
+            margin-right: 1rem;
+        }
+
+        svg {
+            margin-right: 5px;
+        }
+    }
+
+    &__owner {
+        width: 25px;
+        height: 25px;
+        border-radius: 100rem;
+        background: var(--purple); /* Establece el color de fondo utilizando una variable CSS personalizada */
+        position: absolute;
+        display: inline-block;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+.task-hover {
+    border: 3px dashed var(--light-grey) !important;
+}
+
+.task-details {
+    width: 24%;
+    border-left: 1px solid #d9e0e9;
+    display: inline-block;
+    height: 100%;
+    vertical-align: top;
+    padding: 3rem 2rem;
+}
+
+/*
+============================>   Tags Configs   <============================
+*/
+.tag-progress {
+    margin: 1.5rem 0;
+
+    h2 {
+        font-size: 16px;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+
+        span {
+            color: rgb(180, 180, 180);
+        }
+    }
+
+    .progress {
+        width: 100%;
+        -webkit-appearance: none;
+        appearance: none;
+        border: none;
+        border-radius: 10px;
+        height: 10px;
+
+        /* Estilos para la barra de progreso y su valor */
+        &::-webkit-progress-bar,
+        &::-webkit-progress-value {
+            border-radius: 10px;
+        }
+
+        /* Estilos para la barra de progreso según la clase */
+        &--copyright {
+            &::-webkit-progress-bar {
+                background-color: #ecd8e6;
+            }
+
+            &::-webkit-progress-value {
+                background: #d459e8;
+            }
+        }
+
+        &--illustration {
+            &::-webkit-progress-bar {
+                background-color: #dee7e3;
+            }
+
+            &::-webkit-progress-value {
+                background-color: #46bd84;
+            }
+        }
+
+        &--design {
+            &::-webkit-progress-bar {
+                background-color: #d8e7f4;
+            }
+
+            &::-webkit-progress-value {
+                background-color: #08a0f7;
+            }
+        }
+    }
+}
+
+.task-activity {
+    h2 {
+        font-size: 16px;
+        margin-bottom: 1rem;
+    }
+
+    li {
+        list-style: none;
+        margin: 1rem 0;
+        padding: 0rem 1rem 1rem 3rem;
+        position: relative;
+    }
+
+    time {
+        display: block;
+        color: var(--light-grey);
+    }
+}
+
+.task-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 100rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include display; /* Aquí debería ir la directiva SCSS correspondiente */
+    justify-content: center;
+
+    svg {
+        font-size: 12px;
+        color: var(--white);
+    }
+
+    /* Estilos para los iconos de tarea según la clase */
+    &--attachment {
+        background-color: #fba63c;
+    }
+
+    &--comment {
+        background-color: #5dc983;
+    }
+
+    &--edit {
+        background-color: #7784ee;
+    }
+}
+
+
+/*
+============================>   Media Queries: Small Laptops/Big Tablets  <============================
+*/
+@media only screen and (max-width: 1300px) {
+    .project {
+        max-width: 100%;
+    }
+    .task-details {
+        width: 100%;
+        display: flex;
+    }
+    .tag-progress,
+    .task-activity {
+        flex-basis: 50%;
+        background: var(--white);
+        padding: 1rem;
+        border-radius: 8px;
+        margin: 1rem;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .project-column:nth-child(2),
+    .project-column:nth-child(3) {
+        display: none;
+    }
+    .project-tasks {
+        grid-template-columns: 1fr 1fr;
+    }
+    }
+
+    @media only screen and (max-width: 600px) {
+    .project-column:nth-child(4) {
+        display: none;
+    }
+    .project-tasks {
+        grid-template-columns: 1fr;
+    }
+
+    .task-details {
+        flex-wrap: wrap;
+        padding: 3rem 1rem;
+    }
+    .tag-progress,
+    .task-activity {
+        flex-basis: 100%;
+    }
+    h1 {
+        font-size: 25px;
+    }
+}
