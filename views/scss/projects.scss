@@ -1,3 +1,4 @@
+/* sass --watch views/scss/projects.scss views/css/projects.css */
 /* ==========>  Root vars  <========== */
 :root {
     --color-primary: #6380ec;
@@ -97,19 +98,19 @@ h1 {
     }
     &-column {
         &-heading {
-        margin-bottom: 1rem;
-        @include display;
-        justify-content: space-between;
-        &__title {
-            font-size: 20px;
-        }
-        &__options {
-            background: transparent;
-            color: var(--light-grey);
-            font-size: 18px;
-            border: 0;
-            cursor: pointer;
-        }
+            margin-bottom: 1rem;
+            @include display;
+            justify-content: space-between;
+            &__title {
+                font-size: 20px;
+            }
+            &__options {
+                background: transparent;
+                color: var(--light-grey);
+                font-size: 18px;
+                border: 0;
+                cursor: pointer;
+            }
         }
     }
 }
@@ -117,7 +118,7 @@ h1 {
 /*
 ============================>   Tasks Configs   <============================
 */
-.task {
+.task, .task-create {
     cursor: move; /* Cambia el cursor a "move" al pasar el ratón sobre el elemento */
     background-color: var(--white); /* Establece el color de fondo utilizando una variable CSS personalizada */
     padding: 1rem;
@@ -200,15 +201,54 @@ h1 {
 
 .task-hover {
     border: 3px dashed var(--light-grey) !important;
+    background-color: #08a0f7;
 }
 
-.task-details {
+.task-details, .task-create-details {
     width: 24%;
     border-left: 1px solid #d9e0e9;
     display: inline-block;
     height: 100%;
     vertical-align: top;
     padding: 3rem 2rem;
+}
+
+.task-create{
+    &__tags{
+        width: 100%;
+        @include display; /* Incluye un mixin llamado "display" para aplicar propiedades de visualización */
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    &__textarea {
+        textarea {
+            width: 100%;
+            resize: none; /* Desactiva la capacidad de redimensionar */
+            border-color: var(--light-grey);
+            margin-bottom: 10px;
+        }
+    }
+
+    &__textarea:focus {
+        textarea {
+            border-color: var(--color-primary);
+        }
+    }
+
+    &__button {
+        button{
+            width: 100%;
+            background-color: var(--color-primary);
+            color: var(--white);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 10px; /* Ajusta el valor según tu preferencia */
+            margin-top: 20px; /* Espacio entre los botones */
+        }
+    }
 }
 
 /*

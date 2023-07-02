@@ -68,17 +68,22 @@
                         </div>
                     </div>
 
-                    <div class='task' draggable='true'>
-                        <div class='task__tags'>
-                            <span class='task__tag task__tag--copyright'>Copywriting</span>
-                            <button class='task__options'><i class="fas fa-ellipsis-h"></i></button>
+                    <!--================ Start Task - Create new task =================-->
+                    <div class='task-create' draggable='false'>
+                        <div class='task-create__tags'>
+                            <span>Create New task</span>
+                            <button class='task__options'><i class="fas fa-clipboard-check"></i></button>
                         </div>
-                        <p>DB connection</p>
+                        <form class='task-create__textarea' action="">
+                            <div class="form-group">
+                                <textarea id="description" name="description" placeholder="What is the name of the task?"></textarea>
+                            </div>
+                        </form>
                         <div class='task__stats'>
-                            <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
-                            <span><i class="fas fa-comment"></i>2</span>
-                            <span><i class="fas fa-paperclip"></i>3</span>
-                            <span class='task__owner'></span>
+                            <span><i class="fas fa-tag"></i></span>
+                        </div>
+                        <div class='task-create__button' draggable='false'>
+                            <button>Done</button>
                         </div>
                     </div>
                 </div><!--================ End of Column - Task Ready =================-->
@@ -118,33 +123,6 @@
                         </div>
                     </div>
 
-                    <div class='task' draggable='true'>
-                        <div class='task__tags'>
-                            <span class='task__tag task__tag--copyright'>Copywriting</span>
-                            <button class='task__options'><i class="fas fa-ellipsis-h"></i></button>
-                        </div>
-                        <p>Proof read the legal page and check for loopholes</p>
-                        <div class='task__stats'>
-                            <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
-                            <span><i class="fas fa-comment"></i>12</span>
-                            <span><i class="fas fa-paperclip"></i>11</span>
-                            <span class='task__owner'></span>
-                        </div>
-                    </div>
-
-                    <div class='task' draggable='true'>
-                        <div class='task__tags'>
-                            <span class='task__tag task__tag--illustration'>Illustration</span>
-                            <button class='task__options'><i class="fas fa-ellipsis-h"></i></button>
-                        </div>
-                        <p>Create the landing page graphics for the slider.</p>
-                        <div class='task__stats'>
-                            <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
-                            <span><i class="fas fa-comment"></i>4</span>
-                            <span><i class="fas fa-paperclip"></i>8</span>
-                            <span class='task__owner'></span>
-                        </div>
-                    </div>
                 </div><!--================ End of Column - In Progress =================-->
 
                 <!--================ Start Column - Needs review =================-->
@@ -177,19 +155,6 @@
                             <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
                             <span><i class="fas fa-comment"></i>0</span>
                             <span><i class="fas fa-paperclip"></i>5</span>
-                            <span class='task__owner'></span>
-                        </div>
-                    </div>
-                    <div class='task' draggable='true'>
-                        <div class='task__tags'>
-                            <span class='task__tag task__tag--illustration'>Illustration</span>
-                            <button class='task__options'><i class="fas fa-ellipsis-h"></i></button>
-                        </div>
-                        <p>Move that one image 5px down</p>
-                        <div class='task__stats'>
-                            <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
-                            <span><i class="fas fa-comment"></i>2</span>
-                            <span><i class="fas fa-paperclip"></i>2</span>
                             <span class='task__owner'></span>
                         </div>
                     </div>
@@ -226,20 +191,6 @@
                             <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
                             <span><i class="fas fa-comment"></i>3</span>
                             <span><i class="fas fa-paperclip"></i>7</span>
-                            <span class='task__owner'></span>
-                        </div>
-                    </div>
-
-                    <div class='task' draggable='true'>
-                        <div class='task__tags'>
-                            <span class='task__tag task__tag--copyright'>Copywriting</span>
-                            <button class='task__options'><i class="fas fa-ellipsis-h"></i></button>
-                        </div>
-                        <p>Buttons functionality</p>
-                        <div class='task__stats'>
-                            <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
-                            <span><i class="fas fa-comment"></i>8</span>
-                            <span><i class="fas fa-paperclip"></i>16</span>
                             <span class='task__owner'></span>
                         </div>
                     </div>
