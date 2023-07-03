@@ -5,11 +5,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function createTask() {
         var taskName = descriptionInput.value;
         if (taskName.trim() !== '') {
+            var tagSelect = document.getElementById('tagSelect');
+            var selectedTag = tagSelect.options[tagSelect.selectedIndex].value;
+            var tagClass = '';
+
+            switch (selectedTag) {
+                case 'UI Design':
+                    tagClass = 'task__tag--design';
+                    break;
+                case 'Illustration':
+                    tagClass = 'task__tag--illustration';
+                    break;
+                case 'Copywriting':
+                    tagClass = 'task__tag--copyright';
+                    break;
+                default:
+                    tagClass = 'task__tag--default';
+                    break;
+            }
+
             var taskTemplate = `
                 <div class='task' draggable='true'>
-                    <div class='task__tags'>
-                        <span class='task__tag task__tag--design'>UI Design</span>
-                        <button class='task__options'><i class="fas fa-ellipsis-h"></i></button>
+                    <div class='task__stats'>
+                        <div class='task__tags'>
+                            <span class='task__tag ${tagClass}'>${selectedTag}</span>
+                            <button class='task__options'><i class="fas fa-ellipsis-h"></i></button>
+                        </div>
                     </div>
                     <p>${taskName}</p>
                     <div class='task__stats'>
@@ -20,6 +41,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     </div>
                 </div>
             `;
+
             var taskContainer = document.querySelector('.project-column:first-child');
             var taskCreateParent = taskCreate.parentElement;
             var newTask = createElementFromHTML(taskTemplate);
