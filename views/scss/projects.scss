@@ -143,17 +143,17 @@ h1 {
         padding: 2px 13px;
         font-size: 12px;
 
-        &--copyright {
+        &--high {
             color: var(--tag-4-text); /* Establece el color del texto utilizando una variable CSS personalizada */
             background-color: var(--tag-4); /* Establece el color de fondo utilizando una variable CSS personalizada */
         }
 
-        &--design {
+        &--low {
             color: var(--tag-3-text); /* Establece el color del texto utilizando una variable CSS personalizada */
             background-color: var(--tag-3); /* Establece el color de fondo utilizando una variable CSS personalizada */
         }
 
-        &--illustration {
+        &--medium {
             color: var(--tag-2-text); /* Establece el color del texto utilizando una variable CSS personalizada */
             background-color: var(--tag-2); /* Establece el color de fondo utilizando una variable CSS personalizada */
         }
@@ -226,13 +226,32 @@ h1 {
             width: 100%;
             resize: none; /* Desactiva la capacidad de redimensionar */
             border-color: var(--light-grey);
+            color: var(--text);
+            border-radius: 2px;
             margin-bottom: 10px;
+            padding: 5px;
+
+            &:focus {
+                outline: 2px solid var(--color-primary); /* Cambia el color y el grosor del borde */
+            }
         }
     }
 
-    &__textarea:focus {
-        textarea {
-            border-color: var(--color-primary);
+    &__stats{
+        display: flex; /* Establece el contenedor como flexbox */
+        align-items:baseline; /* Centra verticalmente los elementos en el contenedor */
+    }
+
+    &__tags{
+        margin-left: 5px; /* Añade un margen izquierdo para separar el span del select */
+
+        select {
+            border-color: var(--light-grey);
+            color: var(--text);
+
+            &:focus {
+                outline: 2px solid var(--color-primary); /* Cambia el color y el grosor del borde */
+            }
         }
     }
 
@@ -287,7 +306,7 @@ h1 {
         }
 
         /* Estilos para la barra de progreso según la clase */
-        &--copyright {
+        &--high {
             &::-webkit-progress-bar {
                 background-color: #ecd8e6;
             }
@@ -297,7 +316,7 @@ h1 {
             }
         }
 
-        &--illustration {
+        &--medium {
             &::-webkit-progress-bar {
                 background-color: #dee7e3;
             }
@@ -307,7 +326,7 @@ h1 {
             }
         }
 
-        &--design {
+        &--low {
             &::-webkit-progress-bar {
                 background-color: #d8e7f4;
             }

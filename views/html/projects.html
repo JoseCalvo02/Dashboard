@@ -52,13 +52,13 @@
                                 <textarea id="description" name="description" placeholder="What is the name of the task?"></textarea>
                             </div>
                         </form>
-                        <div class='task__stats'>
+                        <div class='task-create__stats'>
                             <span><i class="fas fa-tag"></i></span>
-                            <div class='task__tags'>
+                            <div class='task-create__tags'>
                                 <select id="tagSelect">
-                                    <option value="UI Design">UI Design</option>
-                                    <option value="Illustration">Illustration</option>
-                                    <option value="Copywriting">Copywriting</option>
+                                    <option value="Low Priority">Low Priority</option>
+                                    <option value="Medium Priority">Medium Priority</option>
+                                    <option value="High Priority">High Priority</option>
                                 </select>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
 
                     <div class='task' draggable='true'>
                         <div class='task__tags'>
-                            <span class='task__tag task__tag--copyright'>Copywriting</span>
+                            <span class='task__tag task__tag--high'>High Priority</span>
                             <button class='task__options'><i class="fas fa-ellipsis-h"></i></button>
                         </div>
                         <p>Services section</p>
@@ -92,7 +92,7 @@
 
                     <div class='task' draggable='true'>
                         <div class='task__tags'>
-                            <span class='task__tag task__tag--design'>UI Design</span>
+                            <span class='task__tag task__tag--low'>Low Priority</span>
                             <button class='task__options'><i class="fas fa-ellipsis-h"></i></button>
                         </div>
                         <p>Replace all the code from CSS to SCSS</p>
@@ -115,7 +115,7 @@
 
                     <div class='task' draggable='true'>
                         <div class='task__tags'>
-                            <span class='task__tag task__tag--copyright'>Copywriting</span>
+                            <span class='task__tag task__tag--high'>High Priority</span>
                             <button class='task__options'><i class="fas fa-ellipsis-h"></i></button>
                         </div>
                         <p>Check the company we copied doesn't think we copied them.</p>
@@ -138,7 +138,7 @@
 
                     <div class='task' draggable='true'>
                         <div class='task__tags'>
-                            <span class='task__tag task__tag--illustration'>Illustration</span>
+                            <span class='task__tag task__tag--medium'>Medium Priority</span>
                             <button class='task__options'><i class="fas fa-ellipsis-h"></i></button>
                         </div>
                         <p>Send illustrations over to production company.</p>
@@ -164,16 +164,16 @@
             <div class='tag-progress'>
                 <h2>Task Progress</h2>
                 <div class='tag-progress'>
-                    <p>Copywriting <span>3/8</span></p>
-                    <progress class="progress progress--copyright" max="8" value="3"> 3 </progress>
+                    <p>High Priority <span>3/8</span></p>
+                    <progress class="progress progress--high" max="8" value="3"> 3 </progress>
                 </div>
                 <div class='tag-progress'>
-                    <p>Illustration <span>6/10</span></p>
-                    <progress class="progress progress--illustration" max="10" value="6"> 6 </progress>
+                    <p>Medium Priority <span>6/10</span></p>
+                    <progress class="progress progress--medium" max="10" value="6"> 6 </progress>
                 </div>
                 <div class='tag-progress'>
-                    <p>UI Design <span>2/7</span></p>
-                    <progress class="progress progress--design" max="7" value="2"> 2 </progress>
+                    <p>Low Priority<span>2/7</span></p>
+                    <progress class="progress progress--low" max="7" value="2"> 2 </progress>
                 </div>
             </div><!--================ End of Task progress =================-->
 

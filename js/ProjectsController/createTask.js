@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     var taskCreate = document.querySelector('.task-create');
     var descriptionInput = document.getElementById('description');
+    var doneButton = taskCreate.querySelector('.task-create__button button');
 
     function createTask() {
         var taskName = descriptionInput.value;
@@ -10,14 +11,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
             var tagClass = '';
 
             switch (selectedTag) {
-                case 'UI Design':
-                    tagClass = 'task__tag--design';
+                case 'Low Priority':
+                    tagClass = 'task__tag--low';
                     break;
-                case 'Illustration':
-                    tagClass = 'task__tag--illustration';
+                case 'Medium Priority':
+                    tagClass = 'task__tag--medium';
                     break;
-                case 'Copywriting':
-                    tagClass = 'task__tag--copyright';
+                case 'High Priority':
+                    tagClass = 'task__tag--high';
                     break;
                 default:
                     tagClass = 'task__tag--default';
@@ -64,7 +65,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         return div.firstChild;
     }
 
-    taskCreate.addEventListener('click', createTask);
+    doneButton.addEventListener('click', createTask);
     descriptionInput.addEventListener('keydown', function (e) {
         if (e.key === 'Enter') {
             createTask();

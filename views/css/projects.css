@@ -133,15 +133,15 @@ h1 {
   padding: 2px 13px;
   font-size: 12px;
 }
-.task__tag--copyright, .task-create__tag--copyright {
+.task__tag--high, .task-create__tag--high {
   color: var(--tag-4-text); /* Establece el color del texto utilizando una variable CSS personalizada */
   background-color: var(--tag-4); /* Establece el color de fondo utilizando una variable CSS personalizada */
 }
-.task__tag--design, .task-create__tag--design {
+.task__tag--low, .task-create__tag--low {
   color: var(--tag-3-text); /* Establece el color del texto utilizando una variable CSS personalizada */
   background-color: var(--tag-3); /* Establece el color de fondo utilizando una variable CSS personalizada */
 }
-.task__tag--illustration, .task-create__tag--illustration {
+.task__tag--medium, .task-create__tag--medium {
   color: var(--tag-2-text); /* Establece el color del texto utilizando una variable CSS personalizada */
   background-color: var(--tag-2); /* Establece el color de fondo utilizando una variable CSS personalizada */
 }
@@ -207,10 +207,27 @@ h1 {
   width: 100%;
   resize: none; /* Desactiva la capacidad de redimensionar */
   border-color: var(--light-grey);
+  color: var(--text);
+  border-radius: 2px;
   margin-bottom: 10px;
+  padding: 5px;
 }
-.task-create__textarea:focus textarea {
-  border-color: var(--color-primary);
+.task-create__textarea textarea:focus {
+  outline: 2px solid var(--color-primary); /* Cambia el color y el grosor del borde */
+}
+.task-create__stats {
+  display: flex; /* Establece el contenedor como flexbox */
+  align-items: baseline; /* Centra verticalmente los elementos en el contenedor */
+}
+.task-create__tags {
+  margin-left: 5px; /* Añade un margen izquierdo para separar el span del select */
+}
+.task-create__tags select {
+  border-color: var(--light-grey);
+  color: var(--text);
+}
+.task-create__tags select:focus {
+  outline: 2px solid var(--color-primary); /* Cambia el color y el grosor del borde */
 }
 .task-create__button button {
   width: 100%;
@@ -255,22 +272,22 @@ h1 {
 .tag-progress .progress::-webkit-progress-bar, .tag-progress .progress::-webkit-progress-value {
   border-radius: 10px;
 }
-.tag-progress .progress--copyright::-webkit-progress-bar {
+.tag-progress .progress--high::-webkit-progress-bar {
   background-color: #ecd8e6;
 }
-.tag-progress .progress--copyright::-webkit-progress-value {
+.tag-progress .progress--high::-webkit-progress-value {
   background: #d459e8;
 }
-.tag-progress .progress--illustration::-webkit-progress-bar {
+.tag-progress .progress--medium::-webkit-progress-bar {
   background-color: #dee7e3;
 }
-.tag-progress .progress--illustration::-webkit-progress-value {
+.tag-progress .progress--medium::-webkit-progress-value {
   background-color: #46bd84;
 }
-.tag-progress .progress--design::-webkit-progress-bar {
+.tag-progress .progress--low::-webkit-progress-bar {
   background-color: #d8e7f4;
 }
-.tag-progress .progress--design::-webkit-progress-value {
+.tag-progress .progress--low::-webkit-progress-value {
   background-color: #08a0f7;
 }
 
