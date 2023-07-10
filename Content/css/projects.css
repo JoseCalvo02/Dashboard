@@ -229,6 +229,10 @@ h1 {
 .task-create__tags select:focus {
   outline: 2px solid var(--color-primary); /* Cambia el color y el grosor del borde */
 }
+.task-create__tags select option:checked {
+  background-color: var(--color-primary); /* Cambia el color de fondo de la opción seleccionada */
+  color: var(--white); /* Cambia el color del texto de la opción seleccionada */
+}
 .task-create__button button {
   width: 100%;
   background-color: var(--color-primary);

@@ -252,6 +252,11 @@ h1 {
             &:focus {
                 outline: 2px solid var(--color-primary); /* Cambia el color y el grosor del borde */
             }
+
+            option:checked {
+                background-color: var(--color-primary); /* Cambia el color de fondo de la opción seleccionada */
+                color: var(--white); /* Cambia el color del texto de la opción seleccionada */
+            }
         }
     }
 

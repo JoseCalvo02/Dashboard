@@ -6,13 +6,14 @@
     <title>Projects</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/projects.css" />
+    <link rel="stylesheet" href="../../Content/css/projects.css" />
 
     <!-- Fonts-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js">
+
 </head>
 <body>
     <div class='app'>
@@ -47,15 +48,15 @@
                             <span>Create New task</span>
                             <button class='task__options'><i class="fas fa-clipboard-check"></i></button>
                         </div>
-                        <form class='task-create__textarea' action="">
+                        <div class='task-create__textarea'>
                             <div class="form-group">
                                 <textarea id="description" name="description" placeholder="What is the name of the task?"></textarea>
                             </div>
-                        </form>
+                        </div>
                         <div class='task-create__stats'>
                             <span><i class="fas fa-tag"></i></span>
                             <div class='task-create__tags'>
-                                <select id="tagSelect">
+                                <select id="tagSelect" class='custom-select'>
                                     <option value="Low Priority">Low Priority</option>
                                     <option value="Medium Priority">Medium Priority</option>
                                     <option value="High Priority">High Priority</option>
@@ -212,8 +213,8 @@
 
     </div><!--================ End of div app =================-->
 
-    <script src="../../js/ProjectsController/createTask.js"></script>
-    <script src="../../js/ProjectsController/projects.js"></script>
+    <script src="../../Scripts/projects/createTask.js"></script>
+    <script src="../../Scripts/projects/projects.js"></script>
 
 </body>
 </html>

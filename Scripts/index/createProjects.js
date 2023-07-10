@@ -38,13 +38,13 @@ function addProject(project) {
 
 const addBtn = document.querySelector("#addBtn");
 addBtn.addEventListener("click", () => {
-    window.open("projectForm.html", "_blank");
+    window.location.replace("../User/projectForm.html", "_blank");
 });
 
 const addProjectLink = document.querySelectorAll(".sidebar a")[8];
 addProjectLink.addEventListener("click", (event) => {
     event.preventDefault();
-    window.open("projectForm.html", "_blank");
+    window.location.replace("../User/projectForm.html", "_blank");
 });
 
 fillProjects();
