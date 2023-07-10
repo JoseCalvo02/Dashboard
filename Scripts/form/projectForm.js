@@ -25,6 +25,23 @@ function handleFormSubmit(event) {
     window.close();
 }
 
+// Obtener la referencia al botón de regresar
+const returnBtn = document.querySelector("#returnBtn");
+
+// Agregar un evento de escucha para el clic en el botón de regresar
+returnBtn.addEventListener("click", handleReturn);
+
+// Función para manejar el clic en el botón de regresar
+function handleReturn(event) {
+    event.preventDefault();
+
+    // Redireccionar al index original
+    window.location.href = "../../../Views/Home/index.html";
+
+    // Cerrar la ventana del formulario
+    window.close();
+}
+
 // Obtener la referencia al formulario
 const form = document.querySelector("#projectForm");
 
