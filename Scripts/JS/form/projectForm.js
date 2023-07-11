@@ -36,7 +36,7 @@ function handleReturn(event) {
     event.preventDefault();
 
     // Redireccionar al index original
-    window.location.href = "../../../Views/Home/index.html";
+    window.location.href = "../../Views/Home/index.html";
 
     // Cerrar la ventana del formulario
     window.close();
