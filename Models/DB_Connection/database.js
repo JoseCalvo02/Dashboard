@@ -11,29 +11,23 @@ const dbConfig = {
     },
 };
 
-// Función para establecer la conexión a la base de datos
-async function connectToDatabase() {
-    try {
-        await sql.connect(dbConfig);
-        console.log('Conexión exitosa a la base de datos.');
-    } catch (error) {
-        console.error('Error al conectar a la base de datos:', error);
-    }
-}
+// Crear el pool de conexiones
+const pool = new sql.ConnectionPool(dbConfig);
 
-// Función para obtener los proyectos desde la base de datos
-async function getProjects() {
-    try {
-        const result = await sql.query`SELECT * FROM proyectos`;
-        console.log('Proyectos obtenidos:', result.recordset);
-        return result.recordset;
-    } catch (error) {
-        console.error('Error al obtener proyectos:', error);
-        return [];
-    }
-}
-
-module.exports = {
-    connectToDatabase,
-    getProjects,
-};
+// Conectar al pool
+pool.connect().then(pool => {
+    console.log('Conexión establecida');
+    // Ejecutar consultas o operaciones en la base de datos
+    const request = pool.request();
+    request.query('SELECT * FROM proyectos').then(result => {
+        console.log(result.recordset);
+        // Cerrar la conexión al finalizar
+        pool.close();
+    }).catch(error => {
+        console.log('Error:', error);
+        // Cerrar la conexión en caso de error
+        pool.close();
+    });
+}).catch(error => {
+    console.log('Error al conectar:', error);
+});
