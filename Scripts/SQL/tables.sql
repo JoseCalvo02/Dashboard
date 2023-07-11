@@ -8,18 +8,6 @@ CREATE TABLE registro_usuario (
     contraseña_usuario VARCHAR(100) NOT NULL
 );
 
--- Tabla de inicio de sesión
-CREATE TABLE login_usuario (
-    id_login INT IDENTITY(1,1) PRIMARY KEY,
-    id_usuario INT NOT NULL,
-    correo_usuario VARCHAR(100) NOT NULL UNIQUE,
-    contraseña_usuario VARCHAR(100) NOT NULL,
-
-    CONSTRAINT FK_login_usuario_registro_usuario FOREIGN KEY (id_usuario)
-        REFERENCES registro_usuario (id_usuario)
-        ON DELETE CASCADE
-);
-
 -- Tabla de registro de proyectos
 CREATE TABLE proyectos (
     id_proyecto INT IDENTITY(1,1) PRIMARY KEY,
