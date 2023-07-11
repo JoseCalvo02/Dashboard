@@ -21,17 +21,17 @@
         <div class="forms-container">
             <div class="signin-signup">
                 <!--================ Start Form: Inico sesión =================-->
-                <form action="../Home/index.html" class="sign-in-form">
+                <form action="../Home/index.html" class="sign-in-form" id="sign-in-form">
                     <h2 class="title">Iniciar sesión</h2>
 
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Usuario" />
+                        <input type="text" placeholder="Usuario" id="user" required/>
                     </div>
 
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Contraseña" />
+                        <input type="password" placeholder="Contraseña" id="pass" required/>
                     </div>
 
                     <input type="submit" value="Iniciar sesión" class="btn solid" />
@@ -39,27 +39,27 @@
                 <!--================ End of Inico sesión =================-->
 
                 <!--================ Start Form: Registrarse =================-->
-                <form action="../Home/index.html" class="sign-up-form">
+                <form action="" class="sign-up-form" id="sign-up-form">
                     <h2 class="title">Registrarse</h2>
 
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Usuario" />
+                        <input type="text" placeholder="Usuario" id="user" required/>
                     </div>
 
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" placeholder="Correo" />
+                        <input type="email" placeholder="Correo" id="email" required/>
                     </div>
 
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Contraseña" />
+                        <input type="password" placeholder="Contraseña" id="pass1" required/>
                     </div>
 
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="De nuevo la contraseña" />
+                        <input type="password" placeholder="De nuevo la contraseña" id="pass2" required/>
                     </div>
 
                     <input type="submit" class="btn" value="Registrarse"/>
