@@ -12,6 +12,9 @@
     <!-- CSS -->
     <link rel="stylesheet" href="/Content/css/login.css" />
 
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -44,25 +47,25 @@
 
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Usuario" id="userSignup" required/>
+                        <input type="text" placeholder="Usuario" name="userSignup" id="userSignup" required/>
                     </div>
 
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" placeholder="Correo" id="emailSignup" required/>
+                        <input type="email" placeholder="Correo" name="emailSignup" id="emailSignup" required/>
                     </div>
 
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Contraseña" id="pass1" required/>
+                        <input type="password" placeholder="Contraseña" name="pass1" id="pass1" required/>
                     </div>
 
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="De nuevo la contraseña" id="pass2" required/>
+                        <input type="password" placeholder="De nuevo la contraseña" name="pass2" id="pass2" required/>
                     </div>
 
-                    <input type="submit" class="btn" value="Registrarse"/>
+                    <button type="button" class="btn" onclick="register()">Registrarse</button>
                 </form>
                 <!--================ End of Registrarse =================-->
             </div>
@@ -103,5 +106,7 @@
     <div id="output"></div>
 
     <script src="../../Scripts/JS/login/loginChanger.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../../Scripts/JS/login/register.js"></script>
 </body>
 </html>

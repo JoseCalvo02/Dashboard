@@ -3,6 +3,7 @@ const dbConfig = require('../../Server/dbConfig');
 
 async function registerUser(userSignup, emailSignup, pass1) {
     try {
+        console.log('Valores recibidos:', userSignup, emailSignup, pass1);
         // Conectar a la base de datos
         const pool = await sql.connect(dbConfig);
 
