@@ -39,17 +39,17 @@
                 <!--================ End of Inico sesión =================-->
 
                 <!--================ Start Form: Registrarse =================-->
-                <form action="http://localhost:443/register" class="sign-up-form" id="sign-up-form">
+                <form method="post" action="/user/register" class="sign-up-form" id="sign-up-form">
                     <h2 class="title">Registrarse</h2>
 
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Usuario" id="user" required/>
+                        <input type="text" placeholder="Usuario" id="userSignup" required/>
                     </div>
 
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" placeholder="Correo" id="email" required/>
+                        <input type="email" placeholder="Correo" id="emailSignup" required/>
                     </div>
 
                     <div class="input-field">

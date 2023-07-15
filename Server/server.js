@@ -1,7 +1,7 @@
 const express = require('express');
 const sql = require('mssql');
 const path = require('path');
-const { registerUser } = require('../User/registerUserModel');
+const { registerUser } = require('../Models/User/registerUserModel');
 
 const app = express();
 const port = 443;
@@ -22,19 +22,22 @@ sql.connect(dbConfig)
 app.use(express.json());
 
 // Middleware para servir archivos estáticos
-app.use(express.static(path.join(__dirname, '../../')));
+app.use(express.static(path.join(__dirname, '../')));
+
+// Rutas
+app.use('/user', require('./routes'));
 
 // Ruta principal que sirve el archivo index.html
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../Views/Home/index.html'));
+    res.sendFile(path.join(__dirname, '../Views/Home/index.html'));
 });
 
 // Ruta POST para registrar un nuevo usuario
-app.post('/register', async (req, res) => {
-    const { name, email, password } = req.body;
+app.post('/user/register', async (req, res) => {
+    const { userSignup, emailSignup, pass1 } = req.body;
 
     try {
-        await registerUser(name, email, password);
+        await registerUser(userSignup, emailSignup, pass1);
         res.status(201).json({ message: 'Usuario registrado exitosamente' });
     } catch (error) {
         console.error('Error al registrar el usuario:', error);

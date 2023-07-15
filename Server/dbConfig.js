@@ -5,7 +5,8 @@ const dbConfig = {
     password: 'Mario1805',
     database: 'TaskHub_DB',
     options: {
-        trustedConnection: true // Si utilizas la autenticación de Windows
+        encrypt: true, // Si es necesario, establece esto en true para conexiones seguras
+        trustServerCertificate: true // Si es necesario, establece esto en true para conexiones seguras
     },
 };
 
