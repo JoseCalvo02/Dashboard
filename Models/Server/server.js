@@ -22,10 +22,7 @@ sql.connect(dbConfig)
 app.use(express.json());
 
 // Middleware para servir archivos estáticos
-app.use('/static', express.static(path.join(__dirname, '../../Content')));
-app.use('/assets', express.static(path.join(__dirname, '../../Assets')));
-app.use('/scripts', express.static(path.join(__dirname, '../../Scripts')));
-app.use(express.static(path.join(__dirname, '../../Views')));
+app.use(express.static(path.join(__dirname, '../../')));
 
 // Ruta principal que sirve el archivo index.html
 app.get('/', (req, res) => {
