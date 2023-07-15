@@ -1,5 +1,3 @@
-const sql = require('mssql');
-
 // Configuración de la conexión a la base de datos
 const dbConfig = {
     server: 'mysqlservermario.database.windows.net',
@@ -10,3 +8,5 @@ const dbConfig = {
         trustedConnection: true // Si utilizas la autenticación de Windows
     },
 };
+
+module.exports = dbConfig;

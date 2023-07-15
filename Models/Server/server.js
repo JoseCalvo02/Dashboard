@@ -1,13 +1,13 @@
 const express = require('express');
 const sql = require('mssql');
+const path = require('path');
 const { registerUser } = require('../User/registerUserModel');
 
 const app = express();
-const port = 3000;
+const port = 443;
 
 // La conexión a la base de datos
 const dbConfig = require('./dbConfig');
-
 
 // Conexión a la base de datos
 sql.connect(dbConfig)
@@ -20,6 +20,17 @@ sql.connect(dbConfig)
 
 // Middleware para analizar el cuerpo de la solicitud como JSON
 app.use(express.json());
+
+// Middleware para servir archivos estáticos
+app.use('/static', express.static(path.join(__dirname, '../../Content')));
+app.use('/assets', express.static(path.join(__dirname, '../../Assets')));
+app.use('/scripts', express.static(path.join(__dirname, '../../Scripts')));
+app.use(express.static(path.join(__dirname, '../../Views')));
+
+// Ruta principal que sirve el archivo index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../Views/Home/index.html'));
+});
 
 // Ruta POST para registrar un nuevo usuario
 app.post('/register', async (req, res) => {

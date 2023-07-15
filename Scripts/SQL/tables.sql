@@ -1,7 +1,5 @@
 use TaskHub_DB;
 
-drop table registro_usuario;
-
 -- Tabla de registro de usuarios
 CREATE TABLE registro_usuario (
     id_user INT IDENTITY(1,1) PRIMARY KEY,
