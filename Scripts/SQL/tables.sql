@@ -1,4 +1,4 @@
-use TaskHub_DB;
+use taskhub_db;
 
 SELECT * from Users;
 

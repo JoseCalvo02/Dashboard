@@ -3,7 +3,7 @@ const dbConfig = {
     server: 'mysqlservermario.database.windows.net',
     user: 'admin1805',
     password: 'Mario1805',
-    database: 'TaskHub_DB',
+    database: 'taskhub_db',
     options: {
         encrypt: true, // Si es necesario, establece esto en true para conexiones seguras
         trustServerCertificate: true // Si es necesario, establece esto en true para conexiones seguras

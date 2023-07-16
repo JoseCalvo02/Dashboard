@@ -1,7 +1,7 @@
 const express = require('express');
 const sql = require('mssql');
 const path = require('path');
-const { registerUser } = require('../Controllers/User/registerUserModel');
+const { registerUser } = require('../Controllers/User/userController');
 
 const app = express();
 const port = 443;
