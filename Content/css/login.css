@@ -2,6 +2,8 @@
 :root {
     --color-primary: #6380ec;
     --color-primary-hover: #3E64CC;
+    --color-success: #41f1b6;
+    --color-danger: #ff7782;
     --color-white: #fff;
 }
 
@@ -16,6 +18,38 @@ margin: 0;
 body,
 input {
     font-family: "Poppins", sans-serif;
+}
+
+/*
+============================>   POP-UP <============================
+*/
+.swal-icon--success {
+    color: var(--color-success);
+}
+
+.swal-icon--error {
+    color: var(--color-danger);
+}
+
+.swal-title {
+    font-size: 24px;
+    color: var(--color-primary-hover);
+}
+
+.swal-text {
+    font-size: 18px;
+    color: gray;
+}
+
+.swal-button--confirm, .swal-button--error {
+    background-color: var(--color-primary) !important;
+    color: white;
+    border-radius: 4px;
+    padding: 10px 20px;
+}
+
+.swal-button--confirm:hover, .swal-button--error:hover {
+    background-color: var(--color-primary-hover);
 }
 
 .container {

@@ -1,5 +1,7 @@
 use TaskHub_DB;
 
+SELECT * from Users;
+
 -- Tabla de registro de usuarios
 CREATE TABLE Users (
     id INT IDENTITY(1,1) PRIMARY KEY,

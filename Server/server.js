@@ -1,7 +1,7 @@
 const express = require('express');
 const sql = require('mssql');
 const path = require('path');
-const { registerUser } = require('../Models/User/registerUserModel');
+const { registerUser } = require('../Controllers/User/userController');
 
 const app = express();
 const port = 443;
@@ -24,9 +24,6 @@ app.use(express.json());
 // Middleware para servir archivos estáticos
 app.use(express.static(path.join(__dirname, '../')));
 
-// Rutas
-app.use('/user', require('./routes'));
-
 // Ruta principal que sirve el archivo index.html
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../Views/Home/index.html'));
@@ -41,9 +38,16 @@ app.post('/user/register', async (req, res) => {
         res.status(201).json({ message: 'Usuario registrado exitosamente' });
     } catch (error) {
         console.error('Error al registrar el usuario:', error);
-        res.status(500).json({ error: 'Error al registrar el usuario' });
+        if (error.message === 'Correo electrónico duplicado') {
+            res.status(409).json({ message: 'Ya existe un usuario con el mismo correo electrónico' });
+        } else {
+            res.status(500).json({ message: 'Se produjo un error al registrar el usuario' });
+        }
     }
 });
+
+// Rutas
+app.use(require('./routes'));
 
 // Iniciar el servidor
 app.listen(port, () => {

@@ -7,6 +7,18 @@ async function registerUser(userSignup, emailSignup, pass1) {
         // Conectar a la base de datos
         const pool = await sql.connect(dbConfig);
 
+        // Verificar si el correo electrónico ya existe en la base de datos
+        const checkQuery = `SELECT COUNT(*) AS count FROM Users WHERE email = @email`;
+        const checkRequest = pool.request();
+        checkRequest.input('email', sql.VarChar(100), emailSignup);
+        const checkResult = await checkRequest.query(checkQuery);
+        const count = checkResult.recordset[0].count;
+
+        if (count > 0) {
+            // Usuario con el mismo correo electrónico ya existe
+            throw new Error('Correo electrónico duplicado');
+        }
+
         // Ejecutar la consulta de inserción
         const query = `INSERT INTO Users (name, email, password) VALUES (@name, @email, @password)`;
 
@@ -20,6 +32,13 @@ async function registerUser(userSignup, emailSignup, pass1) {
         console.log('Usuario registrado exitosamente');
     } catch (error) {
         console.error('Error al registrar el usuario:', error);
+
+        // Verificar si es un error de valor duplicado
+        if (error.message === 'Correo electrónico duplicado') {
+            throw { code: 409, message: 'Correo electrónico duplicado' };
+        } else {
+            throw { code: 500, message: 'Error al registrar el usuario' };
+        }
     }
 }
 
