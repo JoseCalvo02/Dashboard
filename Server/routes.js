@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { registerUser } = require('../Models/User/registerUserModel');
+const { registerUser } = require('../Controllers/User/userController');
 
 // Define las rutas y los controladores
 router.post('/register', async (req, res) => {

@@ -35,9 +35,9 @@ async function registerUser(userSignup, emailSignup, pass1) {
 
         // Verificar si es un error de valor duplicado
         if (error.message === 'Correo electrónico duplicado') {
-            throw { code: 409, message: 'Correo electrónico duplicado' };
+            throw new Error('Correo electrónico duplicado');
         } else {
-            throw { code: 500, message: 'Error al registrar el usuario' };
+            throw error;
         }
     }
 }
