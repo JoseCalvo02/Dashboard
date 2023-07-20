@@ -1,6 +1,6 @@
 // Configuración de la conexión a la base de datos
 const dbConfig = {
-    server: 'mssql-136035-0.cloudclusters.net,19822',
+    server: 'mssql-136035-0.cloudclusters.net',
     user: 'admin1805',
     password: 'Mario1805',
     database: 'Taskhub_db',

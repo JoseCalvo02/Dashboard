@@ -4,7 +4,7 @@ const path = require('path');
 const { registerUser } = require('../Controllers/User/userController');
 
 const app = express();
-const port = 443;
+const port = 1433;
 
 // La conexión a la base de datos
 const dbConfig = require('./dbConfig');
