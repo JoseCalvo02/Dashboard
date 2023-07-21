@@ -31,16 +31,18 @@ app.get('/', (req, res) => {
 
 // Ruta POST para registrar un nuevo usuario
 app.post('/user/register', async (req, res) => {
-    const { userSignup, emailSignup, pass1 } = req.body;
+    const { fullNameSignup, userSignup, emailSignup, pass1 } = req.body;
 
     try {
-        await registerUser(userSignup, emailSignup, pass1);
+        await registerUser(fullNameSignup, userSignup, emailSignup, pass1);
         res.status(201).json({ message: 'Usuario registrado exitosamente' });
     } catch (error) {
         console.error('Error al registrar el usuario:', error);
-        if (error.message === 'Correo electrónico duplicado') {
+        if (error.message === 'Usuario duplicado') {
+            res.status(409).json({ message: 'Ya existe un usuario con el mismo nombre de usuario' });
+        } else if(error.message === 'Correo electrónico duplicado') {
             res.status(409).json({ message: 'Ya existe un usuario con el mismo correo electrónico' });
-        } else {
+        }else {
             res.status(500).json({ message: 'Se produjo un error al registrar el usuario' });
         }
     }

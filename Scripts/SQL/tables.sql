@@ -5,7 +5,8 @@ SELECT * from Users;
 -- Tabla de registro de usuarios
 CREATE TABLE Users (
     id INT IDENTITY(1,1) PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
+    fullName VARCHAR(100) NOT NULL,
+    username VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL
 );

@@ -42,6 +42,7 @@ $(document).ready(function() {
     }
 
     function register() {
+        const fullNameSignup = $('#fullNameSignup').val();
         const userSignup = $('#userSignup').val();
         const emailSignup = $('#emailSignup').val();
         const pass1 = $('#pass1').val();
@@ -49,7 +50,7 @@ $(document).ready(function() {
         $.ajax({
             url: '/user/register',
             method: 'POST',
-            data: JSON.stringify({ userSignup, emailSignup, pass1 }),
+            data: JSON.stringify({ fullNameSignup, userSignup, emailSignup, pass1 }),
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -60,12 +61,18 @@ $(document).ready(function() {
                     icon: 'success',
                     title: 'Registro exitoso',
                     text: 'El usuario se ha registrado exitosamente.',
+                    allowOutsideClick: false,
                     customClass: {
                         icon: 'swal-icon--success',
                         title: 'swal-title',
                         text: 'swal-text',
                         confirmButton: 'swal-button--confirm',
                     },
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Recargar la página
+                        window.location.reload();
+                    }
                 });
             },
             error: function(xhr, status, error) {
