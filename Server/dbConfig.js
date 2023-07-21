@@ -5,6 +5,7 @@ const dbConfig = {
     password: 'Mario1805',
     database: 'Taskhub_db',
     options: {
+        port: 19822,
         encrypt: true, // Si es necesario, establece esto en true para conexiones seguras
         trustServerCertificate: true // Si es necesario, establece esto en true para conexiones seguras
     },

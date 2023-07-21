@@ -1,10 +1,10 @@
 const express = require('express');
 const sql = require('mssql');
 const path = require('path');
-const { registerUser } = require('../Controllers/User/userController');
+const { registerUser, loginUser } = require('../Controllers/User/userController');
 
 const app = express();
-const port = 1433;
+const port = 443;
 
 // La conexión a la base de datos
 const dbConfig = require('./dbConfig');
@@ -43,6 +43,25 @@ app.post('/user/register', async (req, res) => {
         } else {
             res.status(500).json({ message: 'Se produjo un error al registrar el usuario' });
         }
+    }
+});
+
+// Ruta POST para el inicio de sesión
+app.post('/user/login', async (req, res) => {
+    const { userLogin, passLogin } = req.body;
+
+    try {
+        const authenticated = await loginUser(userLogin, passLogin);
+        if (authenticated) {
+            // El inicio de sesión es exitoso
+            res.status(200).json({ message: 'Inicio de sesión exitoso' });
+        } else {
+            // Las credenciales son incorrectas
+            res.status(401).json({ message: 'Credenciales incorrectas' });
+        }
+    } catch (error) {
+        console.error('Error al iniciar sesión:', error);
+        res.status(500).json({ message: 'Error al iniciar sesión' });
     }
 });
 

@@ -42,6 +42,27 @@ async function registerUser(userSignup, emailSignup, pass1) {
     }
 }
 
+async function loginUser(userLogin, passLogin) {
+    try {
+        // Conectar a la base de datos
+        const pool = await sql.connect(dbConfig);
+
+        // Verificar si el usuario y la contraseña coinciden en la base de datos
+        const query = `SELECT COUNT(*) AS count FROM Users WHERE name = @name AND password = @password`;
+        const request = pool.request();
+        request.input('name', sql.VarChar(100), userLogin);
+        request.input('password', sql.VarChar(100), passLogin);
+        const result = await request.query(query);
+        const count = result.recordset[0].count;
+
+        return count > 0; // Retorna true si las credenciales son correctas, false en caso contrario
+    } catch (error) {
+        console.error('Error al iniciar sesión:', error);
+        throw error;
+    }
+}
+
 module.exports = {
     registerUser,
+    loginUser,
 };
