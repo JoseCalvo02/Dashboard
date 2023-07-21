@@ -2,8 +2,44 @@ $(document).ready(function() {
     // Asignar el evento de submit al formulario de registro
     $('#sign-up-form').submit(function(event) {
         event.preventDefault(); // Evitar que el formulario se envíe automáticamente
-        register(); // Llamar a la función de registro
+        const pass1 = $('#pass1').val();
+        const pass2 = $('#pass2').val();
+
+        if (pass1 !== pass2) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Las contraseñas no coinciden. Por favor, vuelve a intentarlo.',
+                customClass: {
+                    icon: 'swal-icon--error',
+                    title: 'swal-title',
+                    text: 'swal-text',
+                    confirmButton: 'swal-button--confirm',
+                },
+            });
+        } else if (!validatePassword(pass1)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'La contraseña debe cumplir con los siguientes requisitos: tener al menos un número, una letra y un carácter especial (por ejemplo: !@#$%^&*). Además, debe tener una longitud mayor a 6 caracteres.',
+                customClass: {
+                    icon: 'swal-icon--error',
+                    title: 'swal-title',
+                    text: 'swal-text',
+                    confirmButton: 'swal-button--confirm',
+                },
+            });
+        } else {
+            // Llamar a la función de registro
+            register();
+        }
     });
+
+    function validatePassword(password) {
+        // Expresión regular para validar un número, una letra y un carácter especial, con longitud mayor a 6
+        const regex = /^(?=.*[\d])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
+        return regex.test(password);
+    }
 
     function register() {
         const userSignup = $('#userSignup').val();
