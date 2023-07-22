@@ -61,9 +61,9 @@ async function loginUser(userLogin, passLogin) {
         const pool = await sql.connect(dbConfig);
 
         // Verificar si el usuario y la contraseña coinciden en la base de datos
-        const query = `SELECT COUNT(*) AS count FROM Users WHERE name = @name AND password = @password`;
+        const query = `SELECT COUNT(*) AS count FROM Users WHERE username = @username AND password = @password`;
         const request = pool.request();
-        request.input('name', sql.VarChar(100), userLogin);
+        request.input('username', sql.VarChar(100), userLogin);
         request.input('password', sql.VarChar(100), passLogin);
         const result = await request.query(query);
         const count = result.recordset[0].count;
