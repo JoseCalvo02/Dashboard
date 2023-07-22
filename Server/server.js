@@ -1,10 +1,20 @@
 const express = require('express');
 const sql = require('mssql');
 const path = require('path');
+const session = require('express-session');
 const { registerUser, loginUser } = require('../Controllers/User/userController');
+const { getUserById } = require('../Controllers/User/userUtils');
 
 const app = express();
 const port = 443;
+
+const sessionSecret = process.env.SESSION_SECRET || 'default-secret';
+
+app.use(session({
+    secret: sessionSecret,
+    resave: false,
+    saveUninitialized: false
+}));
 
 // La conexión a la base de datos
 const dbConfig = require('./dbConfig');
@@ -26,7 +36,7 @@ app.use(express.static(path.join(__dirname, '../')));
 
 // Ruta principal que sirve el archivo index.html
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../Views/Home/index.html'));
+    res.sendFile(path.join(__dirname, '../Views/Home/login.html'));
 });
 
 // Ruta POST para registrar un nuevo usuario
@@ -53,10 +63,19 @@ app.post('/user/login', async (req, res) => {
     const { userLogin, passLogin } = req.body;
 
     try {
-        const authenticated = await loginUser(userLogin, passLogin);
-        if (authenticated) {
-            // El inicio de sesión es exitoso
-            res.status(200).json({ message: 'Inicio de sesión exitoso' });
+        const user = await loginUser(userLogin, passLogin);
+
+        if (user) {
+            // Configurar el objeto de sesión con el userId del usuario autenticado
+            req.session.userId = user.id;
+
+            // Obtener los detalles del usuario
+            const userDetails = await getUserById(user.id);
+            // Imprimir en la consola el id y los datos del usuario
+            console.log('Datos del usuario:', userDetails);
+
+            // Enviar los detalles del usuario junto con la respuesta
+            res.status(200).json({ message: 'Inicio de sesión exitoso', userDetails });
         } else {
             // Las credenciales son incorrectas
             res.status(401).json({ message: 'Credenciales incorrectas' });

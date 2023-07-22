@@ -25,7 +25,10 @@ function toggleSidebar() {
 }
 
 // Evento que se activa al cargar la página
-window.addEventListener('load', toggleSidebar);
+window.addEventListener('load', function() {
+    toggleSidebar(); // Mostrar u ocultar el sidebar al cargar la página
+    displayUserName(); // Mostrar el nombre de usuario al cargar la página
+});
 
 // Evento que se activa al cambiar el tamaño de la ventana
 window.addEventListener('resize', toggleSidebar);

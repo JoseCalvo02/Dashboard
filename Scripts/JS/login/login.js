@@ -19,6 +19,11 @@ $(document).ready(function() {
             success: function(response) {
                 // Procesar la respuesta exitosa
                 console.log(response);
+                const userDetails = response.userDetails;
+
+                // Mostrar el nombre de usuario en el HTML
+                $('#userNamePlaceholder').text(userDetails.username);
+
                 Swal.fire({
                     icon: 'success',
                     title: 'Inicio de sesión exitoso',
@@ -31,7 +36,7 @@ $(document).ready(function() {
                     },
                 });
                 // Redirigir al usuario a la página principal después del inicio de sesión
-                window.location.href = './index.html';
+                window.location.href = '../../Views/Home/index.html?user=' + encodeURIComponent(JSON.stringify(userDetails));
             },
             error: function(xhr, status, error) {
                 console.log('XHR status:', xhr.status);

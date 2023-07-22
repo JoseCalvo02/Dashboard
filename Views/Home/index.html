@@ -8,9 +8,10 @@
 
     <!-- Material Icons-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="/Content/css/index.css">
-
 </head>
 <body>
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -199,13 +200,14 @@
 
                 <div class="profile">
                     <div class="info">
-                        <p>Hey, <b>Jose</b></p>
-                        <small class="text-muted">Admin</small>
+                        <p>Hey, <b id="userNamePlaceholder"></b></p>
+                        <small class="text-muted">pending</small>
                     </div>
                     <div class="profile-photo">
                         <img src="../../Assets/images/logo.png">
                     </div>
                 </div>
+
             </div>
             <!--================ End of Top =================-->
 
@@ -214,7 +216,7 @@
                 <h2>Daily Tasks</h2>
 
                 <table style="width: 100%;">
-                    <tbody>
+                    <tbody id="todoTasksTableBody">
                         <tr class="item add-task">
                             <td colspan="2">
                                 <div>
@@ -238,5 +240,6 @@
     <script src="../../Scripts/JS/index/index.js"></script>
     <script src="../../Scripts/JS/index/createProjects.js"></script>
     <script src="../../Scripts/JS/index/toDo.js"></script>
+    <script src="../../Scripts/JS/index/getParams.js"></script>
 </body>
 </html>
