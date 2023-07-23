@@ -11,6 +11,7 @@ CREATE TABLE Users (
     password VARCHAR(100) NOT NULL
 );
 
+TRUNCATE table TodoTasks;
 -- Tabla de to-do tasks
 CREATE TABLE TodoTasks (
     id INT IDENTITY(1,1) PRIMARY KEY,

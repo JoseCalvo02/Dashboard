@@ -1,35 +1,11 @@
-// Función para borrar el div y desplazar el div "add-product" hacia arriba
-function removeItem() {
-    const item = this.closest('.item');
-    const tableRow = item.closest('tr');
-    const tableBody = tableRow.parentNode;
-
-    tableRow.remove();
-
-    if (tableBody.childElementCount === 1) {
-        const addTaskRow = tableBody.querySelector('.add-task');
-        addTaskRow.style.transform = 'none';
-    }
-}
-
-// Función para agregar el evento de eliminación a un elemento
-function addCloseEvent(element) {
-    const closeBtn = element.querySelector('.close .material-icons-sharp');
-    closeBtn.addEventListener('click', removeItem);
-
-    // Agregar el evento de clic al icono de completado en el nuevo elemento de tarea
-    const icon = element.querySelector('.icon .material-icons-sharp');
-    icon.addEventListener('click', toggleTaskCompletion);
-}
-
-// Agregar evento al span con el id "addToDoBtn"
-const addToDoBtn = document.querySelector('#addToDoBtn');
-addToDoBtn.addEventListener('click', function () {
+// Evento que se activa al hacer clic en el botón "Add To-Do Task"
+$('#addToDoBtn').click(function () {
     const input = document.querySelector('#taskInput');
     if (input) {
         const taskText = input.value.trim();
         if (taskText.length > 0 && taskText.length <= 23) {
-            addTask(taskText);
+            const divItem = createTaskElement(taskText); // Crear el elemento divItem aquí
+            addTask(divItem); // Pasar el divItem a la función addTask (¡corregido!)
             input.value = '';
             input.parentNode.replaceChild(addTaskHeading, input);
             input.blur(); // Quitar el enfoque del campo de entrada
@@ -49,10 +25,15 @@ addToDoBtn.addEventListener('click', function () {
 // Agregar evento al h3 con el id "addTaskHeading"
 const addTaskHeading = document.querySelector('#addTaskHeading');
 addTaskHeading.addEventListener('click', function () {
-    convertToInput(addTaskHeading);
     const input = document.querySelector('#taskInput');
-    input.focus(); // Agregar el enfoque al input después de convertirlo en editable
-    input.select(); // Seleccionar el texto del input
+    if (!input) {
+        convertToInput(addTaskHeading);
+        const newInput = document.querySelector('#taskInput');
+        if (newInput) {
+            newInput.focus(); // Agregar el enfoque al input después de convertirlo en editable
+            newInput.select(); // Seleccionar el texto del input
+        }
+    }
 });
 
 function toggleTaskCompletion() {
@@ -78,21 +59,38 @@ function toggleTaskCompletion() {
 }
 
 // Función para agregar una tarea a la lista
-function addTask(taskText) {
-    if (!taskText) {
-        taskText = prompt('Enter task text:');
-    }
+function addTask(divItem) {
+    // Obtener el estado de la tarea basado en el atributo "data-completed" del elemento
+    const isCompleted = divItem.getAttribute('data-completed') === 'true';
+    const status = isCompleted ? 'Done' : 'Not Ready';
+
+    const taskText = divItem.querySelector('.info h3').textContent.trim(); // Obtener el texto del input
+
+    divItem.querySelector('.info h3').textContent = taskText; // Actualizar el texto de la tarea en el divItem
 
     if (!taskText) {
-        return;
+        return; // Si el usuario no proporciona el texto de la tarea, salir de la función
     }
-
-    const divItem = createTaskElement(taskText);
-    divItem.setAttribute('data-completed', 'false');
 
     // Agregar el evento de clic al icono de la nueva tarea
     const icon = divItem.querySelector('.icon .material-icons-sharp');
     icon.addEventListener('click', toggleTaskCompletion);
+
+    // Enviar la nueva tarea al servidor
+    $.ajax({
+        url: '/user/addTask',
+        method: 'POST',
+        data: JSON.stringify({ taskName: taskText, status }),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        success: function (response) {
+            console.log('Tarea agregada exitosamente:', response);
+        },
+        error: function (xhr, status, error) {
+            console.error('Error al agregar tarea:', error);
+        }
+    });
 }
 
 // Función para convertir un elemento en un campo de entrada
@@ -114,9 +112,9 @@ function convertToInput(element) {
             event.preventDefault(); // Evitar el envío del formulario al presionar Enter
             const taskText = input.value.trim();
             if (taskText.length > 0 && taskText.length <= 23) {
-                addTask(taskText);
+                const divItem = createTaskElement(taskText); // Crear el elemento divItem aquí
+                addTask(divItem); // Pasar el divItem a la función addTask
                 input.parentNode.replaceChild(addTaskHeading, input);
-                input.blur(); // Quitar el enfoque del campo de entrada después del reemplazo
             } else {
                 alert('El texto de la tarea debe tener entre 1 y 23 caracteres.');
             }
@@ -201,10 +199,6 @@ function createTaskElement(taskText) {
     addCloseEvent(divItem); // Agregar evento de eliminación al nuevo elemento
 
     addTaskHeading.textContent = 'Add Task';
-}
 
-// Agregar evento de eliminación a los elementos existentes
-const existingItems = document.querySelectorAll('.item.online');
-existingItems.forEach(function (item) {
-    addCloseEvent(item);
-});
+    return divItem;
+}
