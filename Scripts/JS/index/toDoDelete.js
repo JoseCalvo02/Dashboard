@@ -1,5 +1,5 @@
 // Función para eliminar una tarea del servidor y de la tabla
-function deleteTask(taskId, pool) {
+function deleteTask(taskId) {
     console.log('Eliminando tarea del servidor con ID:', taskId);
     // Eliminar la tarea del servidor
     $.ajax({
@@ -14,6 +14,8 @@ function deleteTask(taskId, pool) {
             // Si se encuentra el elemento, eliminarlo de la interfaz
             if (divItem) {
                 divItem.closest('tr').remove(); // Eliminar la fila del task en la tabla
+            } else {
+                console.log('El elemento de tarea no se encontró en la tabla.');
             }
         },
         error: function (xhr, status, error) {
@@ -35,6 +37,7 @@ function deleteTask(taskId, pool) {
 
 // Función para borrar el div y desplazar el div "add-product" hacia arriba
 function removeItem() {
+    console.log('Solicitud de eliminar enviada al servidor.');
     const item = this.closest('.item');
     const tableRow = item.closest('tr');
     const tableBody = tableRow.parentNode;
@@ -46,27 +49,3 @@ function removeItem() {
         addTaskRow.style.transform = 'none';
     }
 }
-
-// Función para agregar el evento de eliminación a un elemento
-function addCloseEvent(element) {
-    const closeBtn = element.querySelector('.close .material-icons-sharp');
-    closeBtn.addEventListener('click', removeItem);
-
-    // Agregar el evento de clic al icono de completado en el nuevo elemento de tarea
-    const icon = element.querySelector('.icon .material-icons-sharp');
-    icon.addEventListener('click', toggleTaskCompletion);
-}
-
-// Evento que se activa al hacer clic en el ícono "delete" en la tabla de to-do tasks
-$(document).on('click', '.delete-icon', function () {
-    const taskId = $(this).data('task-id');
-    console.log('Eliminando tarea con ID:', taskId);
-    deleteTask(taskId, pool);
-    alert('Solicitud de eliminación enviada al servidor.');
-});
-
-// Agregar evento de eliminación a los elementos existentes
-const existingItems = document.querySelectorAll('.item.online');
-existingItems.forEach(function (item) {
-    addCloseEvent(item);
-})

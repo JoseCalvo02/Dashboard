@@ -56,7 +56,7 @@ async function checkTaskBelongsToUser(taskId, userId) {
 }
 
 // Función para eliminar una tarea de la base de datos por su ID
-async function deleteTaskFromDatabase(taskId) {
+async function deleteTaskFromDatabase(pool, taskId) {
     try {
         // Conectar a la base de datos
         const pool = await sql.connect(dbConfig);

@@ -143,6 +143,8 @@ app.delete('/user/deleteTask/:taskId', async (req, res) => {
         // Verificar si la tarea pertenece al usuario actual antes de eliminarla
         const taskBelongsToUser = await checkTaskBelongsToUser(taskId, userId);
 
+        console.log('La tarea pertenece al usuario actual:', taskBelongsToUser); // Agregar este registro para verificar
+
         if (!taskBelongsToUser) {
             // Si la tarea no pertenece al usuario actual, enviar una respuesta de error
             return res.status(403).json({ message: 'La tarea no pertenece al usuario actual' });

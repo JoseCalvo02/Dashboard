@@ -17,7 +17,7 @@ $('#addToDoBtn').click(function () {
     }
     const newInput = document.querySelector('#taskInput');
     if (newInput) {
-        newInput.focus(); // Agregar el enfoque al nuevo input después de la operación
+        newInput.focus(); // Agregar el enfoque al nuevo input después de la operaciónitem
         newInput.select(); // Seleccionar el texto del nuevo input
     }
 });
@@ -172,7 +172,7 @@ function createTaskElement(taskText) {
 
     const itemContent = `
         <div class="icon">
-            <span class="material-icons-sharp">close</span>
+            <span class="material-icons-sharp delete-icon">close</span>
         </div>
         <div class="right">
             <div class="info">
@@ -201,4 +201,19 @@ function createTaskElement(taskText) {
     addTaskHeading.textContent = 'Add Task';
 
     return divItem;
+}
+
+// Función para agregar el evento de eliminación a un elemento
+function addCloseEvent(element) {
+    console.log('Evento de eliminación agregado al icono close.')
+    const closeBtn = element.querySelector('.close .material-icons-sharp');
+    const taskId = element.dataset.taskId; // Obtener el ID de la tarea del atributo dataset
+    console.log(taskId);
+    closeBtn.dataset.taskId = taskId; // Configurar el atributo data-task-id en el icono de eliminar
+    closeBtn.addEventListener('click', removeItem);
+
+    // Agregar el evento de clic al icono de completado en el nuevo elemento de tarea
+    const icon = element.querySelector('.icon .material-icons-sharp');
+    icon.dataset.taskId = taskId; // Configurar el atributo data-task-id en el icono de completado
+    icon.addEventListener('click', toggleTaskCompletion);
 }
