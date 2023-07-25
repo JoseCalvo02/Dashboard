@@ -1,11 +1,8 @@
 // Obtener una referencia al formulario
 const projectForm = document.querySelector("#projectForm");
 
-// Agregar evento al formulario para capturar el envío
-projectForm.addEventListener("submit", handleFormSubmit);
-
 // Función para manejar el envío del formulario
-function handleFormSubmit(event) {
+async function handleFormSubmit(event) {
     event.preventDefault();
 
     const projectName = document.querySelector("#projectName").value;
@@ -21,18 +18,65 @@ function handleFormSubmit(event) {
     // Añadir el nuevo proyecto a la lista de proyectos en la página principal
     window.opener.addProject(project);
 
-    // Cerrar la ventana del formulario
-    window.close();
+    try {
+        // Utilizar AJAX para enviar los datos del proyecto al servidor
+        const response = await $.ajax({
+            url: '/project/register', // Nueva ruta para registrar el proyecto en el servidor
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(project),
+        });
+
+        // Procesar la respuesta exitosa si es necesario
+        console.log(response);
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Registro exitoso',
+            text: 'El proyecto ha sido creado correctamente',
+            allowOutside: false,
+            customClass: {
+                icon: 'swal-icon--success',
+                title: 'swal-title',
+                text: 'swal-text',
+                confirmButton: 'swal-button--confirm',
+            },
+        }).then(() => {
+            // Redireccionar al usuario a la página principal después del registro exitoso
+            window.location.href = "../../Views/Home/index.html";
+
+            // Cerrar la ventana del formulario después de procesar la respuesta
+            window.close();
+        });
+
+    } catch (error) {
+        // Procesar el error si es necesario
+        console.error('Error al guardar el proyecto en el servidor:', error);
+
+        // Mostrar un mensaje de error al usuario
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Ha ocurrido un error.',
+            customClass: {
+                icon: 'swal-icon--error',
+                title: 'swal-title',
+                text: 'swal-text',
+                confirmButton: 'swal-button--confirm',
+            },
+        });
+    }
+
 }
+
+// Agregar evento al formulario para capturar el envío
+projectForm.addEventListener("submit", handleFormSubmit);
 
 // Obtener la referencia al botón de regresar
 const returnBtn = document.querySelector("#returnBtn");
 
 // Agregar un evento de escucha para el clic en el botón de regresar
-returnBtn.addEventListener("click", handleReturn);
-
-// Función para manejar el clic en el botón de regresar
-function handleReturn(event) {
+returnBtn.addEventListener("click", function(event) {
     event.preventDefault();
 
     // Redireccionar al index original
@@ -40,10 +84,4 @@ function handleReturn(event) {
 
     // Cerrar la ventana del formulario
     window.close();
-}
-
-// Obtener la referencia al formulario
-const form = document.querySelector("#projectForm");
-
-// Agregar un evento de escucha para el envío del formulario
-form.addEventListener("submit", handleFormSubmit);
+});

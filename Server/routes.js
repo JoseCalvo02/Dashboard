@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { registerUser } = require('../Controllers/User/userController');
+const { registerProject } = require('../Controllers/Projects/projectController');
 
 // Define las rutas y los controladores
 router.post('/register', async (req, res) => {
@@ -16,6 +17,8 @@ router.post('/register', async (req, res) => {
         res.status(500).json({ error: 'Error al registrar el usuario' });
     }
 });
+
+router.post('/project/register', registerProject);
 
 // Exporta el enrutador
 module.exports = router;

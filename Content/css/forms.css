@@ -7,6 +7,8 @@
 :root {
     --color-primary: #6380ec;
     --color-background: #f6f6f9;
+    --color-success: #41f1b6;
+    --color-danger: #ff7782;
 
     --card-border-radius: 2rem;
     --box-shadow-add: 10px 5px 5px var(--color-primary);
@@ -30,6 +32,38 @@ body{
     justify-content: center;
     min-height: 100vh;
     background: var(--color-background);
+}
+
+/*
+============================>   POP-UP <============================
+*/
+.swal-icon--success {
+    color: var(--color-success);
+}
+
+.swal-icon--error {
+    color: var(--color-danger);
+}
+
+.swal-title {
+    font-size: 24px;
+    color: var(--color-primary-hover);
+}
+
+.swal-text {
+    font-size: 18px;
+    color: gray;
+}
+
+.swal-button--confirm, .swal-button--error {
+    background-color: var(--color-primary) !important;
+    color: white;
+    border-radius: 4px;
+    padding: 10px 20px;
+}
+
+.swal-button--confirm:hover, .swal-button--error:hover {
+    background-color: var(--color-primary-hover);
 }
 
 /*

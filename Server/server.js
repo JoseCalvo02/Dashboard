@@ -5,6 +5,7 @@ const session = require('express-session');
 const { registerUser, loginUser } = require('../Controllers/User/userController');
 const { getUserById } = require('../Controllers/User/userUtils');
 const { getTasksFromDatabase, addTaskToDatabase, checkTaskBelongsToUser, deleteTaskFromDatabase } = require('../Controllers/Tasks/toDoController');
+const {registerProject} = require('../Controllers/Projects/projectController');
 
 const app = express();
 const port = 443;
@@ -158,6 +159,8 @@ app.delete('/user/deleteTask/:taskId', async (req, res) => {
         res.status(500).json({ message: 'Error al eliminar la tarea' });
     }
 });
+
+app.post('/project/register', registerProject);
 
 // Rutas
 app.use(require('./routes'));
