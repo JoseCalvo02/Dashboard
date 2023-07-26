@@ -526,6 +526,137 @@ main .projects a {
 /*
 ============================>   Media Queries: Small Laptops/Big Tablets  <============================
 */
+.right .reminders {
+    background: var(--color-white);
+    padding: 24px;
+    overflow-x: auto;
+    margin-top: 2rem;
+    flex-grow: 1;
+    flex-basis: 300px;
+    border-radius: var(--border-radius-3);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.right .reminders:hover {
+    box-shadow: none;
+}
+
+.right .reminders .header{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    grid-gap: 16px;
+    flex-wrap: wrap;
+}
+
+.right .reminders .header .bx{
+    margin-bottom: 0.8rem;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.right .reminders .header h2 {
+    margin-bottom: 0.8rem;
+    margin-right: auto;
+    font-weight: 600;
+}
+
+.right .reminders .addReminder {
+    background: var(--color-white);
+    padding: 14px 10px;
+    margin-bottom: 0.7rem;
+    border-radius: var(--border-radius-3);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.right .reminders .task-list{
+    width: 100%;
+}
+
+.right .reminders .task-list li{
+    display: flex;
+    width: 100%;
+    margin-bottom: 0.7rem;
+    background: var(--color-white);
+    padding: 14px 10px;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: var(--border-radius-3);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.right .reminders .task-list li:hover {
+    box-shadow: none;
+}
+
+.right .reminders .task-list li .task-title{
+    display: flex;
+    align-items: center;
+}
+
+.right .reminders .task-list li .task-title p{
+    margin-left: 6px;
+}
+
+.right .reminders .task-list li .bx{
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+.right .reminders .task-list li.completed{
+    border-left: 10px solid var(--color-success);
+}
+
+.right .reminders .task-list li.completed p{
+    text-decoration: line-through;
+}
+
+.right .reminders .task-list li.not-completed{
+    border-left: 10px solid var(--color-danger);
+}
+
+.right .reminders .task-list li.not-completed p {
+    text-decoration: none;
+}
+
+.right .reminders .task-list li:last-child{
+   margin-bottom: 10px;
+}
+
+/* Estilos para el menú desplegable */
+.dropdown {
+    position: absolute;
+    top: 20px; /* Ajusta esta posición para colocar el menú donde desees */
+    right: 0;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    z-index: 1;
+}
+
+.dropdown ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown li:hover {
+    background-color: #f1f1f1;
+}
+
+/*
+============================>   Media Queries: Small Laptops/Big Tablets  <============================
+*/
 @media screen and (max-width: 1200px) {
     .container {
         width: 94%;

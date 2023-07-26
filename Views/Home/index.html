@@ -8,6 +8,7 @@
 
     <!-- Material Icons-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- CSS -->
@@ -230,18 +231,68 @@
             </div>
             <!--================ End of To-Do =================-->
 
+            <!--================ Reminders =================-->
+            <div class="reminders">
+                <div class="header">
+                    <i class="bx bx-note"></i>
+                    <h2>Reminders</h2>
+                    <i class="bx bx-plus" id="addReminderIcon"></i>
+                </div>
+                <div class="addReminder" id="addReminderInputContainer" style="display: none;">
+                    <input type="text" id="reminderInput" placeholder="Enter your reminder">
+                    <button id="saveReminderButton">Save</button>
+                </div>
+                <ul class="task-list">
+                    <li class="completed">
+                        <div class="task-title">
+                            <i class="bx bx-check-circle"></i>
+                            <p>Start our meeting</p>
+                        </div>
+                        <i class="bx bx-dots-vertical-rounded"></i>
+                    </li>
+                    <li class="not-completed">
+                        <div class="task-title">
+                            <i class="bx bx-x-circle"></i>
+                            <p>Add the buttons</p>
+                        </div>
+                        <i class="bx bx-dots-vertical-rounded"></i>
+                    </li>
+                </ul>
+
+                <div id="taskOptionsDropdown" class="dropdown" style="display: none;">
+                    <ul>
+                        <li id="editTaskOption">Editar</li>
+                        <li id="deleteTaskOption">Borrar</li>
+                    </ul>
+                </div>
+
+            </div>
+            <!--================ End of Reminders =================-->
+
         </div>
         <!--================ End of Right Panel =================-->
 
     </div>
     <!--================ End of container =================-->
 
-    <!-- JavaScript -->
+    <!-- Scripts for index -->
     <script src="../../Scripts/JS/index/index.js"></script>
+    <script src="../../Scripts/JS/index/getParams.js"></script>
+
+    <!-- Scripts for projects-->
     <script src="../../Scripts/JS/index/projects/projectCreate.js"></script>
+
+    <!-- Scripts for reminders-->
+    <script src="../../Scripts/JS/index/reminders/reminderMain.js"></script>
+    <script src="../../Scripts/JS/index/reminders/reminderUpdate.js"></script>
+    <script src="../../Scripts/JS/index/reminders/reminderCreate.js"></script>
+    <script src="../../Scripts/JS/index/reminders/reminderDelete.js"></script>
+    <script src="../../Scripts/JS/index/reminders/reminderLoad.js"></script>
+
+    <!-- Scripts for projects-->
     <script src="../../Scripts/JS/index/toDo/toDoLoad.js"></script>
     <script src="../../Scripts/JS/index/toDo/toDoDelete.js"></script>
     <script src="../../Scripts/JS/index/toDo/toDoCreate.js"></script>
-    <script src="../../Scripts/JS/index/getParams.js"></script>
+
 </body>
 </html>
