@@ -266,6 +266,26 @@ main {
     margin-top: 1.4rem;
 }
 
+main .date {
+    display: inline-flex;
+    background: var(--color-white);
+    margin-top: 1rem;
+    padding: 0.5rem 1.6rem;
+    border-radius: var(--border-radius-3);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+main h3 {
+    margin-right: 5px;
+}
+
+main .date input[type="date"] {
+    background: transparent;
+    color: var(--color-dark);
+    font-weight: bold;
+}
+
 main .insights {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -487,11 +507,11 @@ main .projects a {
 }
 
 .right .todo-tasks .item .icon {
+    display: flex;
     padding: 0.6rem;
     color: var(--color-white);
     border-radius: 50%;
     background: var(--color-danger);
-    display: flex;
 }
 
 .right .todo-tasks .item.customers .icon {
@@ -524,7 +544,7 @@ main .projects a {
 }
 
 /*
-============================>   Media Queries: Small Laptops/Big Tablets  <============================
+============================>   Reminders section  <============================
 */
 .right .reminders {
     background: var(--color-white);

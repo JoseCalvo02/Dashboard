@@ -3,6 +3,23 @@ const menuBtn = document.querySelector("#menu-btn");
 const closeBtn = document.querySelector("#close-btn");
 const themeToggler = document.querySelector(".theme-toggler");
 
+// Obtener el campo de fecha por su ID
+const dateField = document.getElementById('dateField');
+
+// Obtener la fecha actual
+const currentDate = new Date();
+const year = currentDate.getFullYear();
+const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Aseguramos dos dígitos para el mes
+const day = String(currentDate.getDate()).padStart(2, '0'); // Aseguramos dos dígitos para el día
+
+// Formatear la fecha en el formato requerido por el input de tipo "date"
+const formattedDate = `${year}-${month}-${day}`;
+
+// Asignar la fecha actual al campo de fecha
+dateField.value = formattedDate;
+// Deshabilitar la interacción con el calendario emergente
+dateField.addEventListener('click', (e) => e.preventDefault());
+
 //Show Sidebar
 menuBtn.addEventListener('click', () => {
     sideMenu.style.display = 'block';
