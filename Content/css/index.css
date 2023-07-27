@@ -12,7 +12,7 @@
     --color-info-light: #dce1eb;
     --color-dark: #363949;
     --color-light: rgba(132, 139, 200, 0.18);
-    --color-primary-variant: #111e88;
+    --color-primary-variant: #3E64CC;
     --color-dark-variant: #677483;
     --color-background: #f6f6f9;
 
@@ -276,6 +276,10 @@ main .date {
     transition: var(--transition);
 }
 
+main .date:hover {
+    box-shadow: none;
+}
+
 main h3 {
     margin-right: 5px;
 }
@@ -416,13 +420,21 @@ main table tbody tr:last-child td {
     border: none;
 }
 
-main .projects a {
+main .projects .addBtnContainer{
     text-align: center;
     display: block;
     margin: 1rem auto;
+}
+
+main .projects .addBtnContainer a{
+    display: inline;
+    padding: 5px;
     color: var(--color-primary);
 }
 
+main .projects .addBtnContainer a:hover{
+    color: var(--color-primary-variant);
+}
 
 /*
 ============================>   Right Panel   <============================
@@ -574,22 +586,42 @@ main .projects a {
 .right .reminders .header .bx{
     margin-bottom: 0.8rem;
     font-size: 22px;
+}
+
+.right .reminders .header .bx-plus{
     cursor: pointer;
 }
 
 .right .reminders .header h2 {
     margin-bottom: 0.8rem;
     margin-right: auto;
-    font-weight: 600;
 }
 
 .right .reminders .addReminder {
     background: var(--color-white);
     padding: 14px 10px;
     margin-bottom: 0.7rem;
+    border: 1px solid var(--color-dark-variant);
     border-radius: var(--border-radius-3);
     box-shadow: var(--box-shadow);
     transition: var(--transition);
+}
+
+.right .reminders .addReminder:hover {
+    box-shadow: none;
+}
+
+.right .reminders .addReminder button{
+    background: var(--color-primary);
+    color: white;
+    align-items: center;
+    margin-left: 25px;
+    padding: 8px;
+    border-radius: var(--border-radius-2);
+}
+
+.right .reminders .addReminder button:hover{
+    background: var(--color-primary-variant);
 }
 
 .right .reminders .task-list{
@@ -649,29 +681,35 @@ main .projects a {
 }
 
 /* Estilos para el menú desplegable */
-.dropdown {
+.right .reminders .dropdown {
     position: absolute;
-    top: 20px; /* Ajusta esta posición para colocar el menú donde desees */
-    right: 0;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
+    top: 20px;
+    background-color: var(--color-white);
+    display: none;
     border-radius: 4px;
     z-index: 1;
+    border: 1px solid var(--color-dark-variant);
+    border-radius: var(--border-radius-2);
+    overflow: hidden;
 }
 
-.dropdown ul {
-    list-style-type: none;
+.right .reminders .dropdown ul {
     padding: 0;
     margin: 0;
 }
 
-.dropdown li {
+.right .reminders .dropdown li {
     padding: 10px;
     cursor: pointer;
 }
 
-.dropdown li:hover {
-    background-color: #f1f1f1;
+.right .reminders .dropdown li:hover {
+    background-color: var(--color-info-light);
+    border: none;
+}
+
+.right .reminders .dropdown select option:hover {
+    background-color: transparent;
 }
 
 /*

@@ -5,6 +5,8 @@ $(document).ready(function() {
 
     // Obtener la lista de tareas
     var taskList = $(".task-list");
+    // Variable para controlar el estado del menú desplegable
+    var isMenuOpen = false;
 
     //Manejar el evento de clic en el ícono de completar o no completar
     taskList.on("click", ".bx-x-circle, .bx-check-circle", function() {
@@ -26,15 +28,25 @@ $(document).ready(function() {
     taskList.on("click", ".bx-dots-vertical-rounded", function(e) {
         e.stopPropagation(); // Detener la propagación del evento clic para evitar interferencias con otros eventos clic
 
-        // Obtener la posición del ícono de opciones
-        var iconPosition = $(this).offset();
+        // Verificar si el menú está abierto
+        if (isMenuOpen) {
+            taskOptionsDropdown.hide(); // Si está abierto, lo ocultamos
+        } else {
+            // Si está cerrado, obtenemos la posición del ícono de opciones y el ancho del menú
+            var iconPosition = $(this).offset();
+            var dropdownWidth = taskOptionsDropdown.outerWidth();
+            // Calculamos la posición izquierda para mostrar el menú más a la izquierda
+            var leftPosition = iconPosition.left - dropdownWidth + $(this).width();
+            // Mostramos el menú desplegable en la posición calculada
+            taskOptionsDropdown.css({
+                display: "block",
+                top: iconPosition.top + $(this).height(),
+                left: leftPosition
+            });
+        }
 
-        // Mostrar el menú desplegable en la posición del ícono
-        taskOptionsDropdown.css({
-            display: "block",
-            top: iconPosition.top + $(this).height(),
-            left: iconPosition.left
-        });
+        // Cambiar el estado del menú
+        isMenuOpen = !isMenuOpen;
     });
 
     // Ocultar el menú desplegable cuando se hace clic en cualquier parte de la página
