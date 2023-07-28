@@ -13,11 +13,11 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
                 var iconPosition = e.target.getBoundingClientRect();
                 var dropdownWidth = taskOptionsDropdown.offsetWidth;
-                var leftPosition = iconPosition.left + e.target.offsetWidth;
+                var leftPosition = iconPosition.left - dropdownWidth - 45;// Cambiar aquí para restar el ancho del dropdown
 
-                // Ajustar la posición izquierda para mostrar el menú más a la izquierda
-                if (leftPosition + dropdownWidth > window.innerWidth) {
-                    leftPosition = window.innerWidth - dropdownWidth;
+                // Verificar si el dropdown se sale de la pantalla por la izquierda
+                if (leftPosition < 0) {
+                    leftPosition = 0;
                 }
 
                 taskOptionsDropdown.style.display = "block";
@@ -49,6 +49,31 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             taskOptionsDropdown.style.display = "none";
             isMenuOpen = false;
+        }
+    });
+
+      // Agregar event listener para cerrar el dropdown al hacer clic fuera de él
+    document.addEventListener("click", function(e) {
+        if (!taskOptionsDropdown.contains(e.target)) {
+            taskOptionsDropdown.style.display = "none";
+            isMenuOpen = false;
+        }
+    });
+
+    // Event listener para ajustar posición izquierda del dropdown en pantallas más grandes
+    window.addEventListener("resize", function() {
+        if (window.innerWidth > 768) {
+            var iconPosition = taskList.querySelector(".bx-dots-vertical-rounded").getBoundingClientRect();
+            var dropdownWidth = taskOptionsDropdown.offsetWidth;
+            var leftPosition = iconPosition.left - dropdownWidth - 45;
+
+            if (leftPosition < 0) {
+                leftPosition = 0;
+            }
+
+            taskOptionsDropdown.style.left = leftPosition + "px";
+        } else {
+            taskOptionsDropdown.style.left = "0";
         }
     });
 
