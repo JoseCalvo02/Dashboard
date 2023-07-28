@@ -611,9 +611,15 @@ main .projects .addBtnContainer a:hover{
     box-shadow: none;
 }
 
+.right .reminders .addReminder input {
+    background: var(--color-white);
+    color: var(--color-dark);
+}
+
 .right .reminders .addReminder button{
-    background: var(--color-primary);
-    color: white;
+    background: transparent;
+    border: 2px dashed var(--color-primary);
+    color: var(--color-primary);
     align-items: center;
     margin-left: 25px;
     padding: 8px;
@@ -621,7 +627,8 @@ main .projects .addBtnContainer a:hover{
 }
 
 .right .reminders .addReminder button:hover{
-    background: var(--color-primary-variant);
+    background: var(--color-primary);
+    color: white;
 }
 
 .right .reminders .task-list{
