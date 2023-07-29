@@ -1,5 +1,6 @@
-// Declarar una variable global para almacenar el taskList
-var taskList = $(".task-list");
+//Global Variables
+var taskList = $(".task-list"); // Variable global para almacenar el taskList
+var selectedReminderId; // Variable global para almacenar el ID del recordatorio seleccionado
 
 /*
 ! Query para el inicio del index
@@ -8,9 +9,6 @@ $(document).ready(function() {
 
     // Obtener las opciones del dropdown
     var taskOptionsDropdown = $("#taskOptionsDropdown");
-
-    // Variable para almacenar el ID del recordatorio seleccionado
-    var selectedReminderId;
 
     // Obtener el icono de agregar y el contenedor del input
     var addReminderIcon = $("#addReminderIcon");
@@ -36,8 +34,10 @@ $(document).ready(function() {
     $("#saveReminderButton").on("click", function() {
         var reminderInputValue = $("#reminderInput").val().trim();
 
+
+        // TODO: Don't let the text be greater than 25 caracteres
         // Verificar si el input tiene un valor válido (en este caso, si no está vacío)
-        if (reminderInputValue === "") {
+        if (reminderInputValue === "" ) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
@@ -131,15 +131,9 @@ $(document).ready(function() {
     /*
     ! Manejar el evento de clic en la opción "Borrar"
     */
-    $("#deleteTaskOption").on("click", function(e) {
-        e.stopPropagation(); // Detener la propagación del evento clic para evitar interferencias con otros eventos clic
-
-        // Obtener el elemento li padre del ícono de opciones
-        var listItem = $(this).closest("li");
-
-        // Eliminar el elemento li (es decir, el recordatorio)
-        listItem.remove();
-
+    $("#deleteReminderOption").on("click", function(e) {
+        e.stopPropagation();
+        deleteReminder();
         // Ocultar el menú desplegable después de borrar
         taskOptionsDropdown.hide();
     });
