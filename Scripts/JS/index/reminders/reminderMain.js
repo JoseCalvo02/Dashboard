@@ -34,14 +34,12 @@ $(document).ready(function() {
     $("#saveReminderButton").on("click", function() {
         var reminderInputValue = $("#reminderInput").val().trim();
 
-
-        // TODO: Don't let the text be greater than 25 caracteres
         // Verificar si el input tiene un valor válido (en este caso, si no está vacío)
-        if (reminderInputValue === "" ) {
+        if (reminderInputValue === "" || reminderInputValue.length >= 25) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "Please enter text to create the reminder.",
+                text: "The reminder cannot exceed 25 caracteres or be empty.",
             });
             return;
         }

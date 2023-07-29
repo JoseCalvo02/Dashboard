@@ -21,6 +21,15 @@ CREATE TABLE TodoTasks (
     FOREIGN KEY (userId) REFERENCES Users(id)
 );
 
+-- Tabla de Reminders
+CREATE TABLE Reminders (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    userId INT NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    status VARCHAR(50) NOT NULL CHECK (status IN('completed', 'not-completed')),
+    FOREIGN KEY (userId) REFERENCES Users(id)
+);
+
 -- Tabla de registro de proyectos
 CREATE TABLE Projects (
     id INT IDENTITY(1,1) PRIMARY KEY,
