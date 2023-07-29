@@ -1,95 +1,147 @@
-document.addEventListener("DOMContentLoaded", function() {
-    var taskOptionsDropdown = document.querySelector("#taskOptionsDropdown");
-    var taskList = document.querySelector(".task-list");
-    var isMenuOpen = false;
+// Declarar una variable global para almacenar el taskList
+var taskList = $(".task-list");
 
-    taskList.addEventListener("click", function(e) {
-        // Manejar clic en el icono de edición
-        if (e.target.classList.contains("bx-dots-vertical-rounded")) {
-            e.stopPropagation();
+/*
+! Query para el inicio del index
+*/
+$(document).ready(function() {
 
-            if (isMenuOpen) {
-                taskOptionsDropdown.style.display = "none";
-            } else {
-                var iconPosition = e.target.getBoundingClientRect();
-                var dropdownWidth = taskOptionsDropdown.offsetWidth;
-                var leftPosition = iconPosition.left - dropdownWidth - 45;// Cambiar aquí para restar el ancho del dropdown
+    // Obtener las opciones del dropdown
+    var taskOptionsDropdown = $("#taskOptionsDropdown");
 
-                // Verificar si el dropdown se sale de la pantalla por la izquierda
-                if (leftPosition < 0) {
-                    leftPosition = 0;
-                }
+    // Variable para almacenar el ID del recordatorio seleccionado
+    var selectedReminderId;
 
-                taskOptionsDropdown.style.display = "block";
-                taskOptionsDropdown.style.top = iconPosition.top + e.target.offsetHeight + "px";
-                taskOptionsDropdown.style.left = leftPosition + "px";
-            }
+    // Obtener el icono de agregar y el contenedor del input
+    var addReminderIcon = $("#addReminderIcon");
+    var addReminderInputContainer = $("#addReminderInputContainer");
 
-            isMenuOpen = !isMenuOpen;
-        } else if (e.target.classList.contains("bx-x-circle")) {
-            // Alternar entre los íconos bx-x-circle y bx-check-circle
-            e.target.classList.remove("bx-x-circle");
-            e.target.classList.add("bx-check-circle");
-
-            // Alternar entre las clases de completado y no completado en el elemento li
-            if (e.target.closest("li")) {
-                e.target.closest("li").classList.toggle("completed");
-                e.target.closest("li").classList.toggle("not-completed");
-            }
-        } else if (e.target.classList.contains("bx-check-circle")) {
-            // Alternar entre los íconos bx-check-circle y bx-x-circle
-            e.target.classList.remove("bx-check-circle");
-            e.target.classList.add("bx-x-circle");
-
-            // Alternar entre las clases de completado y no completado en el elemento li
-            if (e.target.closest("li")) {
-                e.target.closest("li").classList.toggle("completed");
-                e.target.closest("li").classList.toggle("not-completed");
-            }
+    /*
+    ! Manejar el evento de clic en el icono de agregar
+    */
+    addReminderIcon.on("click", function() {
+        // Mostrar u ocultar el contenedor del input según su estado actual
+        if (addReminderInputContainer.is(":visible")) {
+            addReminderIcon.removeClass("bx-x").addClass("bx-plus");
+            addReminderInputContainer.hide();
         } else {
-            taskOptionsDropdown.style.display = "none";
-            isMenuOpen = false;
+            addReminderIcon.removeClass("bx-plus").addClass("bx-x");
+            addReminderInputContainer.show();
         }
     });
 
-      // Agregar event listener para cerrar el dropdown al hacer clic fuera de él
-    document.addEventListener("click", function(e) {
-        if (!taskOptionsDropdown.contains(e.target)) {
-            taskOptionsDropdown.style.display = "none";
-            isMenuOpen = false;
+    /*
+    ! Manejar el evento de clic en el botón de guardar
+    */
+    $("#saveReminderButton").on("click", function() {
+        var reminderInputValue = $("#reminderInput").val().trim();
+
+        // Verificar si el input tiene un valor válido (en este caso, si no está vacío)
+        if (reminderInputValue === "") {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Please enter text to create the reminder.",
+            });
+            return;
         }
+
+        // Agregar el nuevo recordatorio a la lista de tareas
+        addReminder(reminderInputValue);
+
+        // Ocultar el contenedor del input y cambiar el icono a bx-plus
+        addReminderInputContainer.hide();
+        addReminderIcon.removeClass("bx-x").addClass("bx-plus");
+
+        // Restablecer el valor del input
+        $("#reminderInput").val("");
     });
 
-    // Event listener para ajustar posición izquierda del dropdown en pantallas más grandes
-    window.addEventListener("resize", function() {
-        if (window.innerWidth > 768) {
-            var iconPosition = taskList.querySelector(".bx-dots-vertical-rounded").getBoundingClientRect();
-            var dropdownWidth = taskOptionsDropdown.offsetWidth;
-            var leftPosition = iconPosition.left - dropdownWidth - 45;
+    /*
+    ! Manejar el evento de clic en el ícono de completar o no completar
+    */
+    taskList.on("click", ".bx-x-circle, .bx-check-circle", function() {
+        var listItem = $(this).closest("li");
+        var icon = $(this);
 
-            if (leftPosition < 0) {
-                leftPosition = 0;
-            }
-
-            taskOptionsDropdown.style.left = leftPosition + "px";
+        // Alternar entre los íconos bx-x-circle y bx-check-circle
+        if (icon.hasClass("bx-x-circle")) {
+            icon.removeClass("bx-x-circle").addClass("bx-check-circle");
         } else {
-            taskOptionsDropdown.style.left = "0";
+            icon.removeClass("bx-check-circle").addClass("bx-x-circle");
         }
+
+        // Alternar entre las clases de completado y no completado en el elemento li
+        listItem.toggleClass("completed").toggleClass("not-completed");
     });
 
-    // Manejar el evento de clic en la opción "Editar"
-    var editTaskOption = document.getElementById("editTaskOption");
-    editTaskOption.addEventListener("click", function(e) {
-        e.stopPropagation();
-        var listItem = this.closest("li");
-        var reminderParagraph = listItem.querySelector(".task-title p");
+    /*
+    ! Mostrar el menú desplegable cuando se hace clic en el ícono de opciones
+    */
+    taskList.on("click", ".bx-dots-vertical-rounded", function(e) {
+        e.stopPropagation(); // Detener la propagación del evento clic para evitar interferencias con otros eventos clic
 
-        console.log("Reminder Paragraph:", reminderParagraph);
+        // Buscar el elemento li que contiene el ícono de opciones (padre del ícono clicado)
+        selectedReminderId = $(this).closest("li");
 
-        if (reminderParagraph) {
-            activateEditMode(reminderParagraph); // Llamada a la función activateEditMode
-        } else {
-            console.log("Reminder paragraph not found.");
-        }
+        // Obtener la posición del ícono de opciones
+        var iconPosition = $(this).offset();
+
+        // Calcular la posición izquierda del menú desplegable desplazándolo 50px a la izquierda
+        var dropdownLeftPosition = iconPosition.left - 50;
+
+        // Mostrar el menú desplegable en la posición del ícono con el desplazamiento a la izquierda
+        taskOptionsDropdown.css({
+            display: "block",
+            top: iconPosition.top + $(this).height(),
+            left: dropdownLeftPosition
+        });
     });
+
+    /*
+    ! Ocultar el menú desplegable cuando se hace clic en cualquier parte de la página
+    */
+    $(document).on("click", function() {
+        taskOptionsDropdown.hide();
+    });
+
+    /*
+    ! Manejar el evento de doble clic (dblclick) en el contenedor del párrafo para activar el modo de edición
+    */
+    taskList.on("dblclick", ".task-title p", function() {
+        // Llamar a la función activateEditMode y pasarle el párrafo actual
+        activateEditMode($(this));
+    });
+
+    /*
+    ! Manejar el evento de clic en la opción "Editar"
+    */
+    $("#editReminderOption").on("click", function(e) {
+        e.stopPropagation(); // Detener la propagación del evento clic para evitar interferencias con otros eventos clic
+
+        // Ocultar el menú desplegable después de clicar "Editar"
+        taskOptionsDropdown.hide();
+
+        // Obtener el párrafo (reminder) dentro del elemento li
+        var reminderParagraph = selectedReminderId.find(".task-title p");
+
+        activateEditMode(reminderParagraph); // Llamada a la función activateEditMode
+    });
+
+    /*
+    ! Manejar el evento de clic en la opción "Borrar"
+    */
+    $("#deleteTaskOption").on("click", function(e) {
+        e.stopPropagation(); // Detener la propagación del evento clic para evitar interferencias con otros eventos clic
+
+        // Obtener el elemento li padre del ícono de opciones
+        var listItem = $(this).closest("li");
+
+        // Eliminar el elemento li (es decir, el recordatorio)
+        listItem.remove();
+
+        // Ocultar el menú desplegable después de borrar
+        taskOptionsDropdown.hide();
+    });
+
 });

@@ -33,9 +33,13 @@ CREATE TABLE Projects (
 );
 
 -- Tabla del homepage de los proyectos
-CREATE TABLE ProjectsHome (
+CREATE TABLE ProjectsHomepage (
     id INT IDENTITY(1,1) PRIMARY KEY,
     userId INT NOT NULL,
+    projectId INT NOT NULL,
     taskName VARCHAR(100) NOT NULL,
-    FOREIGN KEY (userId) REFERENCES Users(id)
+    priorityType VARCHAR (30),
+    columnTask VARCHAR(20)
+    FOREIGN KEY (userId) REFERENCES Users(id),
+    FOREIGN KEY (projectId) REFERENCES Projects(id)
 );
