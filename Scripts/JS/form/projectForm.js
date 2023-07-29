@@ -15,20 +15,16 @@ async function handleFormSubmit(event) {
         dueDate,
     };
 
-    // Añadir el nuevo proyecto a la lista de proyectos en la página principal
-    window.opener.addProject(project);
-
     try {
         // Utilizar AJAX para enviar los datos del proyecto al servidor
         const response = await $.ajax({
-            url: '/project/register', // Nueva ruta para registrar el proyecto en el servidor
+            url: '/registerProject', // Nueva ruta para registrar el proyecto en el servidor
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(project),
         });
 
-        // Procesar la respuesta exitosa si es necesario
-        console.log(response);
+        console.log(project);
 
         Swal.fire({
             icon: 'success',

@@ -40,7 +40,6 @@ async function registerUser(fullNameSignup, userSignup, emailSignup, pass1) {
         request.input('username', sql.VarChar(100), userSignup);
         request.input('email', sql.VarChar(100), emailSignup);
         request.input('password', sql.VarChar(100), pass1);
-        const result = await request.query(query);
 
         console.log('Usuario registrado exitosamente');
     } catch (error) {

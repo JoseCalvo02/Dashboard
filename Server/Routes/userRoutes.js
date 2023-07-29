@@ -61,7 +61,7 @@ router.get('/user/logout', (req, res) => {
         }
 
         // Redirigir al formulario de inicio de sesión después de cerrar sesión
-        res.redirect('/'); // Puedes redirigir a otra página si lo prefieres
+        res.redirect('/');
     });
 });
 

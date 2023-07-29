@@ -55,3 +55,14 @@ themeToggler.addEventListener('click', () => {
     themeToggler.querySelector('span:nth-child(1)').classList.toggle('active');
     themeToggler.querySelector('span:nth-child(2)').classList.toggle('active');
 })
+
+const addBtn = document.querySelector("#addBtn");
+addBtn.addEventListener("click", () => {
+    window.open("../User/projectForm.html", "_blank");
+});
+
+const addProjectLink = document.querySelectorAll(".sidebar a")[8];
+addProjectLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.open("../User/projectForm.html", "_blank");
+});
