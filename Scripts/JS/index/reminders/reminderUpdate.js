@@ -1,5 +1,32 @@
 /*
-! Definir la función activateEditMode
+! Función para actualizar el status del reminder en el servidor
+*/
+function updateReminderStatus(reminderId, status) {
+    // Objeto que contiene los datos del reminder a actualizar
+    var reminderData = {
+        id: reminderId,
+        status: status
+    };
+
+    // Realizar la solicitud AJAX para actualizar el status del reminder en la base de datos
+    $.ajax({
+        type: "PUT",
+        url: "/reminder/updateStatus",
+        data: JSON.stringify(reminderData),
+        contentType: "application/json",
+        success: function(response) {
+            console.log("Status del reminder actualizado con éxito");
+            // Si deseas hacer algo después de actualizar el status, aquí es el lugar para hacerlo
+        },
+        error: function(error) {
+            console.error("Error al actualizar el status del reminder:", error);
+            // Manejar el error si es necesario
+        }
+    });
+}
+
+/*
+! Definir la función activateEditMode para manejar el modo de edición de los reminders
 */
 function activateEditMode(paragraph) {
     // Obtener el texto del párrafo

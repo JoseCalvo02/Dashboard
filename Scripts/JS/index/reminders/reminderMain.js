@@ -61,12 +61,18 @@ $(document).ready(function() {
     taskList.on("click", ".bx-x-circle, .bx-check-circle", function() {
         var listItem = $(this).closest("li");
         var icon = $(this);
+        var reminderId = listItem.data("reminder-id"); // Aquí obtenemos el ID del reminder del atributo data-reminder-id
+        console.log(reminderId);
 
         // Alternar entre los íconos bx-x-circle y bx-check-circle
         if (icon.hasClass("bx-x-circle")) {
             icon.removeClass("bx-x-circle").addClass("bx-check-circle");
+            // Llamar a la función para actualizar el status del reminder a "completed"
+            updateReminderStatus(reminderId, "completed");
         } else {
             icon.removeClass("bx-check-circle").addClass("bx-x-circle");
+            // Llamar a la función para actualizar el status del reminder a "not-completed"
+            updateReminderStatus(reminderId, "not-completed");
         }
 
         // Alternar entre las clases de completado y no completado en el elemento li

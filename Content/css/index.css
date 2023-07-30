@@ -87,7 +87,11 @@ body {
 
 /* ==========>  'A' tags   <========== */
 a {
-    color: var(--color-dark);
+    color: var(--color-primary);
+}
+
+a:hover {
+    color: var(--color-primary-variant);
 }
 
 /* ==========>   Images   <========== */
@@ -483,76 +487,6 @@ main .projects .addBtnContainer a:hover{
     display: flex;
     gap: 2rem;
     text-align: right;
-}
-
-/* ==========>   Daily Tasks  <========== */
-.right .todo-tasks {
-    margin-top: 2rem;
-}
-
-.right .todo-tasks h2 {
-    margin-bottom: 0.8rem;
-}
-
-.right .todo-tasks .item {
-    background: var(--color-white);
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 0.7rem;
-    padding: 1.4rem var(--card-padding);
-    border-radius: var(--border-radius-3);
-    box-shadow: var(--box-shadow);
-    transition: var(--transition);
-}
-
-.right .todo-tasks .item:hover {
-    box-shadow: none;
-}
-
-.right .todo-tasks .item .right {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    margin: 0;
-    width: 100%;
-}
-
-.right .todo-tasks .item .icon {
-    display: flex;
-    padding: 0.6rem;
-    color: var(--color-white);
-    border-radius: 50%;
-    background: var(--color-danger);
-}
-
-.right .todo-tasks .item.customers .icon {
-    background: var(--color-success);
-}
-
-.right .todo-tasks .add-task {
-    background: transparent;
-    border: 2px dashed var(--color-primary);
-    color: var(--color-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.right .todo-tasks .add-task:hover {
-    background: var(--color-primary);
-    color: white;
-}
-
-.right .todo-tasks .add-task div {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-}
-
-.right .todo-tasks .add-task div h3 {
-    font-weight: 600;
-    cursor: pointer; /* Convierte el icono en un objeto clickeable */
 }
 
 /*

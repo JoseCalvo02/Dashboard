@@ -220,25 +220,6 @@
             </div>
             <!--================ End of Top =================-->
 
-            <!--================ Start To Do =================-->
-            <div class="todo-tasks">
-                <h2>Daily Tasks</h2>
-
-                <table style="width: 100%;">
-                    <tbody id="todoTasksTableBody">
-                        <tr class="item add-task">
-                            <td colspan="2">
-                                <div>
-                                    <span class="material-icons-sharp" id="addToDoBtn">add</span>
-                                    <h3 id="addTaskHeading">Add Task</h3>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!--================ End of To-Do =================-->
-
             <!--================ Reminders =================-->
             <div class="reminders">
                 <div class="header">
@@ -251,20 +232,7 @@
                     <button id="saveReminderButton">Save</button>
                 </div>
                 <ul class="task-list">
-                    <li class="completed">
-                        <div class="task-title">
-                            <i class="bx bx-check-circle"></i>
-                            <p>Start our meeting</p>
-                        </div>
-                        <i class="bx bx-dots-vertical-rounded"></i>
-                    </li>
-                    <li class="not-completed">
-                        <div class="task-title">
-                            <i class="bx bx-x-circle"></i>
-                            <p>Add the buttons</p>
-                        </div>
-                        <i class="bx bx-dots-vertical-rounded"></i>
-                    </li>
+                    <!--================ Here we create the reminders =================-->
                 </ul>
 
                 <div id="taskOptionsDropdown" class="dropdown" style="display: none;">
@@ -296,11 +264,6 @@
     <script src="../../Scripts/JS/index/reminders/reminderUpdate.js"></script>
     <script src="../../Scripts/JS/index/reminders/reminderCreate.js"></script>
     <script src="../../Scripts/JS/index/reminders/reminderDelete.js"></script>
-
-    <!-- Scripts for projects-->
-    <script src="../../Scripts/JS/index/toDo/toDoLoad.js"></script>
-    <script src="../../Scripts/JS/index/toDo/toDoDelete.js"></script>
-    <script src="../../Scripts/JS/index/toDo/toDoCreate.js"></script>
 
 </body>
 </html>

@@ -30,6 +30,8 @@ CREATE TABLE Reminders (
     FOREIGN KEY (userId) REFERENCES Users(id)
 );
 
+DELETE FROM Reminders;
+
 -- Tabla de registro de proyectos
 CREATE TABLE Projects (
     id INT IDENTITY(1,1) PRIMARY KEY,
