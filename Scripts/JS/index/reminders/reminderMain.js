@@ -143,3 +143,11 @@ $(document).ready(function() {
     });
 
 });
+
+/*
+! Evento que se activa cuando la página se carga completamente
+*/
+document.addEventListener("DOMContentLoaded", function() {
+    // Llamar a la función para cargar los reminders del usuario desde la base de datos
+    loadRemindersFromDB();
+});

@@ -1,4 +1,6 @@
-// Función para crear un elemento li para el nuevo recordatorio
+/*
+! Función para crear un elemento li para el nuevo recordatorio
+*/
 function createTaskListItem(reminderInputValue, reminderId) {
     var newTaskListItem = $("<li>", { class: "not-completed", "data-reminder-id": reminderId });
     var newReminderDiv = $("<div>", { class: "task-title" });
@@ -15,7 +17,9 @@ function createTaskListItem(reminderInputValue, reminderId) {
     return newTaskListItem;
 }
 
-// Función para agregar el nuevo recordatorio a la lista de tareas
+/*
+! Función para agregar el nuevo recordatorio a la lista de tareas
+*/
 function addReminder(reminderInputValue) {
     var newTaskListItem = createTaskListItem(reminderInputValue);
 
@@ -47,7 +51,9 @@ function addReminder(reminderInputValue) {
     });
 }
 
-// Función para agregar el nuevo reminder a la lista de tareas con el ID correspondiente
+/*
+! Función para agregar el nuevo reminder a la lista de tareas con el ID correspondiente
+*/
 function addReminderToList(reminderInputValue, reminderId) {
     var newTaskListItem = createTaskListItem(reminderInputValue, reminderId);
     taskList.append(newTaskListItem);

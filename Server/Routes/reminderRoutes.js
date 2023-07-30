@@ -43,4 +43,23 @@ router.put('/reminder/updateStatus', async (req, res) => {
     }
 });
 
+// Ruta para obtener los reminders del usuario
+router.get('/reminder/getReminders', async (req, res) => {
+    try {
+        const { userId } = req.session;
+
+        if (!userId) {
+            return res.status(401).json({ message: 'Usuario no autenticado' });
+        }
+
+        // Llamar a la función en el controlador para obtener los reminders del usuario
+        const reminders = await reminderController.getReminders(userId);
+
+        res.status(200).json({ reminders });
+    } catch (error) {
+        console.error('Error al obtener los reminders:', error);
+        res.status(500).json({ message: 'Error al obtener los reminders' });
+    }
+});
+
 module.exports = router;

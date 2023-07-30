@@ -49,8 +49,34 @@ async function updateReminderStatus(reminderId, status) {
     }
 }
 
+// Función para obtener los reminders del usuario desde la base de datos
+async function getReminders(userId) {
+    try {
+        const query = 'SELECT id, name, status FROM Reminders WHERE userId = @userId';
+        const pool = await sql.connect(dbConfig);
+
+        const request = pool.request();
+        request.input('userId', sql.Int, userId);
+
+        const result = await request.query(query);
+        pool.close();
+
+        // Mapear los resultados de la base de datos en el formato de objetos de reminders
+        const reminders = result.recordset.map(record => ({
+            id: record.id,
+            name: record.name,
+            status: record.status
+        }));
+
+        return reminders;
+    } catch (error) {
+        console.error('Error al obtener los reminders desde la base de datos:', error);
+        throw error;
+    }
+}
 
 module.exports = {
     createReminder,
     updateReminderStatus,
+    getReminders,
 };
