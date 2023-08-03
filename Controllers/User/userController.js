@@ -60,7 +60,7 @@ async function loginUser(userLogin, passLogin) {
         const pool = await sql.connect(dbConfig);
 
         // Verificar si el usuario y la contraseña coinciden en la base de datos
-        const query = `SELECT * FROM Users WHERE username = @username AND password = @password`;
+        const query = `SELECT * FROM Users WHERE username COLLATE SQL_Latin1_General_CP1_CS_AS = @username AND password COLLATE SQL_Latin1_General_CP1_CS_AS = @password`;
         const request = pool.request();
         request.input('username', sql.VarChar(100), userLogin);
         request.input('password', sql.VarChar(100), passLogin);
