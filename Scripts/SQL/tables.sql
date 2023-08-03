@@ -11,16 +11,6 @@ CREATE TABLE Users (
     password VARCHAR(100) NOT NULL
 );
 
-TRUNCATE table TodoTasks;
--- Tabla de to-do tasks
-CREATE TABLE TodoTasks (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    userId INT NOT NULL,
-    taskName VARCHAR(100) NOT NULL,
-    status VARCHAR(50) NOT NULL CHECK (status IN('Done', 'Not Ready')),
-    FOREIGN KEY (userId) REFERENCES Users(id)
-);
-
 -- Tabla de Reminders
 CREATE TABLE Reminders (
     id INT IDENTITY(1,1) PRIMARY KEY,

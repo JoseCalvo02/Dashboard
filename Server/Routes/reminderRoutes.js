@@ -62,4 +62,24 @@ router.get('/reminder/getReminders', async (req, res) => {
     }
 });
 
+// Ruta para editar el texto de un reminder
+router.put('/reminder/updateText', async (req, res) => {
+    try {
+        const { editedText, reminderId } = req.body;
+        const { userId } = req.session;
+
+        if (!userId) {
+            return res.status(401).json({ message: 'Usuario no autenticado' });
+        }
+
+        // Si la validación pasa, el usuario tiene permiso para actualizar el texto del reminder
+        await reminderController.editReminder(userId, editedText, reminderId);
+
+        res.status(200).json({ message: 'Texto del reminder editado exitosamente' });
+    } catch (error) {
+        console.error('Error al editar el reminder:', error);
+        res.status(500).json({ message: 'Error al editar el reminder' });
+    }
+});
+
 module.exports = router;

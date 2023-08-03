@@ -27,16 +27,19 @@ $(document).ready(function() {
                 Swal.fire({
                     icon: 'success',
                     title: 'Inicio de sesión exitoso',
-                    text: '¡Bienvenido de nuevo!',
+                    text: '¡Bienvenido de nuevo ' + userDetails.username +"!",
+                    timer: 2000,
+                    showConfirmButton: false,
                     customClass: {
                         icon: 'swal-icon--success',
                         title: 'swal-title',
                         text: 'swal-text',
                         confirmButton: 'swal-button--confirm',
                     },
+                }).then((result) => {
+                    // Redirigir al usuario a la página principal después del inicio de sesión
+                    window.location.href = '../../Views/Home/index.html?user=' + encodeURIComponent(JSON.stringify(userDetails));
                 });
-                // Redirigir al usuario a la página principal después del inicio de sesión
-                window.location.href = '../../Views/Home/index.html?user=' + encodeURIComponent(JSON.stringify(userDetails));
             },
             error: function(xhr, status, error) {
                 console.log('XHR status:', xhr.status);

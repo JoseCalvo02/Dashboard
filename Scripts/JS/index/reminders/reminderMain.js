@@ -14,6 +14,9 @@ $(document).ready(function() {
     var addReminderIcon = $("#addReminderIcon");
     var addReminderInputContainer = $("#addReminderInputContainer");
 
+    // Variable para rastrear el estado del dropdown
+    let dropdownOpen = false;
+
     /*
     ! Manejar el evento de clic en el icono de agregar
     */
@@ -94,12 +97,21 @@ $(document).ready(function() {
         // Calcular la posición izquierda del menú desplegable desplazándolo 50px a la izquierda
         var dropdownLeftPosition = iconPosition.left - 50;
 
-        // Mostrar el menú desplegable en la posición del ícono con el desplazamiento a la izquierda
-        taskOptionsDropdown.css({
-            display: "block",
-            top: iconPosition.top + $(this).height(),
-            left: dropdownLeftPosition
-        });
+        if (!dropdownOpen) {
+            // Mostrar el menú desplegable en la posición del ícono con el desplazamiento a la izquierda
+            taskOptionsDropdown.css({
+                display: "block",
+                top: iconPosition.top + $(this).height(),
+                left: dropdownLeftPosition
+            });
+            // Actualizar el estado del dropdown a abierto
+            dropdownOpen = true;
+        } else {
+            // Ocultar el menú desplegable si ya está abierto y se hace clic nuevamente en el icono
+            taskOptionsDropdown.hide();
+            // Actualizar el estado del dropdown a cerrado
+            dropdownOpen = false;
+        }
     });
 
     /*
@@ -107,14 +119,21 @@ $(document).ready(function() {
     */
     $(document).on("click", function() {
         taskOptionsDropdown.hide();
+        // Actualizar el estado del dropdown a cerrado al hacer clic en cualquier parte de la página
+        dropdownOpen = false;
     });
 
     /*
     ! Manejar el evento de doble clic (dblclick) en el contenedor del párrafo para activar el modo de edición
     */
     taskList.on("dblclick", ".task-title p", function() {
-        // Llamar a la función activateEditMode y pasarle el párrafo actual
-        activateEditMode($(this));
+        // Obtener el párrafo (reminder) dentro del elemento li
+        var reminderParagraph = $(this);
+        // Obtener el ID del reminder desde el atributo data del elemento li
+        var reminderId = reminderParagraph.closest("li").data("reminder-id");
+
+        // Llamar a la función activateEditMode y pasarle el párrafo actual y el ID del reminder
+        activateEditMode(reminderParagraph, reminderId);
     });
 
     /*
@@ -128,8 +147,10 @@ $(document).ready(function() {
 
         // Obtener el párrafo (reminder) dentro del elemento li
         var reminderParagraph = selectedReminderId.find(".task-title p");
+        // Obtener el ID del reminder desde el atributo data del elemento li
+        var reminderId = selectedReminderId.data("reminder-id");
 
-        activateEditMode(reminderParagraph); // Llamada a la función activateEditMode
+        activateEditMode(reminderParagraph, reminderId); // Llamada a la función activateEditMode
     });
 
     /*

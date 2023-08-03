@@ -75,8 +75,42 @@ async function getReminders(userId) {
     }
 }
 
+// Función para actualizar el texto de los reminders del usuario desde la base de datos
+async function editReminder(userId, editedText, reminderId) {
+    try {
+        console.log("userId: " + userId);
+        console.log("editedText: " + editedText);
+        console.log("remidnerId: " + reminderId);
+        // Conectar a la base de datos
+        const pool = await sql.connect(dbConfig);
+
+        // Verificar si el reminder existe y pertenece al usuario
+        const query = `SELECT * FROM Reminders WHERE id = @reminderId AND userId = @userId`;
+        const request = pool.request();
+        request.input('userId', sql.Int, userId);
+        request.input('reminderId', sql.Int, reminderId);
+        const result = await request.query(query);
+        const reminder = result.recordset[0];
+
+        if (!reminder) {
+            throw new Error('El reminder no existe o no pertenece al usuario');
+        }
+
+        // Actualizar el texto del reminder
+        const updateQuery = `UPDATE Reminders SET name = @editedText WHERE id = @reminderId`;
+        const updateRequest = pool.request();
+        updateRequest.input('reminderId', sql.Int, reminderId);
+        updateRequest.input('editedText', sql.VarChar(100), editedText);
+        await updateRequest.query(updateQuery);
+    } catch (error) {
+        console.error('Error al editar el reminder:', error);
+        throw error;
+    }
+}
+
 module.exports = {
     createReminder,
     updateReminderStatus,
     getReminders,
+    editReminder,
 };

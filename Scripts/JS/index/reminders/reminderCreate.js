@@ -40,6 +40,13 @@ function addReminder(reminderInputValue) {
         contentType: "application/json", // Especificar el tipo de contenido como JSON
         success: function(response) {
             var newReminderId = response.newReminderId; // Obtener el ID del nuevo reminder desde la respuesta del servidor
+            Swal.fire({
+                icon: "success",
+                title: "Reminder Created",
+                text: "The reminder was created successfully",
+                timer: 2000,
+                showConfirmButton: false,
+            });
 
             // Llamar a la función para agregar el nuevo reminder a la lista de tareas con el ID correspondiente
             addReminderToList(reminderInputValue, newReminderId);
