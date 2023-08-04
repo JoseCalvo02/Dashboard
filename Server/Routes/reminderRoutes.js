@@ -82,4 +82,24 @@ router.put('/reminder/updateText', async (req, res) => {
     }
 });
 
+// Ruta para eliminar un reminder
+router.delete('/reminder/delete', async (req, res) => {
+    try {
+        const { id } = req.query;
+        const { userId } = req.session;
+
+        if (!userId) {
+            return res.status(401).json({ message: 'Usuario no autenticado' });
+        }
+
+        // Si la validación pasa, el usuario tiene permiso para eliminar el reminder
+        await reminderController.deleteReminder(userId, id);
+
+        res.status(200).json({ message: 'Reminder eliminado exitosamente' });
+    } catch (error) {
+        console.error('Error al eliminar el reminder:', error);
+        res.status(500).json({ message: 'Error al eliminar el reminder' });
+    }
+});
+
 module.exports = router;

@@ -150,17 +150,22 @@ $(document).ready(function() {
         // Obtener el ID del reminder desde el atributo data del elemento li
         var reminderId = selectedReminderId.data("reminder-id");
 
-        activateEditMode(reminderParagraph, reminderId); // Llamada a la función activateEditMode
+        activateEditMode(reminderParagraph, reminderId);
     });
 
     /*
     ! Manejar el evento de clic en la opción "Borrar"
     */
     $("#deleteReminderOption").on("click", function(e) {
-        e.stopPropagation();
-        deleteReminder();
-        // Ocultar el menú desplegable después de borrar
+        e.stopPropagation();// Detener la propagación del evento clic para evitar interferencias con otros eventos clic
+
+        // Ocultar el menú desplegable después de clicar "Editar"
         taskOptionsDropdown.hide();
+
+        // Obtener el ID del reminder desde el atributo data del elemento li
+        var reminderId = selectedReminderId.data("reminder-id");
+
+        deleteReminder(reminderId);
     });
 
 });

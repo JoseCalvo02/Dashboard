@@ -123,7 +123,6 @@ function activateEditMode(paragraph, reminderId) {
     ! Función para guardar el texto editado en la base de datos mediante AJAX
     */
     function saveEditedTextToDatabase(editedText, reminderId) {
-        console.log("remidnerId: " + reminderId);
         // Agregar el reminderId al objeto data que se enviará en la solicitud
         var reminderData = {
             editedText: editedText,
