@@ -15,11 +15,11 @@ function fillProjects() {
             const tableBody = document.getElementById("projectTableBody");
             tableBody.innerHTML = "";
 
-            projects.forEach((project, index) => {
+            projects.forEach((project) => {
                 const newRow = document.createElement("tr");
 
                 const cell1 = document.createElement("td");
-                cell1.textContent = index + 1;
+                cell1.textContent = project.id;
                 newRow.appendChild(cell1);
 
                 const cell2 = document.createElement("td");
@@ -38,11 +38,18 @@ function fillProjects() {
                 const link = document.createElement("a");
                 link.href = "/Views/User/projects.html";
                 link.textContent = "open";
+
                 cell5.appendChild(link);
                 newRow.appendChild(cell5);
 
                 tableBody.appendChild(newRow);
+
+                // Agrega el nombre del proyecto como un atributo de datos al elemento de enlace
+                link.setAttribute("data-nombre-proyecto", project.name);
+                link.setAttribute("data-id-proyecto", project.id);
             });
+            // agrega el evento de clic a los enlaces "open"
+            addOpenLinkEventListeners();
         })
         .fail((error) => {
             console.error('Error al obtener los proyectos desde la base de datos:', error);
@@ -51,3 +58,21 @@ function fillProjects() {
 
 // Llama a la función fillProjects para llenar los proyectos al cargar la página
 fillProjects();
+
+// Función para manejar los clics en el enlace "open"
+function addOpenLinkEventListeners() {
+    const openLinks = document.querySelectorAll("a[data-nombre-proyecto]");
+
+    openLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            // Obtén el nombre del proyecto desde el atributo de datos
+            const nombreProyecto = link.getAttribute("data-nombre-proyecto");
+            const idProyecto = link.getAttribute("data-id-proyecto");
+
+            // Abre la página "../User/projects.html" en una nueva pestaña con los parametros idProyecto y nombreProyecto
+            window.open(`../User/projects.html?proyecto=${encodeURIComponent(nombreProyecto)}&id=${encodeURIComponent(idProyecto)}`, "_blank");
+        });
+    });
+}
