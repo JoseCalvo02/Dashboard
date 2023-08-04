@@ -1,0 +1,800 @@
+/* ==========>  Fonts  <========== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ==========>  Root vars  <========== */
+:root {
+    --color-primary: #6380ec;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-primary-variant: #3E64CC;
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light);
+
+    --transition: all 300ms ease;
+}
+
+/* ==========>  Dark Theme vars  <========== */
+.dark-theme-variables {
+    --color-background: #181a1e;
+    --color-white: #202528;
+    --color-dark: #edeffd;
+    --color-dark-variant: #a3bdcc;
+    --color-light: rgba(0, 0, 0, 0.4);
+
+    --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+/*
+============================>   General Configs   <============================
+*/
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    appearance: none;
+    border: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+/* ==========>   HTML   <========== */
+html {
+    font-size: 14px;
+}
+
+/* ==========>   ICON   <========== */
+.material-icons-sharp {
+    cursor: pointer; /* Convierte el icono en un objeto clickeable */
+}
+
+/* ==========>  Body   <========== */
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: poppins, sans-serif;
+    font-size: 0.88rem;
+    background: var(--color-background);
+    user-select: none; /* Evita que el usuario pueda seleccionar y resaltar texto */
+    overflow-x: hidden; /* Esconde el contenido que salga de la pantalla - eje horizontal*/
+    color: var(--color-dark);
+}
+
+/* ==========>   Grid container   <========== */
+.container {
+    display: grid;
+    width: 96%;
+    margin: 0 auto;
+    gap: 1.8rem;
+    grid-template-columns: 14rem auto 23rem;
+}
+
+/* ==========>  'A' tags   <========== */
+a {
+    color: var(--color-primary);
+}
+
+a:hover {
+    color: var(--color-primary-variant);
+}
+
+/* ==========>   Images   <========== */
+img {
+    display: block;
+    width: 100%;
+}
+
+/* ==========>   'H' tags   <========== */
+h1 {
+    font-weight: 800;
+    font-size: 1.8rem;
+}
+
+h2 {
+    font-size: 1.4rem;
+}
+
+h3 {
+    font-size: 1rem;
+}
+
+h4 {
+    font-size: 0.8rem;
+}
+
+h5 {
+    font-size: 0.77rem;
+}
+
+small {
+    font-size: 0.75rem;
+}
+
+/* ==========>   Profile photos   <========== */
+.profile-photo {
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    overflow: hidden; /* Oculta cualquier contenido que se encuentre fuera de los límites del elemento */
+}
+
+/* ==========>   Texto gris   <========== */
+.text-muted {
+    color: var(--color-info-dark);
+}
+
+/* ==========>   'P' tags   <========== */
+p {
+    color: var(--color-dark-variant);
+}
+
+/* ==========>   'B' tags   <========== */
+b {
+    color: var(--color-dark);
+}
+
+/* ==========>   Color classes   <========== */
+.primary {
+    color: var(--color-primary);
+}
+
+.danger {
+    color: var(--color-danger);
+}
+
+.success {
+    color: var(--color-success);
+}
+
+.warning {
+    color: var(--color-warning);
+}
+
+/*
+============================>   Left Panel   <============================
+*/
+aside {
+    height: 100vh;
+}
+
+aside .top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.4rem;
+}
+
+aside .logo {
+    display: flex;
+    gap: 0.8rem;
+}
+
+aside .logo img {
+    width: 2rem;
+    height: 2rem;
+}
+
+aside .close {
+    display: none;
+}
+
+/* ==========>   Sidebar   <========== */
+aside .sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 86vh;
+    position: relative;
+    top: 3rem;
+}
+
+aside h3 {
+    font-weight: 500;
+}
+
+aside .sidebar a {
+    display: flex;
+    color: var(--color-info-dark); /* Color de las opciones del dashboard */
+    margin-left: 2rem;
+    gap: 1rem;
+    align-items: center;
+    position: relative;
+    height: 3.7rem;
+    transition: var(--transition);
+}
+
+aside .sidebar a span{
+    font-size: 1.6rem;
+    transition: var(--transition); /* Animacion al pasar el click */
+}
+
+aside .sidebar a:last-child { /* La opcion del dashboard del final */
+    position: absolute;
+    bottom: 2rem;
+    width: 100%;
+}
+
+aside .sidebar a.active { /* La opcion del dashboard que esta activa */
+    background: var(--color-light);
+    color: var(--color-primary);
+    margin-left: 0;
+}
+
+aside .sidebar a.active::before { /* La opcion del dashboard que esta activa */
+    content: '';
+    width: 6px; /* Ancho de la linea de la opcion seleccionada */
+    height: 100%;
+    background: var(--color-primary); /* Color de la linea de la opcion seleccionada */
+}
+
+aside .sidebar a.active span{ /* Icono del dashboard que esta activo */
+    color: var(--color-primary);
+    margin-left: calc(1rem - 3px);
+}
+
+aside .sidebar a:hover {
+    color: var(--color-primary);
+}
+
+aside .sidebar a:hover span {
+    margin-left: 1rem;
+}
+
+aside .sidebar .message-count {
+    background: var(--color-danger);
+    color: var(--color-white);
+    padding: 2px 10px;
+    font-size: 11px;
+    border-radius: var(--border-radius-1);
+}
+
+/*
+============================>   Central Panel   <============================
+*/
+main {
+    margin-top: 6rem;
+}
+
+.container-form {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .card {
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.15);
+    position: relative;
+    transition: all .2s ease-in-out;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    width: 60%;
+    margin-left: 300px;
+    margin-top: 15px;
+  }
+
+  .card h1{
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .card:hover {
+      /* box-shadow: 0 5px 22px 0 rgba(0,0,0,.25); */
+      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  
+  }
+  label{
+    margin: 0 auto;
+    font-family: poppins, sans-serif;
+  }
+  
+  
+  label, p {
+      display: block;
+      margin-bottom: 5px;
+      color: #777;
+      letter-spacing: 0.5px;
+    
+  }
+  
+input, textarea {
+      margin: 0 0 20px 0;
+      padding: 12px 5%;
+      width: 90%;
+      border: 0;
+      border-radius: 4px;
+      background-color: #FFFFFF;
+      box-shadow: 4px 3px 9px rgba(0,0,0,0.2);
+      color: #2C3E50;
+      font-size: 15px;
+      font-family: poppins, sans-serif;
+  }
+
+input[type="text"]:disabled {
+    background-color: rgb(206, 206, 206) !important;
+}
+
+input[type="email"]:disabled {
+    background-color: rgb(206, 206, 206) !important;
+}
+
+  ::placeholder{
+    color: black;
+    text-align: center;
+    }
+  
+  .title{
+    font-size: 3.444rem;
+    color:#1d3247;
+    text-align: center;
+    
+  }
+  
+  button {
+    font-family: inherit;
+    font-size: 20px;
+    width: 200px;
+    background: royalblue;
+    color: white;
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s;
+    margin: 0 auto;
+  }
+  
+  button span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  button svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  button:hover .svg-wrapper {
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+  }
+  
+  button:hover svg {
+    transform: translateX(1.2em) rotate(45deg) scale(1.1);
+  }
+  
+  button:hover span {
+    transform: translateX(8em);
+  }
+  
+  button:active {
+    transform: scale(0.95);
+  }
+  
+  @keyframes fly-1 {
+    from {
+      transform: translateY(0.1em);
+    }
+  
+    to {
+      transform: translateY(-0.1em);
+    }
+  }
+  
+  
+
+.container-form label{
+    font-size: 18px;
+}
+
+
+
+
+/*
+============================>   Right Panel   <============================
+*/
+.right {
+    margin-top: 1.4rem;
+}
+
+.right .top {
+    display: flex;
+    justify-content: end;
+    gap: 2rem;
+}
+
+.right .top button {
+    display: none;
+}
+
+.right .theme-toggler {
+    background: var(--color-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 1.6rem;
+    width: 4.2rem;
+    cursor: pointer;
+    border-radius: var(--border-radius-1);
+}
+
+.right .theme-toggler span {
+    font-size: 1.2rem;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right .theme-toggler span.active {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-radius: var(--border-radius-1);
+}
+
+.right .top .profile {
+    display: flex;
+    gap: 2rem;
+    text-align: right;
+}
+
+/*
+============================>   Reminders section  <============================
+*/
+.right .reminders {
+    background: var(--color-white);
+    padding: 24px;
+    overflow-x: auto;
+    margin-top: 2rem;
+    flex-grow: 1;
+    flex-basis: 300px;
+    border-radius: var(--border-radius-3);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.right .reminders:hover {
+    box-shadow: none;
+}
+
+.right .reminders .header{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    grid-gap: 16px;
+    flex-wrap: wrap;
+}
+
+.right .reminders .header .bx{
+    margin-bottom: 0.8rem;
+    font-size: 22px;
+}
+
+.right .reminders .header .bx-plus{
+    cursor: pointer;
+}
+
+.right .reminders .header h2 {
+    margin-bottom: 0.8rem;
+    margin-right: auto;
+}
+
+.right .reminders .addReminder {
+    background: var(--color-white);
+    padding: 14px 10px;
+    margin-bottom: 0.7rem;
+    border: 1px solid var(--color-dark-variant);
+    border-radius: var(--border-radius-3);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.right .reminders .addReminder:hover {
+    box-shadow: none;
+}
+
+.right .reminders .addReminder input {
+    background: var(--color-white);
+    color: var(--color-dark);
+}
+
+.right .reminders .addReminder button{
+    background: transparent;
+    border: 2px dashed var(--color-primary);
+    color: var(--color-primary);
+    align-items: center;
+    margin-left: 25px;
+    padding: 5px;
+    border-radius: var(--border-radius-2);
+}
+
+.right .reminders .addReminder button:hover{
+    background: var(--color-primary);
+    color: white;
+}
+
+.right .reminders .task-list{
+    width: 100%;
+}
+
+.right .reminders .task-list li{
+    display: flex;
+    width: 100%;
+    margin-bottom: 0.7rem;
+    background: var(--color-white);
+    padding: 14px 10px;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: var(--border-radius-3);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.right .reminders .task-list li:hover {
+    box-shadow: none;
+}
+
+.right .reminders .task-list li .task-title{
+    display: flex;
+    align-items: center;
+}
+
+.right .reminders .task-list li .task-title p{
+    margin-left: 6px;
+}
+
+.right .reminders .task-list li .bx{
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+.right .reminders .task-list li.completed{
+    border-left: 10px solid var(--color-success);
+}
+
+.right .reminders .task-list li.completed p{
+    text-decoration: line-through;
+}
+
+.right .reminders .task-list li.not-completed{
+    border-left: 10px solid var(--color-danger);
+}
+
+.right .reminders .task-list li.not-completed p {
+    text-decoration: none;
+}
+
+.right .reminders .task-list li:last-child{
+   margin-bottom: 10px;
+}
+
+/* Estilos para el menú desplegable */
+.right .reminders .dropdown {
+    position: absolute;
+    top: 20px;
+    background-color: var(--color-white);
+    display: none;
+    border-radius: 4px;
+    z-index: 1;
+    border: 1px solid var(--color-dark-variant);
+    border-radius: var(--border-radius-2);
+    overflow: hidden;
+}
+
+.right .reminders .dropdown ul {
+    padding: 0;
+    margin: 0;
+}
+
+.right .reminders .dropdown li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.right .reminders .dropdown li:hover {
+    background-color: var(--color-info-light);
+    border: none;
+}
+
+.right .reminders .dropdown select option:hover {
+    background-color: transparent;
+}
+
+/*
+============================>   Media Queries: Small Laptops/Big Tablets  <============================
+*/
+@media screen and (max-width: 1200px) {
+    .container {
+        width: 94%;
+        grid-template-columns: 7rem auto 23rem;
+    }
+
+    aside .logo h2 {
+        display: none;
+    }
+
+    aside .sidebar h3 {
+        display: none;
+    }
+
+    aside .sidebar a {
+        width: 5.6rem;
+    }
+
+    aside .sidebar a:last-child {
+        position: relative;
+        margin-top: 1.8rem;
+    }
+
+    main .insights {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    main .projects {
+        width: 94%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 2rem 0 0 8.8rem;
+    }
+
+    main .projects table {
+        width: 83vw;
+    }
+
+    main table thead tr th:last-child,
+    main table thead tr th:first-child {
+        display: none;
+    }
+
+    main table tbody tr td:last-child,
+    main table tbody tr td:first-child {
+        display: none;
+    }
+}
+
+/*
+============================>   Media Queries: Small Tablet/Phones   <============================
+*/
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100%;
+        grid-template-columns: 1fr;
+    }
+
+    aside {
+        position: fixed;
+        left: -100%;
+        background: var(--color-white);
+        width: 18rem;
+        z-index: 3;
+        box-shadow: 1rem 3rem 4rem var(--color-light);
+        height: 100vh;
+        padding-right: var(--card-padding);
+        display: none;
+        animation: showMenu 400ms ease forwards;
+    }
+
+    @keyframes showMenu {
+        to {
+            left: 0;
+        }
+    }
+
+    aside .logo {
+        margin-left: 1rem;
+    }
+
+    aside .logo h2 {
+        display: inline;
+    }
+
+    aside .sidebar h3 {
+        display: inline;
+    }
+
+    aside .sidebar a {
+        width: 100%;
+        height: 3.4rem;
+    }
+
+    aside .sidebar a:last-child {
+        position: absolute;
+        bottom: 5rem;
+    }
+
+    aside .close {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    main {
+        margin-top: 8rem;
+        padding: 0 1rem;
+    }
+
+    main .projects {
+        position: relative;
+        margin: 3rem 0 0 0;
+        width: 100%;
+    }
+
+    main .projects table {
+        width: 100%;
+        margin: 0;
+    }
+
+    .right {
+        width: 94%;
+        margin: 0 auto 4rem;
+    }
+
+    .right .top {
+        position: fixed;
+        top: 0;
+        left: 0;
+        align-items: center;
+        padding: 0 0.8rem;
+        height: 4.6rem;
+        background: var(--color-white);
+        width: 100%;
+        margin: 0;
+        z-index: 2;
+        box-shadow: 0 1rem 1rem var(--color-light);
+    }
+
+    .right .top .theme-toggler {
+        width: 4.4rem;
+        position: absolute;
+        left: 66%;
+    }
+
+    .right .profile .info {
+        display: none;
+    }
+
+    .right .top button {
+        display: inline-block;
+        background: transparent;
+        cursor: pointer;
+        color: var(--color-dark);
+        position: absolute;
+        left: 1rem;
+    }
+
+    .right .top button span {
+        font-size: 2rem;
+    }
+}
+
+/* Estilos para el sidebar cuando la pantalla es grande */
+@media (min-width: 768px) {
+    aside {
+        display: block;
+    }
+}

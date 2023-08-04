@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <!-- Material Icons-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/Content/css/profile.css">
+</head>
+<body>
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////
+                            START SECTION 1 - Left Panel
+/////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <div class="container">
+        <!--================ Start Aside: Left Panel =================-->
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="../../Assets/images/logo.png">
+                    <h2>Task<span class="success">Hub</span> </h2>
+                </div>
+
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">close</span>
+                </div>
+            </div>
+
+            <!--================ Start dashboard sidebar =================-->
+            <div class="sidebar">
+                <a href="index.html" class="active">
+                    <span class="material-icons-sharp">grid_view</span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="../../Views/User/projects.html">
+                    <span class="material-icons-sharp">work</span>
+                    <h3>Projects</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">receipt_long</span>
+                    <h3>To-do Tasks</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">insights</span>
+                    <h3>Analytics</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">mail_outline</span>
+                    <h3>Messages</h3>
+                    <span class="message-count">26</span>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">inventory</span>
+                    <h3>Products</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">report_gmailerrorred</span>
+                    <h3>Reports</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">settings</span>
+                    <h3>Profile</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">add</span>
+                    <h3>Add Project</h3>
+                </a>
+                <a href="/user/logout">
+                    <span class="material-icons-sharp">logout</span>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </aside>
+        <!--================ End of Aside Area =================-->
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////
+                            START SECTION 2 - Central Panel
+/////////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <main>
+           
+            <div class="container-form">
+                <form class="card">
+                  <h1>Edit Profile</h1>
+                  <label for="NombreUsuario">Nombre de usuario:</label>
+                  <input id="NombreUsuario" name="NombreUsuario" type="text" placeholder="Name">
+                  <label for="usuario">Usuario</label>
+                  <input id="usuario" name="usuario" type="text" placeholder="user" disabled>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" placeholder="email@gmail.com" disabled>
+                  <label for="pass1">Password</label>
+                  <input id="pass1" name="pass1" type="password" placeholder="*****">
+                  <label for="pass2">Repetir Password</label>
+                  <input id="pass2" name="pass2" type="password" placeholder="*****">
+
+                  <button>
+                    <div class="svg-wrapper-1">
+                      <div class="svg-wrapper">
+                        <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z" fill="currentColor"></path>
+                        </svg>
+                      </div>
+                    </div>
+                    <span>Send</span>
+                  </button>
+                </form>
+              </div>
+        </main>
+
+        
+        <!--================ End of Main: Central Panel=================-->
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////
+                            START SECTION 3 - Right Panel
+/////////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <div class="right">
+            <!--================ Start Top =================-->
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+
+                <div class="theme-toggler">
+                    <span class="material-icons-sharp active">light_mode</span>
+                    <span class="material-icons-sharp">dark_mode</span>
+                </div>
+
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b id="userNamePlaceholder"></b></p>
+                        <small class="text-muted">pending</small>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="../../Assets/images/logo.png">
+                    </div>
+                </div>
+
+            </div>
+    </div>
+
+    <!-- Scripts for index -->
+    <script src="../../Scripts/JS/index/index.js"></script>
+    <script src="../../Scripts/JS/index/getParams.js"></script>
+
+    <!-- Scripts for projects-->
+    <script src="../../Scripts/JS/index/projects/projectLoad.js"></script>
+    <script src="../../Scripts/JS/index/projects/projectCreate.js"></script>
+
+    <!-- Scripts for reminders-->
+    <script src="../../Scripts/JS/index/reminders/reminderLoad.js"></script>
+    <script src="../../Scripts/JS/index/reminders/reminderMain.js"></script>
+    <script src="../../Scripts/JS/index/reminders/reminderUpdate.js"></script>
+    <script src="../../Scripts/JS/index/reminders/reminderCreate.js"></script>
+    <script src="../../Scripts/JS/index/reminders/reminderDelete.js"></script>
+
+</body>
+</html>
