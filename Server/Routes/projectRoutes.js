@@ -43,5 +43,12 @@ router.get('/getProjects', async (req, res) => {
     }
 });
 
+// Ruta GET para eliminar los proyectos
+router.delete('/deleteProjects', async (req, res) => {
+    return;
+});
+
+
+
 // Exporta el enrutador
 module.exports = router;

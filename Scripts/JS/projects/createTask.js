@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 </div>
             `;
 
-            var taskContainer = document.querySelector('.project-column:first-child');
             var taskCreateParent = taskCreate.parentElement;
             var newTask = createElementFromHTML(taskTemplate);
             taskCreateParent.insertBefore(newTask, taskCreate.nextSibling);
