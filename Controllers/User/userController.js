@@ -80,7 +80,33 @@ async function loginUser(userLogin, passLogin) {
     }
 }
 
+async function UpdateUserByID(NombreUsuario, pass1, userId){
+console.log(NombreUsuario, pass1, userId);
+    try{
+        const pool = await sql.connect(dbConfig);
+
+        const query = 'UPDATE Users SET fullName = @NombreUsuario, password = @pass1 WHERE id = @userId;';
+        const request = pool.request();
+        request.input('NombreUsuario', sql.VarChar(100), NombreUsuario);
+        request.input('pass1', sql.VarChar(100), pass1);
+        request.input('userId', sql.Int, userId);
+        await request.query(query);
+        pool.close();
+        console.log('Usuario actualizado en la DB')
+
+        return true;
+
+    }
+    catch  (error) {
+        console.error('Error al actualizar al Usuario:', error);
+        throw error;
+    }
+   
+   
+}
+
 module.exports = {
     registerUser,
     loginUser,
+    UpdateUserByID
 };
