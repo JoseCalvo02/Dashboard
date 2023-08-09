@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { registerUser, loginUser } = require('../../Controllers/User/userController');
+const userController = require('../../Controllers/User/userController');
 const { getUserById } = require('../../Controllers/User/userUtils');
 const isAuthenticated = require('../Middleware/authMiddleware');
 
@@ -8,7 +8,7 @@ const isAuthenticated = require('../Middleware/authMiddleware');
 router.post('/user/register', async (req, res) => {
     try {
         const { fullNameSignup, userSignup, emailSignup, pass1 } = req.body;
-        await registerUser(fullNameSignup, userSignup, emailSignup, pass1);
+        await userController.registerUser(fullNameSignup, userSignup, emailSignup, pass1);
         res.status(201).json({ message: 'Usuario registrado exitosamente' });
     } catch (error) {
         console.error('Error al registrar el usuario:', error);
@@ -28,7 +28,7 @@ router.post('/user/login', async (req, res) => {
         const { userLogin, passLogin } = req.body;
 
         console.log('Intento de inicio de sesión:', userLogin, passLogin); // Agregar este console.log
-        const user = await loginUser(userLogin, passLogin);
+        const user = await userController.loginUser(userLogin, passLogin);
 
         if (user) {
             // Configurar el objeto de sesión con el userId del usuario autenticado
@@ -79,6 +79,30 @@ router.get('/user/profile', isAuthenticated, async (req, res) => {
     } catch (error) {
         console.error('Error al obtener los detalles del usuario:', error);
         res.status(500).json({ message: 'Error al obtener los detalles del usuario' });
+    }
+});
+
+router.post('/User/UpdateProfile', isAuthenticated, async (req, res) =>{
+    try{
+        const userId = req.session.userId;
+        if(!userId){
+            return res.redirect('/');
+        }
+        const  {
+            NombreUsuario,
+            pass1
+        } = req.body;
+
+        await userController.UpdateUserByID(NombreUsuario, pass1, userId);
+        res.status(200).json({
+            message: 'Perfil actualizado correctamente'
+        })
+    }
+    catch(error)
+    {
+        res.status(500).json({
+            message: 'Perfil no se actualizado correctamente'
+        });
     }
 });
 
