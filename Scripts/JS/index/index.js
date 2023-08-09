@@ -58,11 +58,11 @@ themeToggler.addEventListener('click', () => {
 
 const addBtn = document.querySelector("#addBtn");
 addBtn.addEventListener("click", () => {
-    window.open("../User/projectForm.html", "_blank");
+    window.location.replace("../User/projectForm.html");
 });
 
 const addProjectLink = document.querySelectorAll(".sidebar a")[8];
 addProjectLink.addEventListener("click", (event) => {
     event.preventDefault();
-    window.open("../User/projectForm.html", "_blank");
+    window.location.replace("../User/projectForm.html");
 });

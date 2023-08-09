@@ -8,12 +8,7 @@ async function createReminder(userId, name, status) {
             throw new Error('El nombre del reminder no puede estar vacío');
         }
 
-        const query = 'INSERT INTO Reminders (userId, name, status) OUTPUT INSERTED.id VALUES (@userId, @name, @status)';
         const pool = await sql.connect(dbConfig);
-
-        // Verificar si hay algún reminder en la tabla
-        const checkEmptyQuery = 'SELECT TOP 1 * FROM Reminders';
-        const checkEmptyResult = await pool.request().query(checkEmptyQuery);
 
         const request = pool.request();
         request.input('userId', sql.Int, userId);
@@ -22,19 +17,19 @@ async function createReminder(userId, name, status) {
 
         let newReminderId;
 
-        if (checkEmptyResult.recordset.length === 0) {
-            // No hay ningún reminder en la tabla, reiniciar la secuencia de IDs a 0
-            const resetIdentityQuery = 'DBCC CHECKIDENT (Reminders, RESEED, 1)';
-            await pool.request().query(resetIdentityQuery);
+        // Obtener el máximo valor del ID de los reminders
+        const getMaxIdQuery = 'SELECT ISNULL(MAX(id), 0) as maxId FROM Reminders';
+        const { recordset: maxIdResult } = await pool.request().query(getMaxIdQuery);
+        const maxId = maxIdResult[0].maxId;
 
-            // Insertar el nuevo reminder
-            const result = await request.query(query);
-            newReminderId = result.recordset[0].id;
-        } else {
-            // Insertar el nuevo reminder sin reiniciar la secuencia de IDs
-            const result = await request.query(query);
-            newReminderId = result.recordset[0].id;
-        }
+        // Reiniciar la secuencia de IDs al máximo ID actual + 1
+        const resetIdentityQuery = `DBCC CHECKIDENT (Reminders, RESEED, ${maxId})`;
+        await pool.request().query(resetIdentityQuery);
+
+        // Insertar el nuevo reminder
+        const query = 'INSERT INTO Reminders (userId, name, status) OUTPUT INSERTED.id VALUES (@userId, @name, @status)';
+        const result = await request.query(query);
+        newReminderId = result.recordset[0].id;
 
         pool.close();
 
@@ -96,9 +91,6 @@ async function getReminders(userId) {
 // Función para actualizar el texto de los reminders del usuario desde la base de datos
 async function editReminder(userId, editedText, reminderId) {
     try {
-        console.log("userId: " + userId);
-        console.log("editedText: " + editedText);
-        console.log("remidnerId: " + reminderId);
         // Conectar a la base de datos
         const pool = await sql.connect(dbConfig);
 

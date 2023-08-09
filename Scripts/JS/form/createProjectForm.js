@@ -17,34 +17,24 @@ async function handleFormSubmit(event) {
 
     try {
         // Utilizar AJAX para enviar los datos del proyecto al servidor
-        const response = await $.ajax({
+        $.ajax({
             url: '/registerProject', // Nueva ruta para registrar el proyecto en el servidor
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(project),
         });
 
-        console.log(project);
-
         Swal.fire({
             icon: 'success',
             title: 'Registro exitoso',
             text: 'El proyecto ha sido creado correctamente',
             allowOutside: false,
-            customClass: {
-                icon: 'swal-icon--success',
-                title: 'swal-title',
-                text: 'swal-text',
-                confirmButton: 'swal-button--confirm',
-            },
         }).then(() => {
-            // Redireccionar al usuario a la página principal después del registro exitoso
-            window.location.href = "../../Views/Home/index.html";
-
-            // Cerrar la ventana del formulario después de procesar la respuesta
-            window.close();
+            // Enviar un mensaje a la pestaña principal indicando que se ha creado un nuevo proyecto
+            window.opener.postMessage({ type: 'projectCreated' }, '*');
         });
-
+        // Redireccionar al index original
+        window.location.href = "../../Views/Home/index.html";
     } catch (error) {
         // Procesar el error si es necesario
         console.error('Error al guardar el proyecto en el servidor:', error);
@@ -54,15 +44,8 @@ async function handleFormSubmit(event) {
             icon: 'error',
             title: 'Error',
             text: 'Ha ocurrido un error.',
-            customClass: {
-                icon: 'swal-icon--error',
-                title: 'swal-title',
-                text: 'swal-text',
-                confirmButton: 'swal-button--confirm',
-            },
         });
     }
-
 }
 
 // Agregar evento al formulario para capturar el envío

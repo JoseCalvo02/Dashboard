@@ -72,16 +72,22 @@ function activateEditMode(paragraph, reminderId) {
 
             // Verificar si el nuevo texto no está vacío y no excede los 25 caracteres
             if (editedText !== "" && editedText.length <= 25) {
-                // Crear un nuevo párrafo con el nuevo texto
-                var newParagraph = document.createElement("p");
-                newParagraph.textContent = editedText;
+                // Comparar con el texto actual antes de realizar cualquier acción
+                if (editedText !== currentText) {
+                    // Crear un nuevo párrafo con el nuevo texto
+                    var newParagraph = document.createElement("p");
+                    newParagraph.textContent = editedText;
 
-                // Reemplazar el contenido del contenedor de edición con el nuevo párrafo
-                editContainer.innerHTML = "";
-                editContainer.appendChild(newParagraph);
+                    // Reemplazar el contenido del contenedor de edición con el nuevo párrafo
+                    editContainer.innerHTML = "";
+                    editContainer.appendChild(newParagraph);
 
-                // Realizar la solicitud AJAX para guardar el texto editado en la base de datos
-                saveEditedTextToDatabase(editedText, reminderId);
+                    // Realizar la solicitud AJAX para guardar el texto editado en la base de datos
+                    saveEditedTextToDatabase(editedText, reminderId);
+                }else {
+                    editContainer.innerHTML = "";
+                    editContainer.appendChild(originalParagraph);
+                }
             } else {
                 // Si el nuevo texto está vacío o excede los 25 caracteres, restaurar el párrafo original
                 Swal.fire({
@@ -106,15 +112,23 @@ function activateEditMode(paragraph, reminderId) {
 
         // Verificar si el nuevo texto no está vacío y no excede los 25 caracteres
         if (editedText !== "" && editedText.length <= 25) {
-            // Crear un nuevo párrafo con el nuevo texto
-            var newParagraph = document.createElement("p");
-            newParagraph.textContent = editedText;
+            // Comparar con el texto actual antes de realizar cualquier acción
+            if (editedText !== currentText) {
+                // Crear un nuevo párrafo con el nuevo texto
+                var newParagraph = document.createElement("p");
+                newParagraph.textContent = editedText;
 
-            // Reemplazar el contenedor de edición por el nuevo párrafo
-            editContainer.parentNode.replaceChild(newParagraph, editContainer);
+                // Reemplazar el contenedor de edición por el nuevo párrafo
+                editContainer.parentNode.replaceChild(newParagraph, editContainer);
 
-            // Realizar la solicitud AJAX para guardar el texto editado en la base de datos
-            saveEditedTextToDatabase(editedText, reminderId);
+                // Realizar la solicitud AJAX para guardar el texto editado en la base de datos
+                saveEditedTextToDatabase(editedText, reminderId);
+            }else {
+                // Si el nuevo texto está vacío o excede los 25 caracteres, restaurar el texto original
+                var originalParagraph = document.createElement("p");
+                originalParagraph.textContent = currentText;
+                editContainer.parentNode.replaceChild(originalParagraph, editContainer);
+            }
         } else {
             // Si el nuevo texto está vacío o excede los 25 caracteres, restaurar el texto original
             var originalParagraph = document.createElement("p");
