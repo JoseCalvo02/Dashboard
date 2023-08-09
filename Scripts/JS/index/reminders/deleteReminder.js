@@ -14,8 +14,9 @@ function deleteReminder(reminderId) {
                 icon: "success",
                 title: "Reminder Deleted",
                 text: "The remindes has been deleted successfully",
-                timer: 2000,
                 showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
             });
             console.log("Reminder eliminado exitosamente:", response);
             // Puedes realizar alguna acción adicional después de eliminar el reminder si es necesario

@@ -43,9 +43,10 @@ function addReminder(reminderInputValue) {
             Swal.fire({
                 icon: "success",
                 title: "Reminder Created",
-                text: "The reminder was created successfully",
-                timer: 2000,
+                text: "The reminder created",
                 showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
             });
 
             // Llamar a la función para agregar el nuevo reminder a la lista de tareas con el ID correspondiente

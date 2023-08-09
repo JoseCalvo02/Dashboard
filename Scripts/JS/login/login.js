@@ -28,8 +28,9 @@ $(document).ready(function() {
                     icon: 'success',
                     title: 'Inicio de sesión exitoso',
                     text: '¡Bienvenido de nuevo ' + userDetails.username +"!",
-                    timer: 2000,
                     showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
                     customClass: {
                         icon: 'swal-icon--success',
                         title: 'swal-title',
@@ -47,8 +48,8 @@ $(document).ready(function() {
 
                 // Mostrar un mensaje de error al usuario
                 Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
+                    icon: 'warning',
+                    title: 'Oops..',
                     text: 'Credenciales incorrectas. Por favor, verifica tus datos.',
                     customClass: {
                         icon: 'swal-icon--error',

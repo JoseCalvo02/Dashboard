@@ -7,8 +7,8 @@ $(document).ready(function() {
 
         if (pass1 !== pass2) {
             Swal.fire({
-                icon: 'error',
-                title: 'Error',
+                icon: 'warning',
+                title: 'Oops..',
                 text: 'Las contraseñas no coinciden. Por favor, vuelve a intentarlo.',
                 customClass: {
                     icon: 'swal-icon--error',
@@ -85,6 +85,9 @@ $(document).ready(function() {
                         icon: 'error',
                         title: 'Error',
                         text: xhr.responseJSON.message,
+                        showConfirmButton: false,
+                        timer: 2000,
+                        timerProgressBar: true,
                         customClass: {
                             icon: 'swal-icon--error',
                             title: 'swal-title',
@@ -98,6 +101,9 @@ $(document).ready(function() {
                         icon: 'error',
                         title: 'Error',
                         text: 'Se produjo un error al registrar el usuario.',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        timerProgressBar: true,
                         customClass: {
                             icon: 'swal-icon--error',
                             title: 'swal-title',

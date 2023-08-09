@@ -19,9 +19,10 @@ function updateReminderStatus(reminderId, status) {
             Swal.fire({
                 icon: "success",
                 title: "Reminder Updated",
-                text: "The reminder's status has been updated",
-                timer: 2000,
+                text: "The reminder was updated",
                 showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
             });
         },
         error: function(error) {
@@ -84,9 +85,12 @@ function activateEditMode(paragraph, reminderId) {
             } else {
                 // Si el nuevo texto está vacío o excede los 25 caracteres, restaurar el párrafo original
                 Swal.fire({
-                    icon: "error",
+                    icon: "warning",
                     title: "Oops...",
                     text: "The reminder cannot exceed 25 caracteres or be empty.",
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
                 });
                 editContainer.innerHTML = "";
                 editContainer.appendChild(originalParagraph);
@@ -138,9 +142,10 @@ function activateEditMode(paragraph, reminderId) {
                 Swal.fire({
                     icon: "success",
                     title: "Reminder Updated",
-                    text: "The reminder's text has been updated",
-                    timer: 2000,
+                    text: "The reminder was updated",
                     showConfirmButton: false,
+                    timer: 1000,
+                    timerProgressBar: true,
                 });
             },
             error: function(error) {

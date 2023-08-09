@@ -89,8 +89,9 @@ function createTask(taskName, selectedTag){
                     icon: "success",
                     title: "Task Created",
                     text: "The task was created successfully",
-                    timer: 2000,
                     showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
                 });
 
                 resolve(taskId); // Resolvemos la promesa con el taskId
