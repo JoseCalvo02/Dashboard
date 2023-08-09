@@ -15,8 +15,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     /*
     ! Evento que se activa cuando la página se carga completamente
     */
-    // Función para crear una tarea tanto en la vista como en la base de datos
-    function createTaskAndSave() {
+    async function createTaskAndSave() {
         const tagSelect = document.getElementById('tagSelect');
         const selectedTag = tagSelect.options[tagSelect.selectedIndex].value;
         const taskName = descriptionInput.value.trim();
@@ -26,16 +25,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
             // Separar el texto en cadenas de máximo 32 caracteres
             const separatedText = separateTextIntoChunks(taskName);
 
-            createTaskToList(separatedText, selectedTag);
-            createTask(separatedText, selectedTag);
+            try {
+                // Llamamos a createTask y esperamos a que devuelva el taskId
+                const taskId = await createTask(separatedText, selectedTag);
 
+                createTaskToList(separatedText, selectedTag, taskId);
+            } catch (error) {
+                console.error("Error guardando la tarea:", error);
+            }
         }
         else{
             // Si el nuevo texto está vacío
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "The task cannot exceed 32 caracteres or be empty.",
+                text: "The task cannot be empty.",
             });
         }
     }
@@ -56,7 +60,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     /*
-    ! Agregar un evento click al botón de refrescar
+    ! Obtener las tareas de los proyectos
     */
     getProjectsTasks();
 });

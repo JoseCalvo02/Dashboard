@@ -1,8 +1,7 @@
 /*
 ! Función para crear un elemento un project task para la vista
 */
-function createTaskToList(taskName, selectedTag) {
-
+function createTaskToList(taskName, selectedTag, taskId) {
     if (taskName.trim() !== '') {
         var tagClass = '';
 
@@ -22,7 +21,7 @@ function createTaskToList(taskName, selectedTag) {
         }
 
         var taskTemplate = `
-            <div class='task' draggable='true'>
+            <div class='task' draggable='true' data-task-id='${taskId}'>
                 <div class='task__stats'>
                     <div class='task__tags'>
                         <span class='task__tag ${tagClass}'>${selectedTag}</span>
@@ -51,6 +50,8 @@ function createTaskToList(taskName, selectedTag) {
         newTask.addEventListener('drop', handleDrop, false);
         newTask.addEventListener('dragend', handleDragEnd, false);
     }
+
+    return newTask;
 }
 
 /*
@@ -66,33 +67,38 @@ function createElementFromHTML(htmlString) {
 ! Función para crear un elemento de project task en la BD
 */
 function createTask(taskName, selectedTag){
-    // Crear un objeto con los datos a enviar al servidor
-    const formData = {
-        taskName,
-        selectedTag,
-        selectedProjectID
-    };
+    return new Promise((resolve, reject) => {
+        // Crear un objeto con los datos a enviar al servidor
+        const formData = {
+            taskName,
+            selectedTag,
+            selectedProjectID
+        };
 
-    // Realizar una solicitud AJAX al servidor
-    $.ajax({
-        url: "/CreateProjectTask", // Ruta de la API para guardar la tarea
-        type: "POST", // Método HTTP POST
-        dataType: "json", // Esperamos una respuesta en formato JSON
-        data: JSON.stringify(formData), // Datos a enviar al servidor en formato JSON
-        contentType: "application/json", // Tipo de contenido de la solicitud
-        success: function (response) {
-            Swal.fire({
-                icon: "success",
-                title: "Task Created",
-                text: "The task was created successfully",
-                timer: 2000,
-                showConfirmButton: false,
-            });
-        },
-        error: function (error) {
-            // Ocurrió un error durante la solicitud, manejarlo aquí
-            alert("Error guardando la tarea:", error);
-        },
+        // Realizar una solicitud AJAX al servidor
+        $.ajax({
+            url: "/CreateProjectTask", // Ruta de la API para guardar la tarea
+            type: "POST", // Método HTTP POST
+            dataType: "json", // Esperamos una respuesta en formato JSON
+            data: JSON.stringify(formData), // Datos a enviar al servidor en formato JSON
+            contentType: "application/json", // Tipo de contenido de la solicitud
+            success: function (response) {
+                const taskId = response.taskId;
+
+                Swal.fire({
+                    icon: "success",
+                    title: "Task Created",
+                    text: "The task was created successfully",
+                    timer: 2000,
+                    showConfirmButton: false,
+                });
+
+                resolve(taskId); // Resolvemos la promesa con el taskId
+            },
+            error: function (error) {
+                reject(error); // Rechazamos la promesa si ocurre un error
+            },
+        });
     });
 }
 

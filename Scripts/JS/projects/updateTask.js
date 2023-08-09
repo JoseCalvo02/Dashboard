@@ -16,31 +16,37 @@ function handleDragOver(e) {
 function handleDrop(e) {
     e.stopPropagation(); // Evita que el evento se propague a elementos superiores
 
+    var targetColumnIndex = Array.from(projectColumns).indexOf(this) + 1;
+
     if (dragSrcEl !== this) { // Comprueba si el elemento arrastrado es diferente al elemento sobre el que se suelta
         var droppedTask = dragSrcEl; // Guarda el elemento arrastrado en una variable
-        var originalColumn = dragSrcEl.parentNode; // Guarda la columna original del elemento arrastrado
+        const taskId = droppedTask.getAttribute('data-task-id');
+        console.log(taskId); // Agregar este log para depurar
 
         if (this.classList.contains('task')) { // Si el elemento sobre el que se suelta es una tarea
             if (this.previousSibling === dragSrcEl) {
                 // No hacer nada si el elemento se suelta sobre sí mismo (el anterior es el mismo que el arrastrado)
                 return;
             }
+            const targetColumnIndex = Array.from(projectColumns).indexOf(this.parentNode) + 1; // Tomar la posición de la columna de destino
             this.parentNode.insertBefore(droppedTask, this); // Inserta el elemento arrastrado antes del elemento sobre el que se suelta
+            saveTaskPositionInDatabase(taskId, targetColumnIndex);
         } else if (this.classList.contains('project-column') && this.querySelector('.task')) {
             // Si el elemento sobre el que se suelta es una columna de proyecto y contiene una tarea
             this.appendChild(droppedTask); // Añade el elemento arrastrado como último hijo del elemento sobre el que se suelta
-
+            saveTaskPositionInDatabase(taskId, targetColumnIndex);
         } else if (this.classList.contains('project-column') && !this.querySelector('.task')) {
             // Si el elemento sobre el que se suelta es una columna de proyecto y no contiene ninguna tarea
             this.appendChild(droppedTask); // Añade el elemento arrastrado como último hijo del elemento sobre el que se suelta
+            saveTaskPositionInDatabase(taskId, targetColumnIndex);
         } else {
             this.parentNode.insertBefore(droppedTask, this); // Inserta el elemento arrastrado antes del elemento sobre el que se suelta
+            saveTaskPositionInDatabase(taskId, targetColumnIndex);
         }
     }
 
     // Eliminar la clase de estilo de arrastre de la columna
-    var columns = document.querySelectorAll('.project-column'); // Obtén todas las columnas de proyecto
-    columns.forEach(function (column) {
+    projectColumns.forEach(function (column) {// Obtén todas las columnas de proyecto
         column.classList.remove('task-hover'); // Elimina la clase "task-hover" de cada columna
     });
 
@@ -64,6 +70,27 @@ function handleDragEnd(e) {
     var tasks = document.querySelectorAll('.task');
     tasks.forEach(function (task) {
         task.classList.remove('task-hover');
+    });
+}
+
+function saveTaskPositionInDatabase(taskId, columnIndex) {
+    const taskMovement = {
+        taskId: taskId,
+        columnIndex: columnIndex
+    };
+
+    // Envía los datos al servidor mediante AJAX
+    $.ajax({
+        url: `/saveTaskPosition?id=${encodeURIComponent(selectedProjectID)}`,
+        type: 'PUT',
+        contentType: 'application/json',
+        data: JSON.stringify(taskMovement),
+        success: function(response) {
+            console.log(response);
+        },
+        error: function(error) {
+            console.error('Error al guardar el movimiento de tarea en la base de datos:', error);
+        }
     });
 }
 
