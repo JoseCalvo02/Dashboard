@@ -119,10 +119,37 @@ async function SaveTaskMovement(userId, projectId, taskId, columnIndex) {
     }
 }
 
+async function DeleteTask(userId, projectId, taskId) {
+    try {
+        // Conectar a la base de datos
+        const pool = await sql.connect(dbConfig);
+
+        // Consulta SQL para actualizar la columna de la tarea en función del contenido
+        const query = `
+            DELETE FROM ProjectsHomepage
+            WHERE userId = @userId AND projectId = @projectId AND id = @taskId
+        `;
+
+        const request = new sql.Request(pool);
+        request.input('userId', sql.Int, userId);
+        request.input('projectId', sql.Int, projectId);
+        request.input('taskId', sql.Int, taskId);
+
+        // Ejecutar la consulta de actualización
+        const result = await request.query(query);
+
+        // Devolver un mensaje de éxito
+        return 'Error al eliminar la tarea ';
+    } catch (error) {
+        throw new Error('Error al eliminar la tarea: ' + error.message);
+    }
+}
+
 module.exports = {
     registerProject,
     getProjectsFromDatabase,
     AddTaskProject,
     GetTaskProject,
     SaveTaskMovement,
+    DeleteTask,
 };

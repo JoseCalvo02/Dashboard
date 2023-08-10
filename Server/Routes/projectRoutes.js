@@ -110,5 +110,27 @@ router.put('/saveTaskPosition', async (req, res) => {
     }
 });
 
+// Ruta DELETE para eliminar las tareas de los proyectos
+router.delete('/DeleteTask', async (req, res) => {
+    try {
+        const { userId } = req.session;
+
+        if (!userId) {
+            return res.redirect('/'); // Redirigir al formulario de inicio de sesión si el usuario no ha iniciado sesión
+        }
+
+        const projectId = req.query.id; // Obtiene el ID del proyecto de la URL (parámetro de consulta)
+        const taskId = req.query.taskId; // Obtén el taskId de la URL (parámetro de consulta)
+        console.log(projectId);
+        console.log(taskId);
+
+        const thisMovement = await projectController.DeleteTask(userId, projectId, taskId);
+        res.status(200).json(thisMovement);
+    } catch (error) {
+        console.error('Error al eliminar la tarea:', error);
+        res.status(500).json({ message: 'Error al eliminar la tarea:' });
+    }
+});
+
 // Exporta el enrutador
 module.exports = router;

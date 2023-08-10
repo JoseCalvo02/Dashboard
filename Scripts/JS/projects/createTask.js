@@ -25,7 +25,9 @@ function createTaskToList(taskName, selectedTag, taskId) {
                 <div class='task__stats'>
                     <div class='task__tags'>
                         <span class='task__tag ${tagClass}'>${selectedTag}</span>
-                        <button class='task__options'><i class="fas fa-ellipsis-h"></i></button>
+                        <button class='task__options' onclick="DeleteTask(${taskId})">
+                            <i class="fas fa-trash"></i>
+                        </button>
                     </div>
                 </div>
                 <p>${taskName}</p>

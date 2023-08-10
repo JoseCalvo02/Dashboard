@@ -21,7 +21,6 @@ function handleDrop(e) {
     if (dragSrcEl !== this) { // Comprueba si el elemento arrastrado es diferente al elemento sobre el que se suelta
         var droppedTask = dragSrcEl; // Guarda el elemento arrastrado en una variable
         const taskId = droppedTask.getAttribute('data-task-id');
-        console.log(taskId); // Agregar este log para depurar
 
         if (this.classList.contains('task')) { // Si el elemento sobre el que se suelta es una tarea
             if (this.previousSibling === dragSrcEl) {

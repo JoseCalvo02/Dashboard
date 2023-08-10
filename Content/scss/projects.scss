@@ -1,4 +1,4 @@
-/* sass --watch views/scss/projects.scss views/css/projects.css */
+/* sass --watch .\Content\scss\projects.scss .\Content\css\projects.css */
 /* ==========>  Root vars  <========== */
 :root {
     --color-primary: #6380ec;
@@ -17,6 +17,9 @@
     --tag-3-text: #2d86ba;
     --tag-4: #f2dcf5;
     --tag-4-text: #a734ba;
+
+    --border-radius: 0.5rem;
+    --box-padding: 0.2rem;
 }
 
 /*
@@ -163,6 +166,14 @@ h1 {
         width: 100%;
         @include display; /* Incluye un mixin llamado "display" para aplicar propiedades de visualización */
         justify-content: space-between;
+
+        button {
+            &:hover {
+                .fa-trash {
+                    color: var(--color-danger);
+                }
+            }
+        }
     }
 
     &__options {
@@ -215,10 +226,28 @@ h1 {
 
 .task-create{
     &__tags{
-        width: 100%;
-        @include display; /* Incluye un mixin llamado "display" para aplicar propiedades de visualización */
-        justify-content: space-between;
         margin-bottom: 10px;
+        margin-left: 5px; /* Añade un margen izquierdo para separar el span del select */
+
+        select {
+            border-color: var(--light-grey);
+            color: var(--text);
+            border-radius: var(--border-radius);
+            padding: var(--box-padding);
+
+            &:focus {
+                outline: 2px solid var(--color-primary); /* Cambia el color y el grosor del borde */
+            }
+
+            option:hover{
+                color: red;
+            }
+
+            option:checked {
+                background-color: var(--color-primary); /* Cambia el color de fondo de la opción seleccionada */
+                color: var(--white); /* Cambia el color del texto de la opción seleccionada */
+            }
+        }
     }
 
     &__textarea {
@@ -230,6 +259,7 @@ h1 {
             border-radius: 2px;
             margin-bottom: 10px;
             padding: 5px;
+            border-radius: var(--border-radius);
 
             &:focus {
                 outline: 2px solid var(--color-primary); /* Cambia el color y el grosor del borde */
@@ -242,23 +272,7 @@ h1 {
         align-items:baseline; /* Centra verticalmente los elementos en el contenedor */
     }
 
-    &__tags{
-        margin-left: 5px; /* Añade un margen izquierdo para separar el span del select */
 
-        select {
-            border-color: var(--light-grey);
-            color: var(--text);
-
-            &:focus {
-                outline: 2px solid var(--color-primary); /* Cambia el color y el grosor del borde */
-            }
-
-            option:checked {
-                background-color: var(--color-primary); /* Cambia el color de fondo de la opción seleccionada */
-                color: var(--white); /* Cambia el color del texto de la opción seleccionada */
-            }
-        }
-    }
 
     &__button {
         button{
@@ -390,7 +404,6 @@ h1 {
         background-color: #7784ee;
     }
 }
-
 
 /*
 ============================>   Media Queries: Small Laptops/Big Tablets  <============================
