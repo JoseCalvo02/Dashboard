@@ -299,7 +299,8 @@ aside .sidebar .message-count {
 ============================>   Central Panel   <============================
 */
 .form-container {
-    margin-top: 200px;
+    margin-top: 120px;
+    margin-left: 100px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -324,14 +325,14 @@ aside .sidebar .message-count {
     margin-bottom: 45px;
     text-align: center;
     color: var(--color-primary);
-    font-size: 32px;
+    font-size: 40px;
 }
 
 .container-form .form-group{
     height: 40px;
     width: 100%;
     position: relative;
-    margin-bottom: 40px; /* Añade margen inferior para separar los elementos */
+    margin-bottom: 50px; /* Añade margen inferior para separar los elementos */
 }
 
 .container-form .form-group input,
@@ -347,6 +348,14 @@ aside .sidebar .message-count {
 /*
 ============================>   Label Configs   <============================
 */
+.container-form .form-group input:focus,
+.container-form .form-group input:hover,
+.container-form .form-group input:valid {
+    font-family: poppins, sans-serif;
+    line-height: 1.5;
+    font-size: 15px;
+    color: var(--color-dark);
+}
 
 .container-form .form-group input:focus ~ label,
 .container-form .form-group input:hover ~ label,
@@ -360,7 +369,7 @@ aside .sidebar .message-count {
     position: absolute;
     bottom: 10px;
     left: 0;
-    color: grey;
+    color: var(--color-info-dark);
     pointer-events: none;
     transition: all 0.3s ease;
 }
@@ -378,11 +387,20 @@ aside .sidebar .message-count {
     bottom: -1px;
 }
 
+.container-form .form-group textarea:focus,
+.container-form .form-group textarea:hover,
+.container-form .form-group textarea:valid{
+    /* Ajusta el estilo del label cuando el textarea está enfocado o tiene contenido válido */
+    font-family: poppins, sans-serif;
+    line-height: 1.5;
+    font-size: 15px;
+}
+
 .container-form .form-group textarea:focus ~ label,
 .container-form .form-group textarea:hover ~ label,
 .container-form .form-group textarea:valid ~ label {
     /* Ajusta el estilo del label cuando el textarea está enfocado o tiene contenido válido */
-    transform: translateY(-25px);
+    transform: translateY(-30px);
     font-size: 15px;
     color: var(--color-primary);
 }
@@ -390,6 +408,13 @@ aside .sidebar .message-count {
 /*
 ============================>   Date input Configs   <============================
 */
+.container-form .form-group input[type="date"]:focus,
+.container-form .form-group input[type="date"]:valid,
+.container-form .form-group input[type="date"]:hover {
+    font-size: 15px; /* Ajusta el tamaño de fuente */
+    color: var(--color-dark);
+}
+
 .container-form .form-group input[type="date"]:focus ~ label[for="dueDate"],
 .container-form .form-group input[type="date"]:valid ~ label[for="dueDate"],
 .container-form .form-group input[type="date"]:hover ~ label[for="dueDate"] {
@@ -404,6 +429,9 @@ aside .sidebar .message-count {
 
 .container-form .form-group input[type="date"] {
     padding-top: 13px;
+    color: var(--color-info-dark);
+    font-family: poppins, sans-serif;
+    font-size: 15px;
 }
 
 .container-form .form-group input[type="date"] + .underline {
