@@ -20,6 +20,7 @@ $(document).ready(function() {
                 // Procesar la respuesta exitosa
                 console.log(response);
                 const userDetails = response.userDetails;
+                localStorage.setItem('userDetails', JSON.stringify(userDetails));
 
                 // Mostrar el nombre de usuario en el HTML
                 $('#userNamePlaceholder').text(userDetails.username);
