@@ -303,12 +303,12 @@ aside .sidebar .message-count {
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    min-height: 100vh;
     background: var(--color-background);
 }
 
 .container-form{
-    width: 450px;
+    font-size: 16px;
+    width: 550px;
     background: #fff;
     padding: 30px;
     border-radius: var(--card-border-radius);
@@ -321,8 +321,10 @@ aside .sidebar .message-count {
 }
 
 .container-form h1 {
-    margin-bottom: 25px;
+    margin-bottom: 45px;
+    text-align: center;
     color: var(--color-primary);
+    font-size: 32px;
 }
 
 .container-form .form-group{

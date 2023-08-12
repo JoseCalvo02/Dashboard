@@ -30,7 +30,7 @@ $(document).ready(function() {
                     title: 'Inicio de sesión exitoso',
                     text: '¡Bienvenido de nuevo ' + userDetails.username +"!",
                     showConfirmButton: false,
-                    timer: 2000,
+                    timer: 1500,
                     timerProgressBar: true,
                     customClass: {
                         icon: 'swal-icon--success',
