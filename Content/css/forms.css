@@ -324,7 +324,7 @@ aside .sidebar .message-count {
 .container-form h1 {
     margin-bottom: 45px;
     text-align: center;
-    color: var(--color-primary);
+    color: var(--color-dark);
     font-size: 40px;
 }
 

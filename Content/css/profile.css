@@ -266,56 +266,107 @@ aside .sidebar .message-count {
 /*
 ============================>   Central Panel   <============================
 */
-main .form-container{
+.main .forms-wrapper {
     margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.form-container {
-    margin-right: auto;
-    margin-left: auto;
+.forms-wrapper {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Columna de opciones y columna de formularios */
+    gap: 40px; /* Espacio entre las columnas */
+    align-items: flex-start; /* Alinear elementos en la parte superior */
+    margin-top: 100px; /* Espacio superior */
+    margin-left: 200px; /* Espacio superior */
 }
 
-.form-container .card {
+.nav-column {
+    background-color: var(--color-white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow-add);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: auto;
+}
+
+.nav-column:hover {
+    box-shadow: none;
+}
+
+.nav-column h1 {
+    display: block; /* Cambiar a un elemento de bloque para que ocupe todo el ancho y se muestre en una fila por separado */
+    margin-bottom: 20px;
+    font-size: 30px;
+    text-decoration: none; /* Quitar la decoración de enlace predeterminada */
+    color: var(--color-dark); /* Cambiar el color del texto si lo deseas */
+}
+
+.nav-column a {
+    font-size: 18px;
+    display: block; /* Cambiar a un elemento de bloque para que ocupe todo el ancho y se muestre en una fila por separado */
+    margin-bottom: 10px;
+    text-decoration: none; /* Quitar la decoración de enlace predeterminada */
+    color: var(--color-dark); /* Cambiar el color del texto si lo deseas */
+}
+
+.nav-column a:hover {
+    color: var(--color-primary-variant); /* Cambiar el color del texto si lo deseas */
+}
+
+
+.form-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: flex-start; /* Alinear elementos hacia abajo */
+}
+
+.form-column .card {
     box-shadow: 0 1px 2px 0 rgba(0,0,0,.15);
     position: relative;
     padding: 20px;
     border-radius: 5px;
     width: 400px;
-    margin: 0 auto;
     text-align: center;
     width: 60%;
-    margin-left: 300px;
-    margin-top: 15px;
     border-radius: var(--border-radius-2);
     box-shadow: var(--box-shadow-add);
     transition: var(--transition);
     background-color: var(--color-white);
 }
 
-.form-container .card h1{
+.form-column .card h1 {
     text-align: center;
     margin-bottom: 30px;
-    color: var(--color-primary);
+    color: var(--color-dark);
     font-size: 40px;
 }
 
-.form-container .card:hover {
+.form-column .card:hover {
     box-shadow: none;
 }
 
-.form-container label{
+.form-column .card:hover {
+    box-shadow: none;
+}
+
+.form-column label{
     margin: 0 auto;
     font-family: poppins, sans-serif;
 }
 
-.form-container label, .form-container p {
+.form-column label, .form-column p {
     display: block;
     margin-bottom: 5px;
     color: var(--color-dark);
     letter-spacing: 0.5px;
 }
 
-.form-container input, .form-container textarea {
+.form-column input, .form-column textarea {
     margin: 0 0 20px 0;
     padding: 12px 5%;
     width: 90%;
@@ -328,24 +379,24 @@ main .form-container{
     font-family: poppins, sans-serif;
 }
 
-.form-container input:hover, .form-container textarea:hover {
+.form-column input:hover, .form-column textarea:hover {
     box-shadow: none;
 }
 
-.form-container input[type="text"]:disabled {
+.form-column input[type="text"]:disabled {
     background-color: var(--color-info-light) !important;
 }
 
-.form-container input[type="email"]:disabled {
+.form-column input[type="email"]:disabled {
     background-color: var(--color-info-light)!important;
 }
 
-.form-container ::placeholder{
+.form-column ::placeholder{
     color: var(--color-info-dark);
     text-align: center;
 }
 
-.form-container button {
+.form-column button {
     font-family: inherit;
     font-size: 20px;
     width: 200px;
@@ -362,35 +413,35 @@ main .form-container{
     margin: 0 auto;
 }
 
-.form-container button:hover {
+.form-column button:hover {
     background: var(--color-primary-variant);
 }
 
-.form-containerbutton span {
+.form-columnbutton span {
     display: block;
     margin-left: 0.3em;
     transition: all 0.3s ease-in-out;
 }
 
-.form-container button svg {
+.form-column button svg {
     display: block;
     transform-origin: center center;
     transition: transform 0.3s ease-in-out;
 }
 
-.form-container button:hover .svg-wrapper {
+.form-column button:hover .svg-wrapper {
     animation: fly-1 0.6s ease-in-out infinite alternate;
 }
 
-.form-containerbutton:hover svg {
+.form-columnbutton:hover svg {
     transform: translateX(1.2em) rotate(45deg) scale(1.1);
 }
 
-.form-container button:hover span {
+.form-column button:hover span {
     transform: translateX(8em);
 }
 
-.form-container button:active {
+.form-column button:active {
     transform: scale(0.95);
 }
 
@@ -404,7 +455,7 @@ main .form-container{
     }
 }
 
-.form-container label{
+.form-column label{
     font-size: 18px;
 }
 
