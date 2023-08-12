@@ -8,40 +8,144 @@
     <!-- CSS -->
     <link rel="stylesheet" href="/Content/css/forms.css">
 
+    <!-- Material Icons-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////
+                                START SECTION 1 - Left Panel
+    /////////////////////////////////////////////////////////////////////////////////////////////////////-->
     <div class="container">
-        <h1>Nuevo Proyecto</h1>
+        <!--================ Start Aside: Left Panel =================-->
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="../../Assets/images/logo.png">
+                    <h2>Task<span class="success">Hub</span> </h2>
+                </div>
 
-        <form id="projectForm">
-
-            <div class="form-group">
-                <input type="text" id="projectName" name="projectName" required>
-                <div class="underline"></div>
-                <label for="projectName">Nombre del Proyecto:</label>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">close</span>
+                </div>
             </div>
 
-            <div class="form-group">
-                <textarea id="description" name="description" required></textarea>
-                <div class="underline"></div>
-                <label for="description">Descripción:</label>
+            <!--================ Start dashboard sidebar =================-->
+            <div class="sidebar">
+                <a href="../../Views/Home/index.html">
+                    <span class="material-icons-sharp">grid_view</span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">work</span>
+                    <h3>Compartido</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">receipt_long</span>
+                    <h3>Reportes</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">insights</span>
+                    <h3>Análisis</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">mail_outline</span>
+                    <h3>Mensajes</h3>
+                    <span class="message-count">26</span>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">inventory</span>
+                    <h3>Productos</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">report_gmailerrorred</span>
+                    <h3>Reportes</h3>
+                </a>
+                <a href="../../Views/User/profile.html">
+                    <span class="material-icons-sharp">settings</span>
+                    <h3>Perfil</h3>
+                </a>
+                <a href="#" class="active">
+                    <span class="material-icons-sharp">add</span>
+                    <h3>Añadir Proyecto</h3>
+                </a>
+                <a href="/user/logout">
+                    <span class="material-icons-sharp">logout</span>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </aside>
+        <!--================ End of Aside Area =================-->
+
+        <!-- /////////////////////////////////////////////////////////////////////////////////////////////////
+                                    START SECTION 2 - Central Panel
+        /////////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <main class="form-container">
+
+            <div class="container-form">
+                <h1>Nuevo Proyecto</h1>
+
+                <form id="projectForm">
+
+                    <div class="form-group">
+                        <input type="text" id="projectName" name="projectName" required>
+                        <div class="underline"></div>
+                        <label for="projectName">Nombre del Proyecto:</label>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea id="description" name="description" required></textarea>
+                        <div class="underline"></div>
+                        <label for="description">Descripción:</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="date" id="dueDate" name="dueDate" required>
+                        <div class="underline"></div>
+                        <label for="dueDate">Fecha de Vencimiento:</label>
+                    </div>
+
+                    <div class="buttons">
+                        <button type="submit" class="create-button" id="createProjectBtn"> <div><h3>Crear Proyecto</h3></div></button>
+                        <a href="../../Views/Home/index.html" class="return-button" id="returnBtn"> <div><h3>Regresar</h3></div></a>
+                    </div>
+
+                </form>
             </div>
 
-            <div class="form-group">
-                <input type="date" id="dueDate" name="dueDate" required>
-                <div class="underline"></div>
-                <label for="dueDate">Fecha de Vencimiento:</label>
-            </div>
+        </main>
+        <!--================ End of Main: Central Panel=================-->
 
-            <div class="buttons">
-                <button type="submit" class="create-button" id="createProjectBtn"> <div><h3>Crear Proyecto</h3></div></button>
-                <a href="../../Views/Home/index.html" class="return-button" id="returnBtn"> <div><h3>Regresar</h3></div></a>
-            </div>
+        <!-- /////////////////////////////////////////////////////////////////////////////////////////////////
+                                    START SECTION 3 - Right Panel
+        /////////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <div class="right">
+            <!--================ Start Top =================-->
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
 
-        </form>
+                <div class="theme-toggler">
+                    <span class="material-icons-sharp active">light_mode</span>
+                    <span class="material-icons-sharp">dark_mode</span>
+                </div>
+
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b id="userNamePlaceholder"></b></p>
+                        <small class="text-muted">pending</small>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="../../Assets/images/logo.png">
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
     <!-- Scripts for form -->
@@ -49,6 +153,7 @@
     <script src="../../Scripts/JS/form/obtainDate.js"></script>
 
     <!-- Scripts for index -->
+    <script src="../../Scripts/JS/index/index.js"></script>
     <script src="../../Scripts/JS/index/projects/getProject.js"></script>
     <script src="../../Scripts/JS/index/projects/createProject.js"></script>
 

@@ -1,37 +1,266 @@
-/* Importación de fuentes */
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&amp;display=swap');
+/* ==========>  Fonts  <========== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-/*
-============================>   Global vars Configs   <============================
-*/
+/* ==========>  Root vars  <========== */
 :root {
     --color-primary: #6380ec;
-    --color-background: #f6f6f9;
-    --color-success: #41f1b6;
     --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-primary-variant: #3E64CC;
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
 
     --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light);
     --box-shadow-add: 10px 5px 5px var(--color-primary);
     --transition: all 300ms ease;
 }
 
-*{
-    margin: 0;
-    padding: 0;
-    outline: none;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+/* ==========>  Dark Theme vars  <========== */
+.dark-theme-variables {
+    --color-background: #181a1e;
+    --color-white: #202528;
+    --color-dark: #edeffd;
+    --color-dark-variant: #a3bdcc;
+    --color-light: rgba(0, 0, 0, 0.4);
+
+    --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
 /*
 ============================>   General Configs   <============================
 */
-body{
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    appearance: none;
+    border: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+/* ==========>   HTML   <========== */
+html {
+    font-size: 14px;
+}
+
+/* ==========>   ICON   <========== */
+.material-icons-sharp {
+    cursor: pointer; /* Convierte el icono en un objeto clickeable */
+}
+
+/* ==========>  Body   <========== */
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: poppins, sans-serif;
+    font-size: 0.88rem;
+    background: var(--color-background);
+    user-select: none; /* Evita que el usuario pueda seleccionar y resaltar texto */
+    overflow-x: hidden; /* Esconde el contenido que salga de la pantalla - eje horizontal*/
+    color: var(--color-dark);
+}
+
+/* ==========>   Grid container   <========== */
+.container {
+    display: grid;
+    width: 96%;
+    margin: 0 auto;
+    gap: 1.8rem;
+    grid-template-columns: 14rem auto 23rem;
+}
+
+/* ==========>  'A' tags   <========== */
+a {
+    color: var(--color-primary);
+}
+
+a:hover {
+    color: var(--color-primary-variant);
+}
+
+/* ==========>   Images   <========== */
+img {
+    display: block;
+    width: 100%;
+}
+
+/* ==========>   'H' tags   <========== */
+h1 {
+    font-weight: 800;
+    font-size: 1.8rem;
+}
+
+h2 {
+    font-size: 1.4rem;
+}
+
+h3 {
+    font-size: 1rem;
+}
+
+h4 {
+    font-size: 0.8rem;
+}
+
+h5 {
+    font-size: 0.77rem;
+}
+
+small {
+    font-size: 0.75rem;
+}
+
+/* ==========>   Profile photos   <========== */
+.profile-photo {
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    overflow: hidden; /* Oculta cualquier contenido que se encuentre fuera de los límites del elemento */
+}
+
+/* ==========>   Texto gris   <========== */
+.text-muted {
+    color: var(--color-info-dark);
+}
+
+/* ==========>   'P' tags   <========== */
+p {
+    color: var(--color-dark-variant);
+}
+
+/* ==========>   'B' tags   <========== */
+b {
+    color: var(--color-dark);
+}
+
+/* ==========>   Color classes   <========== */
+.primary {
+    color: var(--color-primary);
+}
+
+.danger {
+    color: var(--color-danger);
+}
+
+.success {
+    color: var(--color-success);
+}
+
+.warning {
+    color: var(--color-warning);
+}
+
+/*
+============================>   Left Panel   <============================
+*/
+aside {
+    height: 100vh;
+}
+
+aside .top{
     display: flex;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background: var(--color-background);
+    justify-content: space-between;
+    margin-top: 1.4rem;
+}
+
+aside .logo {
+    display: flex;
+    gap: 0.8rem;
+}
+
+aside .logo img {
+    width: 2rem;
+    height: 2rem;
+}
+
+aside .close {
+    display: none;
+}
+
+/* ==========>   Sidebar   <========== */
+aside .sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 86vh;
+    position: relative;
+    top: 3rem;
+}
+
+aside h3 {
+    font-weight: 500;
+}
+
+aside .sidebar a {
+    display: flex;
+    color: var(--color-info-dark); /* Color de las opciones del dashboard */
+    margin-left: 2rem;
+    gap: 1rem;
+    align-items: center;
+    position: relative;
+    height: 3.7rem;
+    transition: var(--transition);
+}
+
+aside .sidebar a span{
+    font-size: 1.6rem;
+    transition: var(--transition); /* Animacion al pasar el click */
+}
+
+aside .sidebar a:last-child { /* La opcion del dashboard del final */
+    position: absolute;
+    bottom: 2rem;
+    width: 100%;
+}
+
+aside .sidebar a.active { /* La opcion del dashboard que esta activa */
+    background: var(--color-light);
+    color: var(--color-primary);
+    margin-left: 0;
+}
+
+aside .sidebar a.active::before { /* La opcion del dashboard que esta activa */
+    content: '';
+    width: 6px; /* Ancho de la linea de la opcion seleccionada */
+    height: 100%;
+    background: var(--color-primary); /* Color de la linea de la opcion seleccionada */
+}
+
+aside .sidebar a.active span{ /* Icono del dashboard que esta activo */
+    color: var(--color-primary);
+    margin-left: calc(1rem - 3px);
+}
+
+aside .sidebar a:hover {
+    color: var(--color-primary);
+}
+
+aside .sidebar a:hover span {
+    margin-left: 1rem;
+}
+
+aside .sidebar .message-count {
+    background: var(--color-danger);
+    color: var(--color-white);
+    padding: 2px 10px;
+    font-size: 11px;
+    border-radius: var(--border-radius-1);
 }
 
 /*
@@ -67,9 +296,18 @@ body{
 }
 
 /*
-============================>   General Container Configs   <============================
+============================>   Central Panel   <============================
 */
-.container{
+.form-container {
+    margin-top: 200px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 100vh;
+    background: var(--color-background);
+}
+
+.container-form{
     width: 450px;
     background: #fff;
     padding: 30px;
@@ -78,24 +316,24 @@ body{
     transition: var(--transition);
 }
 
-.container:hover{
+.container-form:hover{
     box-shadow: none;
 }
 
-.container h1 {
+.container-form h1 {
     margin-bottom: 25px;
     color: var(--color-primary);
 }
 
-.container .form-group{
+.container-form .form-group{
     height: 40px;
     width: 100%;
     position: relative;
     margin-bottom: 40px; /* Añade margen inferior para separar los elementos */
 }
 
-.container .form-group input,
-.container .form-group textarea {
+.container-form .form-group input,
+.container-form .form-group textarea {
     height: 100%;
     width: 100%;
     border: none;
@@ -108,15 +346,15 @@ body{
 ============================>   Label Configs   <============================
 */
 
-.container .form-group input:focus ~ label,
-.container .form-group input:hover ~ label,
-.container .form-group input:valid ~ label{
+.container-form .form-group input:focus ~ label,
+.container-form .form-group input:hover ~ label,
+.container-form .form-group input:valid ~ label{
     transform: translateY(-20px);
     font-size: 15px;
     color: var(--color-primary);
 }
 
-.container .form-group label{
+.container-form .form-group label{
     position: absolute;
     bottom: 10px;
     left: 0;
@@ -128,19 +366,19 @@ body{
 /*
 ============================>   Textarea Configs   <============================
 */
-.container .form-group textarea + .underline {
+.container-form .form-group textarea + .underline {
     /* Ajusta el estilo de la línea inferior para el textarea */
     height: 4px;
 }
 
-.container .form-group textarea + .underline:before {
+.container-form .form-group textarea + .underline:before {
     /* Ajusta el estilo de la línea inferior antes del textarea */
     bottom: -1px;
 }
 
-.container .form-group textarea:focus ~ label,
-.container .form-group textarea:hover ~ label,
-.container .form-group textarea:valid ~ label {
+.container-form .form-group textarea:focus ~ label,
+.container-form .form-group textarea:hover ~ label,
+.container-form .form-group textarea:valid ~ label {
     /* Ajusta el estilo del label cuando el textarea está enfocado o tiene contenido válido */
     transform: translateY(-25px);
     font-size: 15px;
@@ -150,41 +388,41 @@ body{
 /*
 ============================>   Date input Configs   <============================
 */
-.container .form-group input[type="date"]:focus ~ label[for="dueDate"],
-.container .form-group input[type="date"]:valid ~ label[for="dueDate"],
-.container .form-group input[type="date"]:hover ~ label[for="dueDate"] {
+.container-form .form-group input[type="date"]:focus ~ label[for="dueDate"],
+.container-form .form-group input[type="date"]:valid ~ label[for="dueDate"],
+.container-form .form-group input[type="date"]:hover ~ label[for="dueDate"] {
     transform: translateY(-10px); /* Ajusta la distancia hacia arriba */
     font-size: 15px; /* Ajusta el tamaño de fuente */
     color: var(--color-primary);
 }
 
-.container .form-group label[for="dueDate"] {
+.container-form .form-group label[for="dueDate"] {
     bottom: 25px; /* Ajusta el valor según tu preferencia */
 }
 
-.container .form-group input[type="date"] {
+.container-form .form-group input[type="date"] {
     padding-top: 13px;
 }
 
-.container .form-group input[type="date"] + .underline {
+.container-form .form-group input[type="date"] + .underline {
     height: 6px;
 }
 
-.container .form-group input[type="date"] + .underline:before {
+.container-form .form-group input[type="date"] + .underline:before {
     bottom: -2px;
 }
 
 /*
 ============================>   Underline Configs   <============================
 */
-.container .form-group .underline{
+.container-form .form-group .underline{
     position: absolute;
     height: 2px;
     width: 100%;
     bottom: 0;
 }
 
-.container .form-group .underline:before{
+.container-form .form-group .underline:before{
     position: absolute;
     content: "";
     height: 100%;
@@ -195,24 +433,24 @@ body{
     transition: transform 0.3s ease;
 }
 
-.container .form-group input:focus ~ .underline:before,
-.container .form-group input:valid ~ .underline:before{
+.container-form .form-group input:focus ~ .underline:before,
+.container-form .form-group input:valid ~ .underline:before{
     transform: scaleX(1);
 }
 
-.container .form-group textarea:focus + .underline:before,
-.container .form-group textarea:valid + .underline:before {
+.container-form .form-group textarea:focus + .underline:before,
+.container-form .form-group textarea:valid + .underline:before {
     height: 2px;
     bottom: 0;
     transform: scaleX(1);
     background: var(--color-primary); /* Cambia el color al hacer clic o cuando tiene contenido válido */
 }
 
-.container .form-group input[type="date"] + .underline {
+.container-form .form-group input[type="date"] + .underline {
     height: 2px; /* Ajusta el tamaño deseado */
 }
 
-.container .form-group input[type="date"] + .underline:before {
+.container-form .form-group input[type="date"] + .underline:before {
     bottom: 0; /* Ajusta la posición de la línea inferior */
 }
 
@@ -220,13 +458,13 @@ body{
 ============================>  Btn Create Configs   <============================
 */
 
-.container .buttons {
+.container-form .buttons {
     display: flex; /* Agrega un contenedor para los botones */
     justify-content: space-between; /* Agrega esta línea */
 }
 
-.container .create-button,
-.container .return-button {
+.container-form .create-button,
+.container-form .return-button {
     height: 40px;
     align-items: center;
     justify-content: center;
@@ -239,33 +477,257 @@ body{
     margin-right: 10px; /* Espacio entre los botones */
 }
 
-.container .return-button {
+.container-form .return-button {
     display: inline-flex; /* Cambia a inline-flex */
 }
 
-.container .create-button:hover,
-.container .return-button:hover {
+.container-form .create-button:hover,
+.container-form .return-button:hover {
     background: var(--color-primary);
     color: white;
 }
 
-.container .create-button div,
-.container .return-button div {
+.container-form .create-button div,
+.container-form .return-button div {
     display: flex;
     align-items: center;
     gap: 0.6rem;
     height: 100%;
 }
 
-.container .create-button div h3,
-.container .return-button div h3 {
+.container-form .create-button div h3,
+.container-form .return-button div h3 {
     font-weight: 600;
     margin: 0; /* Agrega margen 0 para evitar afectar el tamaño del botón */
     line-height: 1; /* Agrega esta propiedad para ajustar la altura del texto */
     font-size: 14px; /* Ajusta el tamaño de fuente según tu preferencia */
 }
 
-.container .return-button {
+.container-form .return-button {
     display: inline-block;
     margin-left: 10px; /* Añade margen izquierdo para separar los botones */
+}
+
+/*
+============================>   Right Panel   <============================
+*/
+.right {
+    margin-top: 1.4rem;
+}
+
+.right .top {
+    display: flex;
+    justify-content: end;
+    gap: 2rem;
+}
+
+.right .top button {
+    display: none;
+}
+
+.right .theme-toggler {
+    background: var(--color-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 1.6rem;
+    width: 4.2rem;
+    cursor: pointer;
+    border-radius: var(--border-radius-1);
+}
+
+.right .theme-toggler span {
+    font-size: 1.2rem;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right .theme-toggler span.active {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-radius: var(--border-radius-1);
+}
+
+.right .top .profile {
+    display: flex;
+    gap: 2rem;
+    text-align: right;
+}
+
+/*
+============================>   Media Queries: Small Laptops/Big Tablets  <============================
+*/
+@media screen and (max-width: 1200px) {
+    .container {
+        width: 94%;
+        grid-template-columns: 7rem auto 23rem;
+    }
+
+    aside .logo h2 {
+        display: none;
+    }
+
+    aside .sidebar h3 {
+        display: none;
+    }
+
+    aside .sidebar a {
+        width: 5.6rem;
+    }
+
+    aside .sidebar a:last-child {
+        position: relative;
+        margin-top: 1.8rem;
+    }
+
+    main .insights {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    main .projects {
+        width: 94%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 2rem 0 0 8.8rem;
+    }
+
+    main .projects table {
+        width: 83vw;
+    }
+
+    main table thead tr th:last-child,
+    main table thead tr th:first-child {
+        display: none;
+    }
+
+    main table tbody tr td:last-child,
+    main table tbody tr td:first-child {
+        display: none;
+    }
+}
+
+/*
+============================>   Media Queries: Small Tablet/Phones   <============================
+*/
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100%;
+        grid-template-columns: 1fr;
+    }
+
+    aside {
+        position: fixed;
+        left: -100%;
+        background: var(--color-white);
+        width: 18rem;
+        z-index: 3;
+        box-shadow: 1rem 3rem 4rem var(--color-light);
+        height: 100vh;
+        padding-right: var(--card-padding);
+        display: none;
+        animation: showMenu 400ms ease forwards;
+    }
+
+    @keyframes showMenu {
+        to {
+            left: 0;
+        }
+    }
+
+    aside .logo {
+        margin-left: 1rem;
+    }
+
+    aside .logo h2 {
+        display: inline;
+    }
+
+    aside .sidebar h3 {
+        display: inline;
+    }
+
+    aside .sidebar a {
+        width: 100%;
+        height: 3.4rem;
+    }
+
+    aside .sidebar a:last-child {
+        position: absolute;
+        bottom: 5rem;
+    }
+
+    aside .close {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    main {
+        margin-top: 8rem;
+        padding: 0 1rem;
+    }
+
+    main .projects {
+        position: relative;
+        margin: 3rem 0 0 0;
+        width: 100%;
+    }
+
+    main .projects table {
+        width: 100%;
+        margin: 0;
+    }
+
+    .right {
+        width: 94%;
+        margin: 0 auto 4rem;
+    }
+
+    .right .top {
+        position: fixed;
+        top: 0;
+        left: 0;
+        align-items: center;
+        padding: 0 0.8rem;
+        height: 4.6rem;
+        background: var(--color-white);
+        width: 100%;
+        margin: 0;
+        z-index: 2;
+        box-shadow: 0 1rem 1rem var(--color-light);
+    }
+
+    .right .top .theme-toggler {
+        width: 4.4rem;
+        position: absolute;
+        left: 66%;
+    }
+
+    .right .profile .info {
+        display: none;
+    }
+
+    .right .top button {
+        display: inline-block;
+        background: transparent;
+        cursor: pointer;
+        color: var(--color-dark);
+        position: absolute;
+        left: 1rem;
+    }
+
+    .right .top button span {
+        font-size: 2rem;
+    }
+}
+
+/* Estilos para el sidebar cuando la pantalla es grande */
+@media (min-width: 768px) {
+    aside {
+        display: block;
+    }
 }
