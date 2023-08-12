@@ -15,15 +15,3 @@ function formatDate(dateString) {
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
 }
-
-// Escuchar el evento de mensaje proveniente de la pestaña del formulario
-window.addEventListener('message', function(event) {
-    if (event.data && event.data.type === 'projectCreated') {
-        // Actualizar la tabla de proyectos
-        fillProjects();
-
-        // Redireccionar al usuario a la página principal después de recibir el mensaje
-        localStorage.removeItem('projectCreated'); // Limpiar la bandera
-        window.location.href = "../../Views/Home/index.html";
-    }
-});

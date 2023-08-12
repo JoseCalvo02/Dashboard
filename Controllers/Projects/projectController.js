@@ -3,22 +3,35 @@ const dbConfig = require('../../Server/dbConfig');
 const star_date = new Date().toISOString(); //Proporciona la fecha actual
 
 // Función para registrar un nuevo proyecto
-async function registerProject(req, res, userId, projectName, description, dueDate) {
+async function registerProject(res, userId, projectName, description, dueDate) {
     try {
         const pool = await sql.connect(dbConfig);
 
-        const query = `
-        INSERT INTO Projects (name, description, end_date, star_date, user_id)
-        VALUES (@projectName, @description, @dueDate, @star_date, @userId)
-        `;
+        const request = pool.request();
+        request.input('projectName', sql.NVarChar, projectName)
+        request.input('description', sql.NVarChar, description)
+        request.input('dueDate', sql.Date, dueDate)
+        request.input('star_date',sql.Date,star_date)
+        request.input('userId',sql.Int,userId)
 
-        await pool.request()
-        .input('projectName', sql.NVarChar, projectName)
-        .input('description', sql.NVarChar, description)
-        .input('dueDate', sql.Date, dueDate)
-        .input('star_date',sql.Date,star_date)
-        .input('userId',sql.Int,userId)
-        .query(query);
+        // Obtener el máximo valor del ID de los proyectos
+        const getMaxIdQuery = 'SELECT ISNULL(MAX(id), 0) as maxId FROM Projects';
+        const { recordset: maxIdResult } = await pool.request().query(getMaxIdQuery);
+        const maxId = maxIdResult[0].maxId;
+
+        // Reiniciar la secuencia de IDs al máximo ID actual + 1
+        const resetIdentityQuery = `DBCC CHECKIDENT (Projects, RESEED, ${maxId})`;
+        await pool.request().query(resetIdentityQuery);
+
+        const query = `
+            INSERT INTO Projects (name, description, end_date, user_id)
+            OUTPUT INSERTED.id
+            VALUES (@projectName, @description, @dueDate, @userId)
+        `;
+        const result = await request.query(query);
+        result.recordset[0].id;
+
+        pool.close();
 
         res.status(201).json({ message: 'Proyecto registrado exitosamente' });
     } catch (error) {

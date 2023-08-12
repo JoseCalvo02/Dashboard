@@ -14,8 +14,8 @@ router.post('/registerProject', async (req, res) => {
         }
 
         // Pasar el userId como un argumento adicional a la función
-        await projectController.registerProject(req, res, userId, projectName, description, dueDate);
-        // Resto del código...
+        await projectController.registerProject(res, userId, projectName, description, dueDate);
+
     } catch (error) {
         console.error('Error al registrar el proyecto:', error);
         res.status(500).json({ message: 'Se produjo un error al registrar el proyecto' });

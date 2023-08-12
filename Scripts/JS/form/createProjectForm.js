@@ -30,11 +30,11 @@ async function handleFormSubmit(event) {
             text: 'El proyecto ha sido creado correctamente',
             allowOutside: false,
         }).then(() => {
-            // Enviar un mensaje a la pestaña principal indicando que se ha creado un nuevo proyecto
-            window.opener.postMessage({ type: 'projectCreated' }, '*');
+            // Update the table with the new project data
+            fillProjects();
+            // Redireccionar al index original
+            window.location.href = "../../Views/Home/index.html";
         });
-        // Redireccionar al index original
-        window.location.href = "../../Views/Home/index.html";
     } catch (error) {
         // Procesar el error si es necesario
         console.error('Error al guardar el proyecto en el servidor:', error);
