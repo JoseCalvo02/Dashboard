@@ -88,20 +88,29 @@ router.post('/User/UpdateProfile', isAuthenticated, async (req, res) =>{
         if(!userId){
             return res.redirect('/');
         }
-        const  {
+        const {
             NombreUsuario,
             pass1
         } = req.body;
 
-        await userController.UpdateUserByID(NombreUsuario, pass1, userId);
+        let successMessage = '';
+
+        if (NombreUsuario) {
+            await userController.UpdateUserNombre(NombreUsuario, userId); // Actualizar el nombre de usuario
+            successMessage = 'Nombre de usuario actualizado correctamente';
+        } else if (pass1) {
+            await userController.UpdateUserPass(pass1, userId); // Actualizar la contraseña
+            successMessage = 'Contraseña actualizada correctamente';
+        }
+
         res.status(200).json({
-            message: 'Perfil actualizado correctamente'
-        })
+            message: successMessage,
+        });
     }
     catch(error)
     {
         res.status(500).json({
-            message: 'Perfil no se actualizado correctamente'
+            message: 'Perfil no fue actualizado'
         });
     }
 });

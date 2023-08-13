@@ -54,6 +54,9 @@ app.get('/', (req, res) => {
 // Middleware para proteger rutas que requieren inicio de sesión
 app.use('/Views/Home', isAuthenticated, express.static(path.join(__dirname, '../Views/Home')));
 
+// Proteger rutas bajo el directorio "Views/User"
+app.use('/Views/User', isAuthenticated, express.static(path.join(__dirname, '../Views/User')));
+
 // Usamos el enrutador que definimos en routes.js
 app.use(routes);
 
