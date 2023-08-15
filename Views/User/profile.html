@@ -96,16 +96,17 @@
                             Cuenta
                         </a>
                         <a id="password-link">
-                            <i class='bx bx-lock' ></i>
+                            <i class='bx bx-lock'></i>
                             Contraseña
                         </a>
                         <a id="delete-link">
-                            <i class='bx bx-lock' ></i>
+                            <i class='bx bxs-user-x'></i>
                             Eliminar mi cuenta
                         </a>
                     </div>
                 </div>
 
+                <!-- Form to update the name -->
                 <div class="form-column">
                     <form class="card user-form">
                         <h1>Editar Perfil</h1>
@@ -128,6 +129,7 @@
                         </button>
                     </form>
 
+                    <!-- Form to update the password -->
                     <form class="card password-form" style="display: none;">
                         <h1>Editar Password</h1>
                         <label for="pass1">Password</label>
@@ -148,15 +150,12 @@
                         </button>
                     </form>
 
-                    
+                    <!-- Form to delete the user -->
                     <form class="card delete-form" style="display: none;">
                         <h1>Eliminar Cuenta</h1>
                         <p>¿Estás seguro de que deseas eliminar tu cuenta?</p>
-                        <button type="submit" id="deleteButton" >Eliminar Cuenta</button>
+                        <button class="deleteBtn" type="submit" id="deleteButton" >Eliminar Cuenta</button>
                     </form>
-
-
-                   
 
                 </div>
 

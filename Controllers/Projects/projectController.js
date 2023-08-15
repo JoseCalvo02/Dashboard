@@ -149,20 +149,14 @@ async function DeleteTask(userId, projectId, taskId) {
         request.input('taskId', sql.Int, taskId);
 
         // Ejecutar la consulta de actualización
-        const result = await request.query(query);
+        await request.query(query);
 
         // Devolver un mensaje de éxito
-        return 'Error al eliminar la tarea ';
+        return 'Se elimino la tarea ';
     } catch (error) {
         throw new Error('Error al eliminar la tarea: ' + error.message);
     }
 }
-
-
-
-
-
-
 
 module.exports = {
     registerProject,
@@ -170,6 +164,5 @@ module.exports = {
     AddTaskProject,
     GetTaskProject,
     SaveTaskMovement,
-    DeleteTask,
-  
+    DeleteTask
 };
