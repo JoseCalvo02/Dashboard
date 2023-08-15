@@ -40,10 +40,27 @@ router.get('/getProjects', async (req, res) => {
     }
 });
 
+
 // Ruta GET para eliminar los proyectos
 router.delete('/deleteProjects', async (req, res) => {
-    return;
-});
+    try {
+            const { userId } = req.session;// Obtener el userId del usuario desde la sesión después de iniciar sesión
+   
+           if (!userId) {
+               // Si el usuario no ha iniciado sesión, enviar una respuesta de error
+               return res.status(401).json({ message: 'Usuario no autenticado' });
+           }
+           const projectId = req.query.id;
+           // Llamar a la función getProjectsFromDatabase pasando el userId
+           const confirmation = await projectController.DeleteProject(req,res,userId,projectId);
+           res.status(200).json(confirmation);
+       } catch (error) {
+           console.error('Error al eliminar el proyecto:', error);
+           res.status(500).json({ message: 'Error al obtener al eliminar el proyecto' });
+       }
+   });
+   
+   
 
 // Ruta POST para crear tareas para los proyectos
 router.post('/CreateProjectTask', async (req, res) => {

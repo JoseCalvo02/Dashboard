@@ -158,11 +158,53 @@ async function DeleteTask(userId, projectId, taskId) {
     }
 }
 
+
+async function DeleteProject(req, res, userId, projectId) {
+    console.log("Este es el project id ", projectId);
+    console.log("Este es el userId ", userId);
+
+    try {
+        const pool = await sql.connect(dbConfig);
+
+        // Consulta SQL eliminar tareas relacionadas
+        const deleteTasksQuery = `
+            DELETE FROM ProjectsHomepage
+            WHERE projectId = @projectId AND userId = @userId
+        `;
+        const taskRequest = new sql.Request(pool);
+        taskRequest.input('userId', sql.Int, userId);
+        taskRequest.input('projectId', sql.Int, projectId);
+        await taskRequest.query(deleteTasksQuery);
+
+        const deleteProjectQuery = `
+            DELETE FROM Projects
+            WHERE user_id = @userId AND id = @projectId
+        `;
+        const projectRequest = new sql.Request(pool);
+        projectRequest.input('userId', sql.Int, userId);
+        projectRequest.input('projectId', sql.Int, projectId);
+        const projectResult = await projectRequest.query(deleteProjectQuery);
+
+        // Verificar si se eliminó el proyecto correctamente
+        if (projectResult.rowsAffected[0] > 0) {
+            // Proyecto y tareas relacionadas eliminadas con éxito
+            res.json({ message: 'Proyecto y tareas relacionadas eliminadas exitosamente' });
+        } else {
+            res.status(404).json({ message: 'Proyecto no encontrado' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Error al eliminar el proyecto y tareas: ' + error.message });
+    }
+}
+
+
+
 module.exports = {
     registerProject,
     getProjectsFromDatabase,
     AddTaskProject,
     GetTaskProject,
     SaveTaskMovement,
-    DeleteTask
+    DeleteTask,
+    DeleteProject
 };
