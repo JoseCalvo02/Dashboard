@@ -115,5 +115,38 @@ router.post('/User/UpdateProfile', isAuthenticated, async (req, res) =>{
     }
 });
 
+router.get('/getUserData', isAuthenticated, async (req, res) =>{
+    try {
+        const userId = req.session.userId;
+        if (!userId) {
+            return res.redirect('/');
+        }
+
+        const userData = await userController.getUserData(userId);
+        res.status(200).json(userData); // Devuelve los datos del usuario como respuesta JSON
+    } catch (error) {
+        res.status(500).json({
+            message: 'No se encontraron datos'
+        });
+    }
+});
+
+router.delete('/deleteProfile', isAuthenticated, async (req, res) =>{
+    try {
+        const userId = req.session.userId;
+        if (!userId) {
+            return res.redirect('/');
+        }
+
+        const userData = await userController.deleteUserProfile(userId);
+        res.status(200).json(userData); // Devuelve los datos del usuario como respuesta JSON
+    } catch (error) {
+        res.status(500).json({
+            message: 'No se encontraron datos'
+        });
+    }
+});
+
+
 // Exporta el enrutador
 module.exports = router;

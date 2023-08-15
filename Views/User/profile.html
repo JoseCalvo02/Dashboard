@@ -99,6 +99,10 @@
                             <i class='bx bx-lock' ></i>
                             Contraseña
                         </a>
+                        <a id="delete-link">
+                            <i class='bx bx-lock' ></i>
+                            Eliminar mi cuenta
+                        </a>
                     </div>
                 </div>
 
@@ -143,6 +147,17 @@
                             <span>Enviar</span>
                         </button>
                     </form>
+
+                    
+                    <form class="card delete-form" style="display: none;">
+                        <h1>Eliminar Cuenta</h1>
+                        <p>¿Estás seguro de que deseas eliminar tu cuenta?</p>
+                        <button type="submit" id="deleteButton" >Eliminar Cuenta</button>
+                    </form>
+
+
+                   
+
                 </div>
 
             </div>
@@ -183,8 +198,12 @@
     <script src="../../Scripts/JS/index/getParams.js"></script>
 
     <!-- Scripts for Profile update -->
+    <script src="../../Scripts/JS/profile/loadUserData.js"></script>
     <script src="../../Scripts/JS/profile/updateProfile.js"></script>
+    <script src="../../Scripts/JS/profile/deleteProfile.js"></script>
     <script src="../../Scripts/JS/profile/toggleForm.js"></script>
+  
+
 
 </body>
 </html>

@@ -158,6 +158,12 @@ async function DeleteTask(userId, projectId, taskId) {
     }
 }
 
+
+
+
+
+
+
 module.exports = {
     registerProject,
     getProjectsFromDatabase,
@@ -165,4 +171,5 @@ module.exports = {
     GetTaskProject,
     SaveTaskMovement,
     DeleteTask,
+  
 };

@@ -119,9 +119,74 @@ async function UpdateUserPass(pass1, userId) {
     }
 }
 
+async function getUserData(userId) {
+    try {
+        const pool = await sql.connect(dbConfig);
+
+        const query = 'SELECT fullName, username, email FROM Users WHERE id = @userId;';
+        const request = pool.request();
+        request.input('userId', sql.Int, userId);
+        
+        const result = await request.query(query);
+        pool.close();
+
+        if (result.recordset.length === 0) {
+            throw new Error('Usuario no encontrado');
+        }
+
+        return result.recordset[0]; // El resultado debe ser un objeto con las propiedades fullName, username y email
+
+    } catch (error) {
+        console.error('Error al obtener los datos del usuario:', error);
+        throw error;
+    }
+}
+
+async function deleteUserProfile(userId) {
+    try {
+        const pool = await sql.connect(dbConfig);
+
+        // Eliminar datos de la tabla ProjectsHomepage que hacen referencia a los registros en Projects
+        const deleteProjectsHomepageQuery = 'DELETE FROM ProjectsHomepage WHERE projectId IN (SELECT id FROM Projects WHERE user_id = @userId);';
+        const deleteProjectsHomepageRequest = pool.request();
+        deleteProjectsHomepageRequest.input('userId', sql.Int, userId);
+        await deleteProjectsHomepageRequest.query(deleteProjectsHomepageQuery);
+
+        // Eliminar datos de la tabla Projects
+        const deleteProjectsQuery = 'DELETE FROM Projects WHERE user_id = @userId;';
+        const deleteProjectsRequest = pool.request();
+        deleteProjectsRequest.input('userId', sql.Int, userId);
+        await deleteProjectsRequest.query(deleteProjectsQuery);
+
+        // Eliminar datos de la tabla Reminders
+        const deleteRemindersQuery = 'DELETE FROM Reminders WHERE userId = @userId;';
+        const deleteRemindersRequest = pool.request();
+        deleteRemindersRequest.input('userId', sql.Int, userId);
+        await deleteRemindersRequest.query(deleteRemindersQuery);
+
+        // Finalmente, eliminar el perfil de la tabla Users
+        const deleteUserQuery = 'DELETE FROM Users WHERE id = @userId;';
+        const deleteUserRequest = pool.request();
+        deleteUserRequest.input('userId', sql.Int, userId);
+        await deleteUserRequest.query(deleteUserQuery);
+
+        pool.close();
+
+        console.log('Perfil y datos asociados eliminados correctamente');
+        return true; 
+
+    } catch (error) {
+        console.error('Error al eliminar el perfil y datos asociados:', error);
+        throw error;
+    }
+}
+
 module.exports = {
     registerUser,
     loginUser,
     UpdateUserNombre,
-    UpdateUserPass
+    UpdateUserPass,  
+    getUserData,
+    deleteUserProfile
+
 };
