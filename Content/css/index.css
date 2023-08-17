@@ -270,6 +270,7 @@ main {
     margin-top: 1.4rem;
 }
 
+/* ==========>   Date  <========== */
 main .date {
     display: inline-flex;
     background: var(--color-white);
@@ -294,6 +295,49 @@ main .date input[type="date"] {
     font-weight: bold;
 }
 
+/* ==========>   Total Tasks header  <========== */
+main .tasksProgress {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-white);
+    margin-top: 1rem;
+    padding: 0.5rem 1.6rem;
+    border-radius: var(--border-radius-3);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+main .tasksProgress:hover {
+    box-shadow: none;
+}
+.tasksProgress .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+main .tasksProgress h3 {
+    margin-right: 5px;
+}
+
+main .tasksProgress .totalTasks {
+    display: flex;
+    align-items: center;
+}
+
+main .tasksProgress .totalTasks {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+main .tasksProgress .totalTasks p{
+    font-size: 15px;
+    color: var(--color-dark);
+}
+
+/* ==========>   Circles  <========== */
 main .insights {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

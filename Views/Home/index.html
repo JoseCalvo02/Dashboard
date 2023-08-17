@@ -91,8 +91,19 @@
                 <input type="date" id="dateField">
             </div>
 
+            <div class="tasksProgress">
+                <div class="header">
+                    <h2>Progreso de las tareas de los proyectos</h2>
+                </div>
+                <div class="totalTasks">
+                    <i class='bx bx-task'></i>
+                    <p>Total de tareas en los proyectos: </p>
+                </div>
+            </div>
+
             <!--================ Start Insights =================-->
             <div class="insights">
+
                 <div class="sales">
                     <span class="material-icons-sharp">analytics</span>
                     <div class="middle">
@@ -104,10 +115,10 @@
 
                         <div class="progress">
                             <svg>
-                                <circle cx='38' cy='38' r='36'></circle>
+                                <circle id="circlePending" cx='38' cy='38' r='36'></circle>
                             </svg>
                             <div class="number">
-                                <p>81%</p>
+                                <p id="percentagePending">55%</p>
                             </div>
                         </div>
                     </div>
@@ -125,10 +136,10 @@
 
                         <div class="progress">
                             <svg>
-                                <circle cx='38' cy='38' r='36'></circle>
+                                <circle id="circleProgress" cx='38' cy='38' r='36'></circle>
                             </svg>
                             <div class="number">
-                                <p>62%</p>
+                                <p id="percentageProgress">82%</p>
                             </div>
                         </div>
                     </div>
@@ -146,10 +157,10 @@
 
                         <div class="progress">
                             <svg>
-                                <circle cx='38' cy='38' r='36'></circle>
+                                <circle id="circleDone" cx='38' cy='38' r='36'></circle>
                             </svg>
                             <div class="number">
-                                <p>41%</p>
+                                <p id="percentageDone">90%</p>
                             </div>
                         </div>
                     </div>

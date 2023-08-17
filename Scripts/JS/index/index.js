@@ -59,3 +59,49 @@ const addBtn = document.querySelector("#addBtn");
 addBtn.addEventListener("click", () => {
     window.location.replace("../User/projectForm.html");
 });
+
+// Función para aplicar el estilo y el porcentaje a los círculos
+function updateCircle(circle, percentage) {
+
+    // Calculate the circumference of the circle
+    const circumference = 2 * Math.PI * parseFloat(circle.getAttribute("r"));
+    // Calculate the dash offset
+    const dashOffset = circumference * (1 - percentage / 100);
+
+    /*
+    ! Aplicar estilos y porcentaje a los circulos
+    */
+    // Apply the dasharray and dashoffset to the circle's stroke
+    circle.style.strokeDasharray = `${circumference} ${circumference}`;
+    circle.style.strokeDashoffset = dashOffset;
+
+    // Use CSS variables for colors
+    if (percentage > 80) {
+        circle.style.stroke = "var(--color-success)";
+    } else if (percentage > 40) {
+        circle.style.stroke = "var(--color-warning)";
+    } else {
+        circle.style.stroke = "var(--color-danger)";
+    }
+}
+/*
+! Constantes para el funcionamiento de los procentajes de los circulos
+*/
+// Get the circle and percentage elements
+const circlePending = document.getElementById("circlePending");
+const percentagePendingText = document.getElementById("percentagePending");
+
+const circleProgress = document.getElementById("circleProgress");
+const percentageProgressText = document.getElementById("percentageProgress");
+
+const circleDone = document.getElementById("circleDone");
+const percentageDoneText = document.getElementById("percentageDone");
+
+// Get the percentage value (remove the '%' sign and convert to a number)
+const percentagePending = parseFloat(percentagePendingText.innerText);
+const percentageProgress = parseFloat(percentageProgressText.innerText);
+const percentageDone = parseFloat(percentageDoneText.innerText);
+
+updateCircle(circlePending, percentagePending);
+updateCircle(circleProgress, percentageProgress);
+updateCircle(circleDone, percentageDone);

@@ -28,7 +28,7 @@ $(document).ready(function() {
                         setTimeout(function() {
                             window.close();
                             window.location.href = '../../Views/Home/index.html';
-                        }, 4000);  
+                        }, 4000);
                     },
                     error: function(error) {
                         console.error("Error al eliminar el proyecto:", error);
