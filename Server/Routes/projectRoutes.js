@@ -149,5 +149,22 @@ router.delete('/DeleteTask', async (req, res) => {
     }
 });
 
+router.get('/getAllTask', async (req, res) => {
+    try {
+        // Obtener el userId del usuario desde la sesión después de iniciar sesión
+        const { userId } = req.session;
+        if (!userId) {
+            return res.redirect('/'); // Redirigir al formulario de inicio de sesión si el usuario no ha iniciado sesión
+        }
+
+        // Llamar a la función GetAllTaskUser pasando el userId
+        const allTask = await projectController.AllTaskUser(req,res,userId);
+        res.status(200).json(allTask);
+    } catch (error) {
+        console.error('Error al obtener todas las tareas:', error);
+        res.status(500).json({ message: 'Error al obtener todas las tareas' });
+    }
+});
+
 // Exporta el enrutador
 module.exports = router;

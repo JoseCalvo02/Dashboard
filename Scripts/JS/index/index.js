@@ -61,7 +61,7 @@ addBtn.addEventListener("click", () => {
 });
 
 // Función para aplicar el estilo y el porcentaje a los círculos
-function updateCircle(circle, percentage) {
+function updateCircle(circle, percentage,color) { //Se le agrega un nuevo parametro , para asignar el color 
 
     // Calculate the circumference of the circle
     const circumference = 2 * Math.PI * parseFloat(circle.getAttribute("r"));
@@ -76,13 +76,9 @@ function updateCircle(circle, percentage) {
     circle.style.strokeDashoffset = dashOffset;
 
     // Use CSS variables for colors
-    if (percentage > 80) {
-        circle.style.stroke = "var(--color-success)";
-    } else if (percentage > 40) {
-        circle.style.stroke = "var(--color-warning)";
-    } else {
-        circle.style.stroke = "var(--color-danger)";
-    }
+    
+
+    circle.style.stroke = color;  //Se asigna el color 
 }
 /*
 ! Constantes para el funcionamiento de los procentajes de los circulos
@@ -102,6 +98,14 @@ const percentagePending = parseFloat(percentagePendingText.innerText);
 const percentageProgress = parseFloat(percentageProgressText.innerText);
 const percentageDone = parseFloat(percentageDoneText.innerText);
 
-updateCircle(circlePending, percentagePending);
-updateCircle(circleProgress, percentageProgress);
-updateCircle(circleDone, percentageDone);
+
+const colorRed = "var(--color-danger)";  //Definicion de colores
+const colorYellow = "var(--color-warning)";
+const colorGreen = "var(--color-success)";
+
+updateCircle(circlePending, percentagePending,colorRed);  //Asignacion de colores para los respectivos circulos 
+updateCircle(circleProgress, percentageProgress,colorYellow);
+updateCircle(circleDone, percentageDone,colorGreen);
+
+
+//Se borraron los condicionales segun el porcentaje
