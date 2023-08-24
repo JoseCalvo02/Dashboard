@@ -199,6 +199,43 @@ async function DeleteProject(req, res, userId, projectId) {
 
 
 
+async function AllTaskUser(req, res, userId) {
+    try {
+        // Conectar a la base de datos
+        const pool = await sql.connect(dbConfig);
+
+        // Consulta SQL para obtener el conteo de tareas por columnTask y el conteo total
+        const query = `
+            SELECT
+                columnTask,
+                COUNT(*) AS taskCount
+            FROM ProjectsHomepage
+            WHERE userId = @userId
+            GROUP BY columnTask
+            UNION ALL
+            SELECT
+                'Total' AS columnTask,
+                COUNT(*) AS taskCount
+            FROM ProjectsHomepage
+            WHERE userId = @userId
+        `;
+        const request = new sql.Request(pool);
+        request.input('userId', sql.Int, userId);
+        const result = await request.query(query);
+
+        // Devolver el resultado del conteo
+        return result.recordset;
+    } catch (error) {
+        throw new Error('Error al obtener el conteo de tareas por columnTask: ' + error.message);
+    }
+}
+
+
+
+
+
+
+
 module.exports = {
     registerProject,
     getProjectsFromDatabase,
@@ -206,5 +243,6 @@ module.exports = {
     GetTaskProject,
     SaveTaskMovement,
     DeleteTask,
-    DeleteProject
+    DeleteProject,
+    AllTaskUser
 };

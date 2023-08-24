@@ -87,7 +87,7 @@
             <h1>Dashboard</h1>
 
             <div class="date">
-                <h3>Current Date:</h3>
+                <h3>Fecha actual :</h3>
                 <input type="date" id="dateField">
             </div>
 
@@ -97,9 +97,10 @@
                 </div>
                 <div class="totalTasks">
                     <i class='bx bx-task'></i>
-                    <p>Total de tareas en los proyectos: Cant(#)</p>
+                    <p>Total de tareas en los proyectos: <span id="totalTaskCountPlaceholder">...</span></p>
                 </div>
             </div>
+            
 
             <!--================ Start Insights =================-->
             <div class="insights">
@@ -109,7 +110,7 @@
                     <div class="middle">
 
                         <div class="left">
-                            <h3>Cant(#)</h3>
+                            <h3 class="totalTaskColumn" data-columna-task="1">Cant(#)</h3>
                             <h1>Pendientes</h1>
                         </div>
 
@@ -118,11 +119,11 @@
                                 <circle id="circlePending" cx='38' cy='38' r='36'></circle>
                             </svg>
                             <div class="number">
-                                <p id="percentagePending">55%</p>
+                                <p id="percentagePending">%</p>
                             </div>
                         </div>
                     </div>
-                    <small class="text-muted">Last 24 Hours</small>
+                    <small class="text-muted">Últimas 24 horas</small>
                 </div>
                 <!--================ End of Sales =================-->
                 <div class="expenses">
@@ -130,7 +131,7 @@
                     <div class="middle">
 
                         <div class="left">
-                            <h3>Cant(#)</h3>
+                            <h3 class="totalTaskColumn" data-columna-task="2">Cant(#)</h3>
                             <h1>En progreso</h1>
                         </div>
 
@@ -139,11 +140,11 @@
                                 <circle id="circleProgress" cx='38' cy='38' r='36'></circle>
                             </svg>
                             <div class="number">
-                                <p id="percentageProgress">82%</p>
+                                <p id="percentageProgress">%</p>
                             </div>
                         </div>
                     </div>
-                    <small class="text-muted">Last 24 Hours</small>
+                    <small class="text-muted">Últimas 24 horas</small>
                 </div>
                 <!--================ End of Expenses =================-->
                 <div class="income">
@@ -151,7 +152,7 @@
                     <div class="middle">
 
                         <div class="left">
-                            <h3>Cant(#)</h3>
+                            <h3 class="totalTaskColumn" data-columna-task="4">Cant(#)</h3>
                             <h1>Completadas</h1>
                         </div>
 
@@ -160,11 +161,11 @@
                                 <circle id="circleDone" cx='38' cy='38' r='36'></circle>
                             </svg>
                             <div class="number">
-                                <p id="percentageDone">70%</p>
+                                <p id="percentageDone">%</p>
                             </div>
                         </div>
                     </div>
-                    <small class="text-muted">Last 24 Hours</small>
+                    <small class="text-muted">Últimas 24 horas</small>
                 </div>
                 <!--================ End of Income =================-->
             </div>
@@ -172,7 +173,7 @@
 
             <!--================ Start Projects =================-->
             <div class="projects">
-                <h2>Projects</h2>
+                <h2>Proyectos</h2>
                 <table>
                     <thead>
                         <tr>
@@ -196,7 +197,7 @@
                     </tbody>
                 </table>
                 <div class="addBtnContainer">
-                    <a href="#" id="addBtn">Add Project</a>
+                    <a href="#" id="addBtn">Añadir Proyecto</a>
                 </div>
             </div>
             <!--================ End of Projects =================-->
@@ -239,8 +240,8 @@
                     <i class="bx bx-plus" id="addReminderIcon"></i>
                 </div>
                 <div class="addReminder" id="addReminderInputContainer" style="display: none;">
-                    <input type="text" id="reminderInput" placeholder="Enter your reminder">
-                    <button id="saveReminderButton">Save</button>
+                    <input type="text" id="reminderInput" placeholder="Escribe tu recordatorio">
+                    <button id="saveReminderButton">Guardar</button>
                 </div>
                 <ul class="task-list" id="task-list">
                     <!--================ Here we create the reminders =================-->
@@ -269,6 +270,7 @@
     <!-- Scripts for projects-->
     <script src="../../Scripts/JS/index/projects/getProject.js"></script>
     <script src="../../Scripts/JS/index/projects/createProject.js"></script>
+    <script src="../../Scripts/JS/projects/getAlldataTask.js"></script>
 
     <!-- Scripts for reminders-->
     <script src="../../Scripts/JS/index/reminders/getReminders.js"></script>
