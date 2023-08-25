@@ -26,7 +26,7 @@
     --padding-1: 1.2rem;
 
     --box-shadow: 0 2rem 3rem var(--color-light);
-    --box-shadow-add: 10px 5px 5px var(--color-primary);
+    --box-shadow-add: 10px 5px 5px var(--color-dark);
     --transition: all 300ms ease;
 }
 
@@ -267,46 +267,53 @@ aside .sidebar .message-count {
 /*
 ============================>   Central Panel   <============================
 */
-.main .forms-wrapper {
-    margin-top: 6rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+main {
+    margin-top: 1.4rem;
 }
 
-.forms-wrapper {
+main .forms {
+    margin-top: 1rem;
+    padding: 0.5rem 1.6rem;
+}
+
+main .forms > div {
     display: grid;
-    grid-template-columns: auto 1fr; /* Columna de opciones y columna de formularios */
-    gap: 40px; /* Espacio entre las columnas */
-    align-items: flex-start; /* Alinear elementos en la parte superior */
-    margin-top: 100px; /* Espacio superior */
-    margin-left: 200px; /* Espacio superior */
+    grid-template-columns: 1fr 2fr; /* Adjusted column proportions */
+    gap: 1.6rem;
 }
 
-.nav-column {
+main .forms .forms-wrapper {
+    grid-column: 1; /* First div occupies first column */
+}
+
+main .forms .form-column {
+    grid-column: 2 / span 2; /* Second div spans columns 2 and 3 */
+}
+
+.forms-wrapper .nav-column {
     background-color: var(--color-white);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: var(--box-shadow-add);
+    box-shadow: var(--box-shadow);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     width: auto;
 }
 
-.nav-column:hover {
+.forms-wrapper .nav-column:hover {
     box-shadow: none;
 }
 
-.nav-column h1 {
+.forms-wrapper .nav-column h1 {
     display: block; /* Cambiar a un elemento de bloque para que ocupe todo el ancho y se muestre en una fila por separado */
     margin-bottom: 20px;
-    font-size: 30px;
+
     text-decoration: none; /* Quitar la decoración de enlace predeterminada */
     color: var(--color-dark); /* Cambiar el color del texto si lo deseas */
 }
 
-.nav-column a {
+.forms-wrapper .nav-column a {
     font-size: 18px;
     display: block; /* Cambiar a un elemento de bloque para que ocupe todo el ancho y se muestre en una fila por separado */
     margin-bottom: 10px;
@@ -314,28 +321,19 @@ aside .sidebar .message-count {
     color: var(--color-dark); /* Cambiar el color del texto si lo deseas */
 }
 
-.nav-column a:hover {
+.forms-wrapper .nav-column a:hover {
     color: var(--color-primary-variant); /* Cambiar el color del texto si lo deseas */
 }
 
-
-.form-column {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    align-items: flex-start; /* Alinear elementos hacia abajo */
-}
-
 .form-column .card {
-    box-shadow: 0 1px 2px 0 rgba(0,0,0,.15);
+    box-shadow: var(--box-shadow);
     position: relative;
     padding: 20px;
     border-radius: 5px;
-    width: 400px;
+    width: 100%;
     text-align: center;
-    width: 60%;
     border-radius: var(--border-radius-2);
-    box-shadow: var(--box-shadow-add);
+    box-shadow: var(--box-shadow);
     transition: var(--transition);
     background-color: var(--color-white);
 }
@@ -344,7 +342,6 @@ aside .sidebar .message-count {
     text-align: center;
     margin-bottom: 30px;
     color: var(--color-dark);
-    font-size: 40px;
 }
 
 .form-column .card:hover {
@@ -432,7 +429,7 @@ aside .sidebar .message-count {
     margin-bottom: 20px;
 }
 
-.form-columnbutton span {
+.form-column button span {
     display: block;
     margin-left: 0.3em;
     transition: all 0.3s ease-in-out;
@@ -448,7 +445,7 @@ aside .sidebar .message-count {
     animation: fly-1 0.6s ease-in-out infinite alternate;
 }
 
-.form-columnbutton:hover svg {
+.form-column button:hover svg {
     transform: translateX(1.2em) rotate(45deg) scale(1.1);
 }
 
