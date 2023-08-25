@@ -1,3 +1,10 @@
+// Función para obtener la fecha en el formato "MMM DD"
+function getFormattedDate() {
+    const options = { month: 'short', day: 'numeric' };
+    const formatter = new Intl.DateTimeFormat('en-US', options);
+    return formatter.format(new Date());
+}
+
 /*
 ! Función para crear un elemento un project task para la vista
 */
@@ -32,10 +39,7 @@ function createTaskToList(taskName, selectedTag, taskId) {
                 </div>
                 <p>${taskName}</p>
                 <div class='task__stats'>
-                    <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
-                    <span><i class="fas fa-comment"></i>3</span>
-                    <span><i class="fas fa-paperclip"></i>7</span>
-                    <span class='task__owner'></span>
+                    <span><time datetime="${getFormattedDate()}"><i class="fas fa-flag"></i>${getFormattedDate()}</time></span>
                 </div>
             </div>
         `;
@@ -94,6 +98,8 @@ function createTask(taskName, selectedTag){
                     showConfirmButton: false,
                     timer: 2000,
                     timerProgressBar: true,
+                }).then(() => {
+                    location.reload(); // Recarga la página después de eliminar la tarea
                 });
 
                 resolve(taskId); // Resolvemos la promesa con el taskId

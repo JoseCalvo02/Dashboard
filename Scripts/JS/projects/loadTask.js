@@ -8,7 +8,10 @@ function getProjectsTasks() {
         success: function (response) {
             console.log("Tareas obtenidas exitosamente:", response);
 
-            var newTasks = response.filter(task => !addedTaskIDs.includes(task.id));
+            // Desestructurar la respuesta JSON para obtener las tareas y los totales de tareas por categoría
+            const { tasks, taskCounts } = response;
+
+            var newTasks = tasks.filter(task => !addedTaskIDs.includes(task.id));
 
             // Crear un nuevo elemento de tarea para cada tarea en la respuesta
             newTasks.forEach(task => {
@@ -39,6 +42,9 @@ function getProjectsTasks() {
                 const targetColumn = projectColumns[columnIndex];
                 targetColumn.appendChild(newTaskElement);
             });
+
+            // Enviar el objeto taskCounts directamente a la función updateProgress
+            updateProgress(taskCounts);
         },
         error: function (error) {
             console.error("Error obteniendo las tareas:", error);

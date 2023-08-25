@@ -28,7 +28,7 @@ async function handleFormSubmit(event) {
             icon: 'success',
             title: 'Registro exitoso',
             text: 'El proyecto ha sido creado correctamente',
-            allowOutside: false,
+            allowOutsideClick: false,
         }).then(() => {
             // Update the table with the new project data
             fillProjects();

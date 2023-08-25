@@ -97,8 +97,28 @@ async function GetTaskProject(req, res ,userId, projectId){
         request.input('projectId', sql.Int, projectId);
         const result = await request.query(query);
 
-        // Devolver el resultado de la consulta
-        return result.recordset;
+        // Obtener el número de tareas en cada categoría de prioridad
+        const highPriorityCount = result.recordset.filter(task => task.priorityType === 'High Priority').length;
+        const mediumPriorityCount = result.recordset.filter(task => task.priorityType === 'Medium Priority').length;
+        const lowPriorityCount = result.recordset.filter(task => task.priorityType === 'Low Priority').length;
+
+        // Contar las tareas de cada prioridad que están en la columna 4 ("Done")
+        const highPriorityDoneCount = result.recordset.filter(task => task.priorityType === 'High Priority' && task.columnTask === '4').length;
+        const mediumPriorityDoneCount = result.recordset.filter(task => task.priorityType === 'Medium Priority' && task.columnTask === '4').length;
+        const lowPriorityDoneCount = result.recordset.filter(task => task.priorityType === 'Low Priority' && task.columnTask === '4').length;
+
+        // Crear un objeto con los totales de tareas por categoría de prioridad
+        const taskCounts = {
+            highPriority: highPriorityCount,
+            mediumPriority: mediumPriorityCount,
+            lowPriority: lowPriorityCount,
+            highPriorityDone: highPriorityDoneCount,
+            mediumPriorityDone: mediumPriorityDoneCount,
+            lowPriorityDone: lowPriorityDoneCount
+        };
+
+        // Devolver el resultado de la consulta y los totales de tareas
+        return { tasks: result.recordset, taskCounts };
     } catch (error) {
         throw new Error('Error al obtener las tareas de proyecto de la base de datos: ' + error.message);
     }
@@ -158,7 +178,6 @@ async function DeleteTask(userId, projectId, taskId) {
     }
 }
 
-
 async function DeleteProject(req, res, userId, projectId) {
     console.log("Este es el project id ", projectId);
     console.log("Este es el userId ", userId);
@@ -197,8 +216,6 @@ async function DeleteProject(req, res, userId, projectId) {
     }
 }
 
-
-
 async function AllTaskUser(req, res, userId) {
     try {
         // Conectar a la base de datos
@@ -229,12 +246,6 @@ async function AllTaskUser(req, res, userId) {
         throw new Error('Error al obtener el conteo de tareas por columnTask: ' + error.message);
     }
 }
-
-
-
-
-
-
 
 module.exports = {
     registerProject,

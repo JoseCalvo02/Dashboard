@@ -310,7 +310,7 @@ aside .sidebar .message-count {
 .container-form{
     font-size: 16px;
     width: 550px;
-    background: #fff;
+    background: var(--color-white);
     padding: 30px;
     border-radius: var(--card-border-radius);
     box-shadow: var(--box-shadow-add);
@@ -408,6 +408,10 @@ aside .sidebar .message-count {
 /*
 ============================>   Date input Configs   <============================
 */
+.container-form input, .container-form textarea{
+    background-color: var(--color-white);
+}
+
 .container-form .form-group input[type="date"]:focus,
 .container-form .form-group input[type="date"]:valid,
 .container-form .form-group input[type="date"]:hover {

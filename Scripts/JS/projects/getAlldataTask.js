@@ -22,7 +22,6 @@ $(document).ready(function() {
                 };
 
                 columnData.push(columnItem);
-              
             }
 
             // Llamada a la función para mostrar el contenido de columnData
@@ -37,8 +36,6 @@ $(document).ready(function() {
 
 // Función para mostrar y asignar los porcentajes para cada circulo
 function LoadDataTask(totalTaskCount) {
-
-    
     // Filtrar las entradas de columnData para excluir 'Total'
     const columnasSinTotal = columnData.filter(item => item.columnTask !== 'Total');
 
@@ -47,12 +44,12 @@ function LoadDataTask(totalTaskCount) {
     const nuevoPorcentajeProgress = obtenerPorcentajePorColumna(columnasSinTotal, '2');
     const nuevoPorcentajeDone = obtenerPorcentajePorColumna(columnasSinTotal, '4');
     const nuevoPorcentajeNeedsReview = obtenerPorcentajePorColumna(columnasSinTotal, '3');
-  
+
     // Actualizar los contenidos de los elementos <p>
     const percentagePendingText = document.getElementById("percentagePending");
     percentagePendingText.textContent = `${nuevoPorcentajePending}%`;
 
-    
+
     const sumaPorcentajesProgressyNeedsReview = parseFloat(nuevoPorcentajeProgress) + parseFloat(nuevoPorcentajeNeedsReview);//Se suman ambos porcentajes ya que cuentan para la misma columna
     const percentageProgressText = document.getElementById("percentageProgress");
     percentageProgressText.textContent = `${sumaPorcentajesProgressyNeedsReview}%`;
@@ -60,14 +57,12 @@ function LoadDataTask(totalTaskCount) {
     const percentageDoneText = document.getElementById("percentageDone");
     percentageDoneText.textContent = `${nuevoPorcentajeDone}%`;
 
-    
-
     // Actualizar los círculos utilizando la función updateCircle
     updateCircle(circlePending, nuevoPorcentajePending);
     updateCircle(circleProgress, sumaPorcentajesProgressyNeedsReview);
     updateCircle(circleDone, nuevoPorcentajeDone);
 
-    //Actualiza el HTML con el numero total de tareas en proyectos 
+    //Actualiza el HTML con el numero total de tareas en proyectos
     const totalTaskCountSpan = document.getElementById("totalTaskCountPlaceholder");
     totalTaskCountSpan.textContent = totalTaskCount;
 
@@ -78,12 +73,12 @@ function LoadDataTask(totalTaskCount) {
     for (const columna of columnData) {
         totalTareasPorColumna[columna.columnTask] = columna.taskCount;
     }
-    
+
     // Modificar el HTML con los totales de tareas por columna
     const totalTaskColumns = document.querySelectorAll('.totalTaskColumn');
     totalTaskColumns.forEach(element => {
         const columnaTask = element.getAttribute('data-columna-task');
-    
+
         if (columnaTask === '2' || columnaTask === '3') {        //Hace las validaciones resecto al nuevo de columna
             const totalTareas2 = totalTareasPorColumna['2'] || 0;
             const totalTareas3 = totalTareasPorColumna['3'] || 0;
@@ -94,7 +89,6 @@ function LoadDataTask(totalTaskCount) {
             element.textContent = `Cant(${totalTareas})`;
         }
     });
-    
 }
 
 // Función para obtener el porcentaje por columna

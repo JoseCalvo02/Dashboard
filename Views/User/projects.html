@@ -27,14 +27,10 @@
         <main class='project'>
             <div class='project-info'>
                 <h1>Project Homepage</h1>
-                <div class='task-create__button' draggable='false'>
-                    <button id="Borrar">Eliminar este proyecto</button>
-                </div>
                 <div class='project-participants'>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <button class='project-participants__add'>Añadir Participante</button>
+                    <div class='task-delete-button'>
+                        <button id="Borrar">Eliminar este proyecto</button>
+                    </div>
                 </div>
             </div>
 
@@ -73,7 +69,6 @@
                             <button id="saveButton">Guardar</button>
                         </div>
                     </div>
-
                     <!--================ Here we have the "Task Ready" tasks =================-->
 
                 </div><!--================ End of Column - Task Ready =================-->
@@ -84,7 +79,6 @@
                         <h2 class='project-column-heading__title'>En progreso</h2>
                         <button class='project-column-heading__options'><i class="fas fa-ellipsis-h"></i></button>
                     </div>
-
                     <!--================ Here we have the "In Progress" tasks =================-->
 
                 </div><!--================ End of Column - In Progress =================-->
@@ -95,7 +89,6 @@
                         <h2 class='project-column-heading__title'>En revisión</h2>
                         <button class='project-column-heading__options'><i class="fas fa-ellipsis-h"></i></button>
                     </div>
-
                     <!--================ Here we have the "Needs Review" tasks =================-->
 
                 </div><!--================ End of Column - Needs review =================-->
@@ -106,7 +99,6 @@
                         <h2 class='project-column-heading__title'>Completadas</h2>
                         <button class='project-column-heading__options'><i class="fas fa-ellipsis-h"></i></button>
                     </div>
-
                     <!--================ Here we have the "Done" tasks =================-->
 
                 </div><!--================ End of Column - Tasks Done =================-->
@@ -123,20 +115,21 @@
             <div class='tag-progress'>
                 <h2>Progreso de tareas</h2>
                 <div class='tag-progress'>
-                    <p>Alta prioridad <span>3/8</span></p>
-                    <progress class="progress progress--high" max="8" value="3"> 3 </progress>
+                    <p>Alta prioridad <span id="progressHighText">0/0</span></p>
+                    <progress id="progressHigh" class="progress progress--high" max="1" value="0"> 0 </progress>
                 </div>
                 <div class='tag-progress'>
-                    <p>Prioridad media <span>6/10</span></p>
-                    <progress class="progress progress--medium" max="10" value="6"> 6 </progress>
+                    <p>Prioridad media <span id="progressMediumText">0/0</span></p>
+                    <progress id="progressMedium" class="progress progress--medium" max="1" value="0"> 0 </progress>
                 </div>
                 <div class='tag-progress'>
-                    <p>Prioridad baja<span>2/7</span></p>
-                    <progress class="progress progress--low" max="7" value="2"> 2 </progress>
+                    <p>Prioridad baja<span id="progressLowText">0/0</span></p>
+                    <progress id="progressLow" class="progress progress--low" max="1" value="0"> 0 </progress>
                 </div>
             </div><!--================ End of Task progress =================-->
 
             <!--================ Start Recent Activity =================-->
+            <!--
             <div class='task-activity'>
                 <h2>Actividad reciente</h2>
                 <ul>
@@ -166,12 +159,14 @@
                         <time datetime="2021-11-24T20:00:00">Aug 12</time>
                     </li>
                 </ul>
-            </div><!--================ End of Recent Activity =================-->
+            </div>-->
+        <!--================ End of Recent Activity =================-->
         </aside>
 
     </div><!--================ End of div app =================-->
 
     <!-- Scripts for projects tasks-->
+    <script src="../../Scripts/JS/projects/progressTask.js"></script>
     <script src="../../Scripts/JS/projects/loadTask.js"></script>
     <script src="../../Scripts/JS/projects/createTask.js"></script>
     <script src="../../Scripts/JS/projects/homeTask.js"></script>

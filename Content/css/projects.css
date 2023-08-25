@@ -3,7 +3,9 @@
 /* ==========>  Root vars  <========== */
 :root {
   --color-primary: #6380ec;
+  --color-primary-variant: #3E64CC;
   --color-danger: #ff7782;
+  --color-danger-variant: #D65361;
   --color-success: #41f1b6;
   --bg: #f6f6f9;
   --header: #fbf4f6;
@@ -66,7 +68,7 @@ h1 {
   display: flex;
   align-items: center;
 }
-.project-participants span, .project-participants__add {
+.project-participants span {
   width: 30px;
   height: 30px;
   display: inline-block;
@@ -74,17 +76,19 @@ h1 {
   border-radius: 100rem;
   margin: 0 0.2rem;
 }
-.project-participants__add {
-  background: transparent;
-  border: 1px dashed rgb(150, 150, 150);
-  font-size: 0;
+.project-participants button {
+  width: 100%;
+  background-color: var(--color-danger);
+  color: var(--white);
+  border: none;
+  padding: 10px;
   cursor: pointer;
-  position: relative;
+  font-size: 16px;
+  border-radius: 10px; /* Ajusta el valor según tu preferencia */
+  margin-top: 20px; /* Espacio entre los botones */
 }
-.project-participants__add:after {
-  content: "+";
-  font-size: 15px;
-  color: rgb(150, 150, 150);
+.project-participants button:hover {
+  background-color: var(--color-danger-variant);
 }
 .project-tasks {
   display: grid;
@@ -216,10 +220,6 @@ h1 {
 .task-create__tags select option:hover {
   color: red;
 }
-
-option:hover {
-    color: red;
-}
 .task-create__tags select option:checked {
   background-color: var(--color-primary); /* Cambia el color de fondo de la opción seleccionada */
   color: var(--white); /* Cambia el color del texto de la opción seleccionada */
@@ -251,6 +251,9 @@ option:hover {
   font-size: 16px;
   border-radius: 10px; /* Ajusta el valor según tu preferencia */
   margin-top: 20px; /* Espacio entre los botones */
+}
+.task-create__button button:hover {
+  background-color: var(--color-primary-variant);
 }
 
 /*

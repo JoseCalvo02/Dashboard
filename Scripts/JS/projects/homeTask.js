@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const descriptionInput = document.getElementById('description');
 
     /*
-    ! Evento que se activa cuando la página se carga completamente
+    ! Evento que se activa cuando se guarda una tarea
     */
     async function createTaskAndSave() {
         const tagSelect = document.getElementById('tagSelect');

@@ -49,6 +49,7 @@ function handleDrop(e) {
         column.classList.remove('task-hover'); // Elimina la clase "task-hover" de cada columna
     });
 
+    location.reload();
     return false; // Evita el comportamiento predeterminado del navegador
 }
 

@@ -44,23 +44,21 @@ router.get('/getProjects', async (req, res) => {
 // Ruta GET para eliminar los proyectos
 router.delete('/deleteProjects', async (req, res) => {
     try {
-            const { userId } = req.session;// Obtener el userId del usuario desde la sesión después de iniciar sesión
-   
-           if (!userId) {
-               // Si el usuario no ha iniciado sesión, enviar una respuesta de error
-               return res.status(401).json({ message: 'Usuario no autenticado' });
-           }
-           const projectId = req.query.id;
-           // Llamar a la función getProjectsFromDatabase pasando el userId
-           const confirmation = await projectController.DeleteProject(req,res,userId,projectId);
-           res.status(200).json(confirmation);
-       } catch (error) {
-           console.error('Error al eliminar el proyecto:', error);
-           res.status(500).json({ message: 'Error al obtener al eliminar el proyecto' });
-       }
-   });
-   
-   
+        const { userId } = req.session;// Obtener el userId del usuario desde la sesión después de iniciar sesión
+
+        if (!userId) {
+            // Si el usuario no ha iniciado sesión, enviar una respuesta de error
+            return res.status(401).json({ message: 'Usuario no autenticado' });
+        }
+        const projectId = req.query.id;
+        // Llamar a la función getProjectsFromDatabase pasando el userId
+        const confirmation = await projectController.DeleteProject(req,res,userId,projectId);
+        res.status(200).json(confirmation);
+    } catch (error) {
+        console.error('Error al eliminar el proyecto:', error);
+        res.status(500).json({ message: 'Error al obtener al eliminar el proyecto' });
+    }
+});
 
 // Ruta POST para crear tareas para los proyectos
 router.post('/CreateProjectTask', async (req, res) => {
@@ -99,8 +97,10 @@ router.get('/getProjectTasks', async(req, res) => {
         const projectId = req.query.id; //Recibe como parametro el ID del proyecto seleccionado desde la URL
 
         // Llamar a la función GetTaskProject pasando el userId
-        const projectsTask = await projectController.GetTaskProject(req, res, userId, projectId);
-        res.status(200).json(projectsTask);
+        const { tasks, taskCounts } = await projectController.GetTaskProject(req, res, userId, projectId);
+
+        // Devolver las tareas y los totales de tareas por categoría de prioridad en la respuesta JSON
+        res.status(200).json({ tasks, taskCounts });
     } catch (error) {
         console.error('Error al obtener los las tareas del proyecto:', error);
         res.status(500).json({ message: 'Error al obtener las tareas del proyecto' });

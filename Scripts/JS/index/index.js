@@ -47,21 +47,13 @@ window.addEventListener('load', function() {
 // Evento que se activa al cambiar el tamaño de la ventana
 window.addEventListener('resize', toggleSidebar);
 
-//Change theme
-themeToggler.addEventListener('click', () => {
-    document.body.classList.toggle('dark-theme-variables');
-
-    themeToggler.querySelector('span:nth-child(1)').classList.toggle('active');
-    themeToggler.querySelector('span:nth-child(2)').classList.toggle('active');
-})
-
 const addBtn = document.querySelector("#addBtn");
 addBtn.addEventListener("click", () => {
     window.location.replace("../User/projectForm.html");
 });
 
 // Función para aplicar el estilo y el porcentaje a los círculos
-function updateCircle(circle, percentage,color) { //Se le agrega un nuevo parametro , para asignar el color 
+function updateCircle(circle, percentage,color) { //Se le agrega un nuevo parametro , para asignar el color
 
     // Calculate the circumference of the circle
     const circumference = 2 * Math.PI * parseFloat(circle.getAttribute("r"));
@@ -76,10 +68,10 @@ function updateCircle(circle, percentage,color) { //Se le agrega un nuevo parame
     circle.style.strokeDashoffset = dashOffset;
 
     // Use CSS variables for colors
-    
 
-    circle.style.stroke = color;  //Se asigna el color 
+    circle.style.stroke = color;  //Se asigna el color
 }
+
 /*
 ! Constantes para el funcionamiento de los procentajes de los circulos
 */

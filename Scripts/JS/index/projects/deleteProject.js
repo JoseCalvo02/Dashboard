@@ -8,8 +8,8 @@ $(document).ready(function() {
             text: 'Esta acción eliminará el proyecto y sus tareas relacionadas.',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#ff7782',
+            cancelButtonColor: '#6380ec',
             confirmButtonText: 'Sí, eliminar',
             cancelButtonText: 'Cancelar'
         }).then((result) => {
@@ -24,11 +24,12 @@ $(document).ready(function() {
                             'Eliminado',
                             'El proyecto y sus tareas relacionadas han sido eliminadas.',
                             'success'
-                        );
-                        setTimeout(function() {
-                            window.close();
-                            window.location.href = '../../Views/Home/index.html';
-                        }, 4000);
+                        )
+                        window.close();
+                        // Reload the parent window/tab
+                        window.opener.location.reload();
+
+                        window.location.href = '../../Views/Home/index.html';
                     },
                     error: function(error) {
                         console.error("Error al eliminar el proyecto:", error);
@@ -40,6 +41,8 @@ $(document).ready(function() {
                     }
                 });
             }
+            // Llama a la función fillProjects para llenar los proyectos al cargar la página
+            fillProjects();
         });
     });
 });

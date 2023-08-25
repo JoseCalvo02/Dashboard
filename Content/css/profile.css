@@ -4,6 +4,7 @@
 /* ==========>  Root vars  <========== */
 :root {
     --color-primary: #6380ec;
+    --color-primary-variant: #3E64CC;
     --color-danger: #ff7782;
     --color-danger-variant: #D65361;
     --color-success: #41f1b6;
@@ -13,7 +14,6 @@
     --color-info-light: #dce1eb;
     --color-dark: #363949;
     --color-light: rgba(132, 139, 200, 0.18);
-    --color-primary-variant: #3E64CC;
     --color-dark-variant: #677483;
     --color-background: #f6f6f9;
 
@@ -35,6 +35,7 @@
     --color-background: #181a1e;
     --color-white: #202528;
     --color-dark: #edeffd;
+    --color-info-light: #363949;
     --color-dark-variant: #a3bdcc;
     --color-light: rgba(0, 0, 0, 0.4);
 
@@ -308,21 +309,27 @@ main .forms .form-column {
 .forms-wrapper .nav-column h1 {
     display: block; /* Cambiar a un elemento de bloque para que ocupe todo el ancho y se muestre en una fila por separado */
     margin-bottom: 20px;
-
     text-decoration: none; /* Quitar la decoración de enlace predeterminada */
     color: var(--color-dark); /* Cambiar el color del texto si lo deseas */
 }
 
 .forms-wrapper .nav-column a {
     font-size: 18px;
-    display: block; /* Cambiar a un elemento de bloque para que ocupe todo el ancho y se muestre en una fila por separado */
+    display: grid; /* Cambiar a cuadrícula para controlar el diseño interno */
+    grid-template-columns: auto 1fr; /* Divide la columna en el ancho del ícono y el resto del espacio para el encabezado */
+    align-items: center; /* Centra verticalmente el contenido en la cuadrícula */
     margin-bottom: 10px;
-    text-decoration: none; /* Quitar la decoración de enlace predeterminada */
-    color: var(--color-dark); /* Cambiar el color del texto si lo deseas */
+    text-decoration: none;
+    color: var(--color-dark);
+}
+
+.forms-wrapper .nav-column a i {
+    font-size: 24px; /* Ajusta el tamaño del ícono según tus preferencias */
+    margin-right: 10px; /* Espaciado entre el ícono y el encabezado */
 }
 
 .forms-wrapper .nav-column a:hover {
-    color: var(--color-primary-variant); /* Cambiar el color del texto si lo deseas */
+    color: var(--color-primary-variant);
 }
 
 .form-column .card {
@@ -383,11 +390,11 @@ main .forms .form-column {
 }
 
 .form-column input[type="text"]:disabled {
-    background-color: var(--color-info-light) !important;
+    background-color: var(--color-info-light);
 }
 
 .form-column input[type="email"]:disabled {
-    background-color: var(--color-info-light)!important;
+    background-color: var(--color-info-light);
 }
 
 .form-column ::placeholder{
@@ -395,10 +402,15 @@ main .forms .form-column {
     text-align: center;
 }
 
-.form-column button {
+.form-column p {
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.form-column .btn-enviar {
     font-family: inherit;
-    font-size: 20px;
-    width: 200px;
+    font-size: 15px;
+    width: 20%;
     background: var(--color-primary);
     color: white;
     padding: 0.7em 1em;
@@ -412,48 +424,35 @@ main .forms .form-column {
     margin: 0 auto;
 }
 
-.form-column button:hover {
+.form-column .btn-enviar:hover {
     background: var(--color-primary-variant);
 }
 
-.form-column .deleteBtn {
-    background: var(--color-danger);
-}
-
-.form-column .deleteBtn:hover {
-    background: var(--color-danger-variant);
-}
-
-.form-column p {
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-.form-column button span {
+.form-column .btn-enviar span {
     display: block;
     margin-left: 0.3em;
     transition: all 0.3s ease-in-out;
 }
 
-.form-column button svg {
+.form-column .btn-enviar svg {
     display: block;
     transform-origin: center center;
     transition: transform 0.3s ease-in-out;
 }
 
-.form-column button:hover .svg-wrapper {
+.form-column .btn-enviar:hover .svg-wrapper {
     animation: fly-1 0.6s ease-in-out infinite alternate;
 }
 
-.form-column button:hover svg {
+.form-column .btn-enviar:hover svg {
     transform: translateX(1.2em) rotate(45deg) scale(1.1);
 }
 
-.form-column button:hover span {
+.form-column .btn-enviar:hover span {
     transform: translateX(1.5em);
 }
 
-.form-column button:active {
+.form-column .btn-enviar:active {
     transform: scale(0.95);
 }
 
@@ -467,8 +466,26 @@ main .forms .form-column {
     }
 }
 
+.form-column .deleteBtn {
+    width: 25%;
+    font-family: inherit;
+    font-size: 15px;
+    background: var(--color-danger);
+    color: white;
+    padding: 0.6em 1em;
+    align-items: center;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s;
+}
+
+.form-column .deleteBtn:hover {
+    background: var(--color-danger-variant);
+}
+
 .form-column label{
-    font-size: 18px;
+    font-size: 15px;
 }
 
 /*
