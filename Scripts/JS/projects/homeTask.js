@@ -13,6 +13,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const saveButton = document.getElementById("saveButton");
     const descriptionInput = document.getElementById('description');
 
+    const projectName = document.getElementById('projectName');
+    // Agrega el nombre del proyecto al elemento <h1>
+    projectName.textContent = `Project Name: ${nombreProyecto}`;
+
     /*
     ! Evento que se activa cuando se guarda una tarea
     */

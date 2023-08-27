@@ -69,7 +69,7 @@ body {
     width: 100vw;
     height: 100vh;
     font-family: poppins, sans-serif;
-    font-size: 0.88rem;
+    font-size: 0.8rem;
     background: var(--color-background);
     user-select: none; /* Evita que el usuario pueda seleccionar y resaltar texto */
     overflow-x: hidden; /* Esconde el contenido que salga de la pantalla - eje horizontal*/
@@ -474,10 +474,18 @@ main .projects .addBtnContainer{
     margin: 1rem auto;
 }
 
-main .projects .addBtnContainer a{
-    display: inline;
+main .projects .addBtnContainer a {
+    display: inline-flex; /* Cambio a inline-flex para alinear ícono y texto verticalmente */
+    align-items: center;
+    gap: 5px; /* Espacio entre ícono y texto */
     padding: 5px;
     color: var(--color-primary);
+}
+
+main .projects .addBtnContainer span {
+    font-size: 0.88rem;
+    display: flex; /* Para centrar el ícono verticalmente */
+    align-items: center; /* Centrar ícono verticalmente */
 }
 
 main .projects .addBtnContainer a:hover{
