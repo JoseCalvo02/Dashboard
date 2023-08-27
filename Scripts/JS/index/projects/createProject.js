@@ -27,7 +27,7 @@ function fillProjects() {
                 newRow.appendChild(cell2);
 
                 const cell3 = document.createElement("td");
-                cell3.textContent = formatDate(project.end_date); // Formatear la fecha
+                cell3.innerHTML = formatDateWithClasses(project.end_date); // Formatear la fecha con clases
                 newRow.appendChild(cell3);
 
                 const cell4 = document.createElement("td");

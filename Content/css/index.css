@@ -6,6 +6,7 @@
     --color-primary: #6380ec;
     --color-danger: #ff7782;
     --color-success: #41f1b6;
+    --color-success-variant: #00CFB8;
     --color-warning: #ffbb55;
     --color-white: #fff;
     --color-info-dark: #7d8da1;
@@ -69,7 +70,7 @@ body {
     width: 100vw;
     height: 100vh;
     font-family: poppins, sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     background: var(--color-background);
     user-select: none; /* Evita que el usuario pueda seleccionar y resaltar texto */
     overflow-x: hidden; /* Esconde el contenido que salga de la pantalla - eje horizontal*/
@@ -159,7 +160,7 @@ b {
 }
 
 .success {
-    color: var(--color-success);
+    color: var(--color-success-variant);
 }
 
 .warning {
