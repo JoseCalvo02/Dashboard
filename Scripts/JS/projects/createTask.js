@@ -78,7 +78,7 @@ function createTask(taskName, selectedTag){
         const formData = {
             taskName,
             selectedTag,
-            selectedProjectID
+            idProyecto
         };
 
         // Realizar una solicitud AJAX al servidor

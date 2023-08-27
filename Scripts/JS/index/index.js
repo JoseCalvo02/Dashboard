@@ -90,14 +90,10 @@ const percentagePending = parseFloat(percentagePendingText.innerText);
 const percentageProgress = parseFloat(percentageProgressText.innerText);
 const percentageDone = parseFloat(percentageDoneText.innerText);
 
-
 const colorRed = "var(--color-danger)";  //Definicion de colores
 const colorYellow = "var(--color-warning)";
 const colorGreen = "var(--color-success)";
 
-updateCircle(circlePending, percentagePending,colorRed);  //Asignacion de colores para los respectivos circulos 
+updateCircle(circlePending, percentagePending,colorRed);  //Asignacion de colores para los respectivos circulos
 updateCircle(circleProgress, percentageProgress,colorYellow);
 updateCircle(circleDone, percentageDone,colorGreen);
-
-
-//Se borraron los condicionales segun el porcentaje

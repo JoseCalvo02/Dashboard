@@ -81,7 +81,7 @@ function saveTaskPositionInDatabase(taskId, columnIndex) {
 
     // Envía los datos al servidor mediante AJAX
     $.ajax({
-        url: `/saveTaskPosition?id=${encodeURIComponent(selectedProjectID)}`,
+        url: `/saveTaskPosition?id=${idProyecto}`,
         type: 'PUT',
         contentType: 'application/json',
         data: JSON.stringify(taskMovement),

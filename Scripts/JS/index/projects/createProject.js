@@ -71,8 +71,12 @@ function addOpenLinkEventListeners() {
             const nombreProyecto = link.getAttribute("data-nombre-proyecto");
             const idProyecto = link.getAttribute("data-id-proyecto");
 
-            // Abre la página "../User/projects.html" en una nueva pestaña con los parametros idProyecto y nombreProyecto
-            window.open(`../User/projects.html?proyecto=${encodeURIComponent(nombreProyecto)}&id=${encodeURIComponent(idProyecto)}`, "_blank");
+            // Codifica los parámetros antes de agregarlos a la URL
+            const encodedNombre = encodeURIComponent(btoa(nombreProyecto));
+            const encodedId = encodeURIComponent(btoa(idProyecto));
+
+            // Cambia la ubicación actual a la nueva página, reemplazando la página actual
+            window.location.href = `../User/projects.html?proyecto=${encodedNombre}&id=${encodedId}`;
         });
     });
 }

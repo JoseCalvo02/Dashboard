@@ -1,8 +1,9 @@
 //Global Variables
-var consultIDproject= new URLSearchParams(window.location.search); //Consulta la URL actual
-var selectedProjectID = consultIDproject.get('id');
-var taskCreate = document.querySelector('.task-create');
+var urlParams = new URLSearchParams(window.location.search);
+var idProyecto = atob(decodeURIComponent(urlParams.get("id")));
+var nombreProyecto = atob(decodeURIComponent(urlParams.get("proyecto")));
 
+var taskCreate = document.querySelector('.task-create');
 
 /*
 ! Evento que se activa cuando la página se carga completamente

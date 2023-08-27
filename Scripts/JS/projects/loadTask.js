@@ -2,7 +2,7 @@ var addedTaskIDs = [];
 
 function getProjectsTasks() {
     $.ajax({
-        url: `/getProjectTasks?id=${encodeURIComponent(selectedProjectID)}`,
+        url: `/getProjectTasks?id=${idProyecto}`,
         type: "GET",
         dataType: "json",
         success: function (response) {

@@ -4,13 +4,13 @@ function DeleteTask(taskId) {
         text: 'Esta acción no se puede deshacer.',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
+        confirmButtonColor: '#ff7782',
+        cancelButtonColor: '#6380ec',
         confirmButtonText: 'Sí, eliminar tarea'
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: `/DeleteTask?id=${encodeURIComponent(selectedProjectID)}&taskId=${encodeURIComponent(taskId)}`,
+                url: `/DeleteTask?id=${idProyecto}&taskId=${encodeURIComponent(taskId)}`,
                 type: "DELETE",
                 success: function(response) {
                     Swal.fire({

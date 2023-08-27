@@ -63,7 +63,7 @@ router.delete('/deleteProjects', async (req, res) => {
 // Ruta POST para crear tareas para los proyectos
 router.post('/CreateProjectTask', async (req, res) => {
     try {
-        const { taskName, selectedTag ,selectedProjectID} = req.body;
+        const { taskName, selectedTag ,idProyecto} = req.body;
         const { userId } = req.session; // Obtener el userId del usuario desde la sesión después de iniciar sesión
 
         if (!userId) {
@@ -74,7 +74,7 @@ router.post('/CreateProjectTask', async (req, res) => {
             req,
             res,
             userId,
-            selectedProjectID,
+            idProyecto,
             taskName,
             selectedTag,
             "1"
