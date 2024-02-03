@@ -20,3 +20,22 @@ Desde la raíz del proyecto, ejecutar los siguientes comandos para iniciar el se
 cd Server
 node server.js
 ```
+
+### Ejemplos de páginas del proyecto:
+
+A continuación se muestran algunas capturas de pantalla de las páginas principales del proyecto:
+
+- **Dashboard**: Página principal del usuario que muestra un resumen de actividades.
+  ![Dashboard](images/Dashboard.png)
+
+- **Página de inicio de sesión**: Interfaz de inicio de sesión para los usuarios.
+  ![Página de inicio de sesión](images/Login_page.png)
+
+- **Página de registro**: Formulario de registro para nuevos usuarios.
+    ![Página de registro](images/Signup_page.png)
+
+- **Página de perfil**: Vista del perfil del usuario con información personal.
+  ![Página de perfil](images/Profile_page.png)
+
+- **Página de proyectos**: Lista de las tareas disponibles para el usuario dentro de un proyecto específico.
+  ![Página de proyectos](images/Projects_page.png)
